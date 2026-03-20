@@ -1,0 +1,10 @@
+^\.github$
+^LICENSE\.md$
+^README\.Rmd$
+^data-raw$
+^status$
+^_scaffold\.R$
+^r-project\.Rproj$
+^\.claude$
+^.*\.Rproj$
+^\.Rproj\.user$

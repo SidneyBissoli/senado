@@ -131,7 +131,7 @@ Antes de escrever código, as seguintes decisões devem ser formalizadas:
 
 ### Entregáveis
 
-- [ ] Repositório GitHub criado e configurado (`senado`)
+- [x] Repositório GitHub criado e configurado (`senado`)
 - [ ] `usethis::create_package("senado")` executado
 - [ ] `DESCRIPTION` preenchido (Title, Description, Authors, License, Imports, Suggests, URL, BugReports, Roxygen, Config/testthat/edition)
 - [ ] Estrutura de pastas criada:
