@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:mcpservers.org)",
+      "WebFetch(domain:glama.ai)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:lobehub.com)",
+      "WebFetch(domain:www.npmjs.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:smithery.ai)",
+      "WebFetch(domain:api.npmjs.org)"
+    ]
+  }
+}
