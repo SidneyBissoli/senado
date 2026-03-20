@@ -403,7 +403,7 @@ implementado.</p>
 <tr class="odd">
 <td>Primeira função retornando dados reais</td>
 <td align="center">02</td>
-<td><code>senado_get()</code> operacional com retry/cache</td>
+<td><code>sen_get()</code> operacional com retry/cache</td>
 </tr>
 <tr class="even">
 <td>Cobertura funcional completa (core)</td>
@@ -655,14 +655,15 @@ documentadas.</p>
 <p>Antes de escrever código, as seguintes decisões devem ser
 formalizadas:</p>
 <ul class="task-list">
-<li><label><input type="checkbox"></input><strong>Nome do pacote:</strong>
-<code>senado</code> (curto, limpo, memorizável — confirmar
-disponibilidade no CRAN)</label></li>
-<li><label><input type="checkbox"></input><strong>Prefixo das
-funções:</strong> <code>senado_</code> (ex:
-<code>senado_senators()</code>, <code>senado_votes()</code>) —
-consistente com convenção dos MCPs</label></li>
-<li><label><input type="checkbox"></input><strong>Dependências core
+<li><label><input type="checkbox" checked></input><strong>Nome do
+pacote:</strong> <code>senado</code> (curto, limpo, memorizável —
+confirmar disponibilidade no CRAN)</label></li>
+<li><label><input type="checkbox" checked></input><strong>Prefixo das
+funções:</strong> <code>sen_</code> (ex: <code>sen_senators()</code>,
+<code>sen_votes()</code>) — curto, bilíngue (PT <em>senado</em> / EN
+<em>senate</em>), segue padrão do ecossistema (<code>str_</code>,
+<code>gs4_</code>, <code>fct_</code>)</label></li>
+<li><label><input type="checkbox" checked></input><strong>Dependências core
 (mínimas):</strong></label>
 <ul>
 <li><code>httr2</code> (HTTP client moderno, substitui <code>httr</code>
@@ -679,8 +680,8 @@ erros)</li>
 <li><code>memoise</code> ou <code>cachem</code> (cache em memória —
 avaliar qual é mais adequado)</li>
 </ul></li>
-<li><label><input type="checkbox"></input><strong>Dependências sugeridas
-(Suggests):</strong></label>
+<li><label><input type="checkbox" checked></input><strong>Dependências
+sugeridas (Suggests):</strong></label>
 <ul>
 <li><code>testthat</code> (≥ 3.0.0)</li>
 <li><code>httptest2</code> (mock de requisições HTTP para testes)</li>
@@ -690,18 +691,19 @@ avaliar qual é mais adequado)</li>
 <li><code>dplyr</code> (exemplos nas vignettes)</li>
 <li><code>ggplot2</code> (exemplos nas vignettes)</li>
 </ul></li>
-<li><label><input type="checkbox"></input><strong>Infraestrutura
-compartilhada:</strong> decidir se <code>apigateway</code> será um
-pacote interno separado ou um módulo dentro de <code>senado</code>
-(recomendação: começar dentro de <code>senado</code> em
-<code>R/utils-api.R</code>, extrair depois se necessário)</label></li>
-<li><label><input type="checkbox"></input><strong>Formato de saída:</strong>
-todas as funções retornam <code>tibble</code> com colunas em
-<code>snake_case</code></label></li>
-<li><label><input type="checkbox"></input><strong>Licença:</strong> MIT
-(consistente com ecossistema rOpenSci)</label></li>
-<li><label><input type="checkbox"></input><strong>Versão mínima do R:</strong>
-≥ 4.1.0 (para suporte nativo ao pipe <code>|&gt;</code>)</label></li>
+<li><label><input type="checkbox" checked></input><strong>Infraestrutura
+compartilhada:</strong> começar dentro de <code>senado</code> em
+<code>R/utils-api.R</code>; extrair para pacote separado
+(<code>apigateway</code>) somente quando outro pacote (healthbR,
+educabR, welfarebR) precisar</label></li>
+<li><label><input type="checkbox" checked></input><strong>Formato de
+saída:</strong> todas as funções retornam <code>tibble</code> com
+colunas em <code>snake_case</code></label></li>
+<li><label><input type="checkbox" checked></input><strong>Licença:</strong>
+MIT (consistente com ecossistema rOpenSci)</label></li>
+<li><label><input type="checkbox" checked></input><strong>Versão mínima do
+R:</strong> ≥ 4.1.0 (para suporte nativo ao pipe
+<code>|&gt;</code>)</label></li>
 </ul>
 </div>
 <div id="entregáveis-1" class="section level3">
@@ -719,7 +721,7 @@ criada:</label></p>
 <pre><code>senado/
 ├── R/
 │   ├── senado-package.R        # Package-level documentation
-│   ├── utils-api.R             # senado_get(), retry, cache, user-agent
+│   ├── utils-api.R             # sen_get(), retry, cache, user-agent
 │   ├── utils-parse.R           # Parsers XML/JSON, normalização de colunas
 │   ├── utils-validate.R        # Validação de inputs (anos, códigos, etc.)
 │   └── zzz.R                   # .onLoad, .onAttach
@@ -860,9 +862,8 @@ Revisão das decisões arquiteturais e DESCRIPTION.</label></li>
 <h2>Fase 02 — Camada de infraestrutura de acesso à API</h2>
 <p><strong>Status:</strong> 🔲 NÃO INICIADA<br />
 <strong>Período previsto:</strong> 1–2 semanas<br />
-<strong>Objetivo:</strong> Implementar o <code>senado_get()</code> e
-toda a infraestrutura que garante robustez no acesso à API do
-Senado.</p>
+<strong>Objetivo:</strong> Implementar o <code>sen_get()</code> e toda a
+infraestrutura que garante robustez no acesso à API do Senado.</p>
 <div id="contexto-técnico" class="section level3">
 <h3>Contexto técnico</h3>
 <p>A API do Senado (<code>legis.senado.leg.br/dadosabertos/</code>)
@@ -887,7 +888,7 @@ camelCase e snake_case misturados.</li>
 <h3>Entregáveis</h3>
 <ul class="task-list">
 <li><label><input type="checkbox"></input><strong><code>R/utils-api.R</code></strong> — Função
-central <code>senado_get()</code>:</label>
+central <code>sen_get()</code>:</label>
 <ul class="task-list">
 <li><label><input type="checkbox"></input>Construção de URL base + path +
 query params</label></li>
@@ -922,10 +923,10 @@ dado:</label>
 <li>Dados dinâmicos (votações recentes, agenda): 15min</li>
 </ul></li>
 <li><label><input type="checkbox"></input>Função
-<code>senado_cache_clear()</code> para limpar cache
+<code>sen_cache_clear()</code> para limpar cache
 manualmente</label></li>
 <li><label><input type="checkbox"></input>Opção global
-<code>senado_use_cache</code> (TRUE/FALSE) via
+<code>sen_use_cache</code> (TRUE/FALSE) via
 <code>options()</code></label></li>
 </ul></li>
 <li><label><input type="checkbox"></input><strong><code>R/utils-parse.R</code></strong> —
@@ -996,7 +997,7 @@ passando com 0/0/0</label></li>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Implementar <code>senado_get()</code></td>
+<td>Implementar <code>sen_get()</code></td>
 <td><code>CC</code></td>
 </tr>
 <tr class="even">
@@ -1035,10 +1036,9 @@ passando com 0/0/0</label></li>
 <ul class="task-list">
 <li><label><input type="checkbox"></input><strong>Máquina (Claude):</strong>
 Todos os testes passando; <code>devtools::check()</code> 0/0/0;
-<code>senado_get(&quot;senador/lista/atual&quot;)</code> retorna
-tibble.</label></li>
+<code>sen_get(&quot;senador/lista/atual&quot;)</code> retorna tibble.</label></li>
 <li><label><input type="checkbox"></input><strong>Humano (Sidney):</strong>
-Testar <code>senado_get()</code> interativamente no RStudio contra 5+
+Testar <code>sen_get()</code> interativamente no RStudio contra 5+
 endpoints diferentes; validar que retry funciona (ex: desconectar
 internet temporariamente).</label></li>
 </ul>
@@ -1091,7 +1091,7 @@ comissões, plenário e dados de referência.</p>
 <h3>Princípios de design</h3>
 <ol style="list-style-type: decimal">
 <li><strong>Uma função por ação semântica</strong> (não por endpoint).
-Ex: <code>senado_senators()</code> agrega lista + filtro.</li>
+Ex: <code>sen_senators()</code> agrega lista + filtro.</li>
 <li><strong>Saída sempre em tibble</strong> com colunas
 <code>snake_case</code>.</li>
 <li><strong>Paginação transparente</strong> — o usuário recebe todos os
@@ -1108,88 +1108,87 @@ requisições (via <code>cli::cli_progress_bar()</code>).</li>
 <div id="módulo-3.1-dados-de-referência-rreference.r" class="section level3">
 <h3>Módulo 3.1 — Dados de referência (<code>R/reference.R</code>)</h3>
 <ul class="task-list">
-<li><label><input type="checkbox"></input><code>senado_legislatures()</code> —
+<li><label><input type="checkbox"></input><code>sen_legislatures()</code> —
 Lista de legislaturas (número, datas, senadores)</label></li>
-<li><label><input type="checkbox"></input><code>senado_current_legislature()</code> —
-Legislatura atual (shortcut)</label></li>
-<li><label><input type="checkbox"></input><code>senado_parties()</code> —
+<li><label><input type="checkbox"></input><code>sen_current_legislature()</code> — Legislatura
+atual (shortcut)</label></li>
+<li><label><input type="checkbox"></input><code>sen_parties()</code> —
 Partidos com representação no Senado</label></li>
-<li><label><input type="checkbox"></input><code>senado_states()</code> — UFs
-com senadores</label></li>
-<li><label><input type="checkbox"></input><code>senado_bill_types()</code> —
+<li><label><input type="checkbox"></input><code>sen_states()</code> — UFs com
+senadores</label></li>
+<li><label><input type="checkbox"></input><code>sen_bill_types()</code> —
 Tipos de matéria legislativa (PEC, PL, PLS, etc.)</label></li>
-<li><label><input type="checkbox"></input><code>senado_proceeding_types()</code> — Tipos de
-tramitação</label></li>
+<li><label><input type="checkbox"></input><code>sen_proceeding_types()</code>
+— Tipos de tramitação</label></li>
 </ul>
 </div>
 <div id="módulo-3.2-senadores-rsenators.r" class="section level3">
 <h3>Módulo 3.2 — Senadores (<code>R/senators.R</code>)</h3>
 <ul class="task-list">
-<li><label><input type="checkbox"></input><code>senado_senators()</code> —
-Lista de senadores (com filtros: legislature, state, party,
+<li><label><input type="checkbox"></input><code>sen_senators()</code> — Lista
+de senadores (com filtros: legislature, state, party,
 status)</label></li>
-<li><label><input type="checkbox"></input><code>senado_senator()</code> —
+<li><label><input type="checkbox"></input><code>sen_senator()</code> —
 Detalhes de um senador por código</label></li>
-<li><label><input type="checkbox"></input><code>senado_senator_votes()</code>
-— Votações nominais de um senador</label></li>
-<li><label><input type="checkbox"></input><code>senado_senator_bills()</code>
-— Matérias de autoria de um senador</label></li>
-<li><label><input type="checkbox"></input><code>senado_senator_committees()</code> — Comissões
-de que um senador é membro</label></li>
-<li><label><input type="checkbox"></input><code>senado_senator_mandates()</code> — Histórico de
-mandatos</label></li>
+<li><label><input type="checkbox"></input><code>sen_senator_votes()</code> —
+Votações nominais de um senador</label></li>
+<li><label><input type="checkbox"></input><code>sen_senator_bills()</code> —
+Matérias de autoria de um senador</label></li>
+<li><label><input type="checkbox"></input><code>sen_senator_committees()</code> — Comissões de
+que um senador é membro</label></li>
+<li><label><input type="checkbox"></input><code>sen_senator_mandates()</code>
+— Histórico de mandatos</label></li>
 </ul>
 </div>
 <div id="módulo-3.3-matérias-legislativas-rbills.r" class="section level3">
 <h3>Módulo 3.3 — Matérias legislativas (<code>R/bills.R</code>)</h3>
 <ul class="task-list">
-<li><label><input type="checkbox"></input><code>senado_bills()</code> — Busca
-de matérias (com filtros: year, type, author, keyword,
-status)</label></li>
-<li><label><input type="checkbox"></input><code>senado_bill()</code> —
-Detalhes de uma matéria por código</label></li>
-<li><label><input type="checkbox"></input><code>senado_bill_text()</code> —
+<li><label><input type="checkbox"></input><code>sen_bills()</code> — Busca de
+matérias (com filtros: year, type, author, keyword, status)</label></li>
+<li><label><input type="checkbox"></input><code>sen_bill()</code> — Detalhes
+de uma matéria por código</label></li>
+<li><label><input type="checkbox"></input><code>sen_bill_text()</code> —
 Texto(s) da matéria (inteiro teor, emendas, substitutivos)</label></li>
-<li><label><input type="checkbox"></input><code>senado_bill_proceedings()</code> — Tramitação
-detalhada (timeline)</label></li>
-<li><label><input type="checkbox"></input><code>senado_bill_votes()</code> —
+<li><label><input type="checkbox"></input><code>sen_bill_proceedings()</code>
+— Tramitação detalhada (timeline)</label></li>
+<li><label><input type="checkbox"></input><code>sen_bill_votes()</code> —
 Votações relacionadas à matéria</label></li>
-<li><label><input type="checkbox"></input><code>senado_bill_authors()</code> —
+<li><label><input type="checkbox"></input><code>sen_bill_authors()</code> —
 Autores e coautores</label></li>
 </ul>
 </div>
 <div id="módulo-3.4-votações-rvotes.r" class="section level3">
 <h3>Módulo 3.4 — Votações (<code>R/votes.R</code>)</h3>
 <ul class="task-list">
-<li><label><input type="checkbox"></input><code>senado_votes()</code> — Lista
-de votações (com filtros: year, date_range, bill_type)</label></li>
-<li><label><input type="checkbox"></input><code>senado_vote()</code> —
-Detalhes de uma votação por código</label></li>
-<li><label><input type="checkbox"></input><code>senado_vote_roll_call()</code>
-— Votos nominais (quem votou o quê)</label></li>
-<li><label><input type="checkbox"></input><code>senado_recent_votes()</code> —
+<li><label><input type="checkbox"></input><code>sen_votes()</code> — Lista de
+votações (com filtros: year, date_range, bill_type)</label></li>
+<li><label><input type="checkbox"></input><code>sen_vote()</code> — Detalhes
+de uma votação por código</label></li>
+<li><label><input type="checkbox"></input><code>sen_vote_roll_call()</code> —
+Votos nominais (quem votou o quê)</label></li>
+<li><label><input type="checkbox"></input><code>sen_recent_votes()</code> —
 Votações dos últimos N dias</label></li>
 </ul>
 </div>
 <div id="módulo-3.5-comissões-rcommittees.r" class="section level3">
 <h3>Módulo 3.5 — Comissões (<code>R/committees.R</code>)</h3>
 <ul class="task-list">
-<li><label><input type="checkbox"></input><code>senado_committees()</code> —
+<li><label><input type="checkbox"></input><code>sen_committees()</code> —
 Lista de comissões (com filtro: type = permanent/temporary)</label></li>
-<li><label><input type="checkbox"></input><code>senado_committee()</code> —
+<li><label><input type="checkbox"></input><code>sen_committee()</code> —
 Detalhes de uma comissão</label></li>
-<li><label><input type="checkbox"></input><code>senado_committee_members()</code> — Membros de
-uma comissão</label></li>
-<li><label><input type="checkbox"></input><code>senado_committee_meetings()</code> — Reuniões
+<li><label><input type="checkbox"></input><code>sen_committee_members()</code>
+— Membros de uma comissão</label></li>
+<li><label><input type="checkbox"></input><code>sen_committee_meetings()</code> — Reuniões
 agendadas/realizadas</label></li>
 </ul>
 </div>
 <div id="módulo-3.6-plenário-e-agenda-rplenary.r" class="section level3">
 <h3>Módulo 3.6 — Plenário e agenda (<code>R/plenary.R</code>)</h3>
 <ul class="task-list">
-<li><label><input type="checkbox"></input><code>senado_agenda()</code> —
-Agenda do plenário (com filtros: date, date_range)</label></li>
-<li><label><input type="checkbox"></input><code>senado_sessions()</code> —
+<li><label><input type="checkbox"></input><code>sen_agenda()</code> — Agenda
+do plenário (com filtros: date, date_range)</label></li>
+<li><label><input type="checkbox"></input><code>sen_sessions()</code> —
 Sessões plenárias realizadas</label></li>
 </ul>
 </div>
@@ -1339,19 +1338,18 @@ versionada).</li>
 <li><label><input type="checkbox"></input><strong><code>R/ecidadania.R</code></strong> — Funções
 de acesso:</label>
 <ul class="task-list">
-<li><label><input type="checkbox"></input><code>senado_consultations()</code>
-— Consultas públicas (com filtros: status, theme,
-date_range)</label></li>
-<li><label><input type="checkbox"></input><code>senado_consultation()</code> —
+<li><label><input type="checkbox"></input><code>sen_consultations()</code> —
+Consultas públicas (com filtros: status, theme, date_range)</label></li>
+<li><label><input type="checkbox"></input><code>sen_consultation()</code> —
 Detalhes de uma consulta (votos sim/não, total)</label></li>
-<li><label><input type="checkbox"></input><code>senado_ideas()</code> — Ideias
+<li><label><input type="checkbox"></input><code>sen_ideas()</code> — Ideias
 legislativas (com filtros: status, keyword, sort_by)</label></li>
-<li><label><input type="checkbox"></input><code>senado_idea()</code> —
-Detalhes de uma ideia (apoios, status)</label></li>
-<li><label><input type="checkbox"></input><code>senado_events()</code> —
-Eventos interativos (audiências públicas, sabatinas, lives)</label></li>
-<li><label><input type="checkbox"></input><code>senado_event()</code> —
-Detalhes de um evento</label></li>
+<li><label><input type="checkbox"></input><code>sen_idea()</code> — Detalhes
+de uma ideia (apoios, status)</label></li>
+<li><label><input type="checkbox"></input><code>sen_events()</code> — Eventos
+interativos (audiências públicas, sabatinas, lives)</label></li>
+<li><label><input type="checkbox"></input><code>sen_event()</code> — Detalhes
+de um evento</label></li>
 </ul></li>
 <li><label><input type="checkbox"></input><strong><code>R/utils-scrape.R</code></strong> —
 Infraestrutura de scraping:</label>
@@ -1464,30 +1462,32 @@ matérias.</p>
 <h3>Módulo 5.1 — Cross-referencing e data augmentation
 (<code>R/augment.R</code>)</h3>
 <ul class="task-list">
-<li><label><input type="checkbox"></input><code>senado_senator_profile()</code> — Perfil
-consolidado de um senador: dados biográficos + comissões + votações +
-matérias de autoria, tudo em uma lista nomeada de tibbles</label></li>
-<li><label><input type="checkbox"></input><code>senado_bill_timeline()</code>
-— Timeline completa de uma matéria: autoria → tramitação → votações →
+<li><label><input type="checkbox"></input><code>sen_senator_profile()</code> —
+Perfil consolidado de um senador: dados biográficos + comissões +
+votações + matérias de autoria, tudo em uma lista nomeada de
+tibbles</label></li>
+<li><label><input type="checkbox"></input><code>sen_bill_timeline()</code> —
+Timeline completa de uma matéria: autoria → tramitação → votações →
 resultado, em tibble com coluna <code>event_type</code></label></li>
-<li><label><input type="checkbox"></input><code>senado_party_cohesion()</code>
-— Índice de coesão partidária por votação ou período (% de votos
-alinhados com a maioria do partido)</label></li>
-<li><label><input type="checkbox"></input><code>senado_vote_matrix()</code> —
+<li><label><input type="checkbox"></input><code>sen_party_cohesion()</code> —
+Índice de coesão partidária por votação ou período (% de votos alinhados
+com a maioria do partido)</label></li>
+<li><label><input type="checkbox"></input><code>sen_vote_matrix()</code> —
 Matriz de votação (senadores × votações) em formato wide, pronta para
 análise (NOMINATE, ideal points)</label></li>
-<li><label><input type="checkbox"></input><code>senado_attendance()</code> —
-Taxa de presença por senador/período</label></li>
+<li><label><input type="checkbox"></input><code>sen_attendance()</code> — Taxa
+de presença por senador/período</label></li>
 </ul>
 </div>
 <div id="módulo-5.2-dados-pré-construídos-data-raw-e-data" class="section level3">
 <h3>Módulo 5.2 — Dados pré-construídos (<code>data-raw/</code> e
 <code>data/</code>)</h3>
 <ul class="task-list">
-<li><label><input type="checkbox"></input><code>senado_historical_senators</code> — Dataset com
-todos os senadores desde 1991 (tibble no pacote)</label></li>
-<li><label><input type="checkbox"></input><code>senado_historical_votes</code>
-— Dataset com todas as votações nominais desde 1991</label></li>
+<li><label><input type="checkbox"></input><code>sen_historical_senators</code>
+— Dataset com todos os senadores desde 1991 (tibble no
+pacote)</label></li>
+<li><label><input type="checkbox"></input><code>sen_historical_votes</code> —
+Dataset com todas as votações nominais desde 1991</label></li>
 <li><label><input type="checkbox"></input>Scripts de geração em
 <code>data-raw/</code> (reprodutíveis, documentados)</label></li>
 <li><label><input type="checkbox"></input>Documentação de cada dataset em
@@ -1500,8 +1500,9 @@ todos os senadores desde 1991 (tibble no pacote)</label></li>
 <p><strong>Nota:</strong> Este módulo é experimental e ambicioso. Pode
 ser movido para um pacote-satélite se a complexidade for excessiva.</p>
 <ul class="task-list">
-<li><label><input type="checkbox"></input><code>senado_predict_approval()</code> — Estima a
-probabilidade de aprovação de uma matéria com base em:</label>
+<li><label><input type="checkbox"></input><code>sen_predict_approval()</code>
+— Estima a probabilidade de aprovação de uma matéria com base
+em:</label>
 <ul>
 <li>Tipo de matéria (PEC, PL, PLS — PECs têm quórum qualificado)</li>
 <li>Partido do autor vs. composição atual do Senado</li>
@@ -1526,13 +1527,13 @@ metodologia e limitações</label></li>
 <div id="módulo-5.4-limpeza-e-manipulação-rclean.r" class="section level3">
 <h3>Módulo 5.4 — Limpeza e manipulação (<code>R/clean.R</code>)</h3>
 <ul class="task-list">
-<li><label><input type="checkbox"></input><code>senado_clean_names()</code> —
+<li><label><input type="checkbox"></input><code>sen_clean_names()</code> —
 Wrapper para normalizar nomes de colunas de qualquer output (já feito
 internamente, mas exposto para usuário avançado)</label></li>
-<li><label><input type="checkbox"></input><code>senado_merge_votes()</code> —
+<li><label><input type="checkbox"></input><code>sen_merge_votes()</code> —
 Merge entre votações e dados biográficos dos senadores (join por
 código)</label></li>
-<li><label><input type="checkbox"></input><code>senado_pivot_votes()</code> —
+<li><label><input type="checkbox"></input><code>sen_pivot_votes()</code> —
 Pivota votos nominais de long → wide (matriz senador ×
 votação)</label></li>
 </ul>
@@ -2513,7 +2514,7 @@ no Brasil, lacuna nos pacotes R existentes, motivação.</li>
 <code>congressbr</code> (morto), <code>senatebR</code> (problemas
 arquiteturais), MCPs (inspiração de infra).</li>
 <li><strong>Package design</strong> — Decisões arquiteturais:
-<code>senado_get()</code>, camada de cache, parsing tidy, minimal
+<code>sen_get()</code>, camada de cache, parsing tidy, minimal
 dependencies.</li>
 <li><strong>Usage examples</strong> — Demonstrações com dados reais:
 <ul>
@@ -2669,271 +2670,271 @@ Leitura crítica completa; revisão por colega externo.</label></li>
 <tbody>
 <tr class="odd">
 <td><strong>Reference</strong></td>
-<td><code>senado_legislatures()</code></td>
+<td><code>sen_legislatures()</code></td>
 <td>03</td>
 <td>REST <code>/legislatura</code></td>
 </tr>
 <tr class="even">
 <td></td>
-<td><code>senado_current_legislature()</code></td>
+<td><code>sen_current_legislature()</code></td>
 <td>03</td>
 <td>REST <code>/legislatura/atual</code></td>
 </tr>
 <tr class="odd">
 <td></td>
-<td><code>senado_parties()</code></td>
+<td><code>sen_parties()</code></td>
 <td>03</td>
 <td>REST <code>/partidos</code></td>
 </tr>
 <tr class="even">
 <td></td>
-<td><code>senado_states()</code></td>
+<td><code>sen_states()</code></td>
 <td>03</td>
 <td>REST <code>/ufs</code></td>
 </tr>
 <tr class="odd">
 <td></td>
-<td><code>senado_bill_types()</code></td>
+<td><code>sen_bill_types()</code></td>
 <td>03</td>
 <td>REST <code>/tipos-materia</code></td>
 </tr>
 <tr class="even">
 <td></td>
-<td><code>senado_proceeding_types()</code></td>
+<td><code>sen_proceeding_types()</code></td>
 <td>03</td>
 <td>REST <code>/tipos-tramitacao</code></td>
 </tr>
 <tr class="odd">
 <td><strong>Senators</strong></td>
-<td><code>senado_senators()</code></td>
+<td><code>sen_senators()</code></td>
 <td>03</td>
 <td>REST <code>/senador/lista</code></td>
 </tr>
 <tr class="even">
 <td></td>
-<td><code>senado_senator()</code></td>
+<td><code>sen_senator()</code></td>
 <td>03</td>
 <td>REST <code>/senador/{codigo}</code></td>
 </tr>
 <tr class="odd">
 <td></td>
-<td><code>senado_senator_votes()</code></td>
+<td><code>sen_senator_votes()</code></td>
 <td>03</td>
 <td>REST <code>/senador/{codigo}/votacoes</code></td>
 </tr>
 <tr class="even">
 <td></td>
-<td><code>senado_senator_bills()</code></td>
+<td><code>sen_senator_bills()</code></td>
 <td>03</td>
 <td>REST <code>/senador/{codigo}/materias</code></td>
 </tr>
 <tr class="odd">
 <td></td>
-<td><code>senado_senator_committees()</code></td>
+<td><code>sen_senator_committees()</code></td>
 <td>03</td>
 <td>REST <code>/senador/{codigo}/comissoes</code></td>
 </tr>
 <tr class="even">
 <td></td>
-<td><code>senado_senator_mandates()</code></td>
+<td><code>sen_senator_mandates()</code></td>
 <td>03</td>
 <td>REST <code>/senador/{codigo}/mandatos</code></td>
 </tr>
 <tr class="odd">
 <td><strong>Bills</strong></td>
-<td><code>senado_bills()</code></td>
+<td><code>sen_bills()</code></td>
 <td>03</td>
 <td>REST <code>/materia/pesquisa</code></td>
 </tr>
 <tr class="even">
 <td></td>
-<td><code>senado_bill()</code></td>
+<td><code>sen_bill()</code></td>
 <td>03</td>
 <td>REST <code>/materia/{codigo}</code></td>
 </tr>
 <tr class="odd">
 <td></td>
-<td><code>senado_bill_text()</code></td>
+<td><code>sen_bill_text()</code></td>
 <td>03</td>
 <td>REST <code>/materia/{codigo}/textos</code></td>
 </tr>
 <tr class="even">
 <td></td>
-<td><code>senado_bill_proceedings()</code></td>
+<td><code>sen_bill_proceedings()</code></td>
 <td>03</td>
 <td>REST <code>/materia/{codigo}/tramitacao</code></td>
 </tr>
 <tr class="odd">
 <td></td>
-<td><code>senado_bill_votes()</code></td>
+<td><code>sen_bill_votes()</code></td>
 <td>03</td>
 <td>REST <code>/materia/{codigo}/votacoes</code></td>
 </tr>
 <tr class="even">
 <td></td>
-<td><code>senado_bill_authors()</code></td>
+<td><code>sen_bill_authors()</code></td>
 <td>03</td>
 <td>REST <code>/materia/{codigo}/autores</code></td>
 </tr>
 <tr class="odd">
 <td><strong>Votes</strong></td>
-<td><code>senado_votes()</code></td>
+<td><code>sen_votes()</code></td>
 <td>03</td>
 <td>REST <code>/votacao/lista</code></td>
 </tr>
 <tr class="even">
 <td></td>
-<td><code>senado_vote()</code></td>
+<td><code>sen_vote()</code></td>
 <td>03</td>
 <td>REST <code>/votacao/{codigo}</code></td>
 </tr>
 <tr class="odd">
 <td></td>
-<td><code>senado_vote_roll_call()</code></td>
+<td><code>sen_vote_roll_call()</code></td>
 <td>03</td>
 <td>REST <code>/votacao/{codigo}/votos</code></td>
 </tr>
 <tr class="even">
 <td></td>
-<td><code>senado_recent_votes()</code></td>
+<td><code>sen_recent_votes()</code></td>
 <td>03</td>
 <td>REST <code>/votacao/recentes</code></td>
 </tr>
 <tr class="odd">
 <td><strong>Committees</strong></td>
-<td><code>senado_committees()</code></td>
+<td><code>sen_committees()</code></td>
 <td>03</td>
 <td>REST <code>/comissao/lista</code></td>
 </tr>
 <tr class="even">
 <td></td>
-<td><code>senado_committee()</code></td>
+<td><code>sen_committee()</code></td>
 <td>03</td>
 <td>REST <code>/comissao/{codigo}</code></td>
 </tr>
 <tr class="odd">
 <td></td>
-<td><code>senado_committee_members()</code></td>
+<td><code>sen_committee_members()</code></td>
 <td>03</td>
 <td>REST <code>/comissao/{codigo}/membros</code></td>
 </tr>
 <tr class="even">
 <td></td>
-<td><code>senado_committee_meetings()</code></td>
+<td><code>sen_committee_meetings()</code></td>
 <td>03</td>
 <td>REST <code>/comissao/{codigo}/reunioes</code></td>
 </tr>
 <tr class="odd">
 <td><strong>Plenary</strong></td>
-<td><code>senado_agenda()</code></td>
+<td><code>sen_agenda()</code></td>
 <td>03</td>
 <td>REST <code>/agenda/plenario</code></td>
 </tr>
 <tr class="even">
 <td></td>
-<td><code>senado_sessions()</code></td>
+<td><code>sen_sessions()</code></td>
 <td>03</td>
 <td>REST <code>/sessao/lista</code></td>
 </tr>
 <tr class="odd">
 <td><strong>e-Cidadania</strong></td>
-<td><code>senado_consultations()</code></td>
+<td><code>sen_consultations()</code></td>
 <td>04</td>
 <td>Scraping e-Cidadania</td>
 </tr>
 <tr class="even">
 <td></td>
-<td><code>senado_consultation()</code></td>
+<td><code>sen_consultation()</code></td>
 <td>04</td>
 <td>Scraping e-Cidadania</td>
 </tr>
 <tr class="odd">
 <td></td>
-<td><code>senado_ideas()</code></td>
+<td><code>sen_ideas()</code></td>
 <td>04</td>
 <td>Scraping e-Cidadania</td>
 </tr>
 <tr class="even">
 <td></td>
-<td><code>senado_idea()</code></td>
+<td><code>sen_idea()</code></td>
 <td>04</td>
 <td>Scraping e-Cidadania</td>
 </tr>
 <tr class="odd">
 <td></td>
-<td><code>senado_events()</code></td>
+<td><code>sen_events()</code></td>
 <td>04</td>
 <td>Scraping e-Cidadania</td>
 </tr>
 <tr class="even">
 <td></td>
-<td><code>senado_event()</code></td>
+<td><code>sen_event()</code></td>
 <td>04</td>
 <td>Scraping e-Cidadania</td>
 </tr>
 <tr class="odd">
 <td><strong>Augment</strong></td>
-<td><code>senado_senator_profile()</code></td>
+<td><code>sen_senator_profile()</code></td>
 <td>05</td>
 <td>Composição (múltiplos endpoints)</td>
 </tr>
 <tr class="even">
 <td></td>
-<td><code>senado_bill_timeline()</code></td>
+<td><code>sen_bill_timeline()</code></td>
 <td>05</td>
 <td>Composição (múltiplos endpoints)</td>
 </tr>
 <tr class="odd">
 <td></td>
-<td><code>senado_party_cohesion()</code></td>
+<td><code>sen_party_cohesion()</code></td>
 <td>05</td>
 <td>Cálculo (votos + senadores)</td>
 </tr>
 <tr class="even">
 <td></td>
-<td><code>senado_vote_matrix()</code></td>
+<td><code>sen_vote_matrix()</code></td>
 <td>05</td>
 <td>Pivot (votos nominais)</td>
 </tr>
 <tr class="odd">
 <td></td>
-<td><code>senado_attendance()</code></td>
+<td><code>sen_attendance()</code></td>
 <td>05</td>
 <td>Cálculo (sessões + presenças)</td>
 </tr>
 <tr class="even">
 <td><strong>Clean</strong></td>
-<td><code>senado_clean_names()</code></td>
+<td><code>sen_clean_names()</code></td>
 <td>05</td>
 <td>Interno</td>
 </tr>
 <tr class="odd">
 <td></td>
-<td><code>senado_merge_votes()</code></td>
+<td><code>sen_merge_votes()</code></td>
 <td>05</td>
 <td>Join (votos + senadores)</td>
 </tr>
 <tr class="even">
 <td></td>
-<td><code>senado_pivot_votes()</code></td>
+<td><code>sen_pivot_votes()</code></td>
 <td>05</td>
 <td>Pivot (long → wide)</td>
 </tr>
 <tr class="odd">
 <td><strong>Predict</strong></td>
-<td><code>senado_predict_approval()</code></td>
+<td><code>sen_predict_approval()</code></td>
 <td>05</td>
 <td>Modelo estatístico</td>
 </tr>
 <tr class="even">
 <td><strong>Data</strong></td>
-<td><code>senado_historical_senators</code></td>
+<td><code>sen_historical_senators</code></td>
 <td>05</td>
 <td>Dataset estático</td>
 </tr>
 <tr class="odd">
 <td></td>
-<td><code>senado_historical_votes</code></td>
+<td><code>sen_historical_votes</code></td>
 <td>05</td>
 <td>Dataset estático</td>
 </tr>
