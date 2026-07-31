@@ -6,3 +6,6 @@ docs
 inst/doc
 Meta
 _scaffold.R
+
+# artefatos renderizados
+*.html
