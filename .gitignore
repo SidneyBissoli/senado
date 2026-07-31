@@ -9,3 +9,6 @@ _scaffold.R
 
 # artefatos renderizados
 *.html
+
+# configuracao local do Claude Code
+.claude/settings.local.json
