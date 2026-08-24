@@ -17,7 +17,7 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Sidney Bissoli \email{sidney@example.com}
+\strong{Maintainer}: Sidney da Silva Pereira Bissoli \email{sbissoli76@gmail.com}
 
 }
 \keyword{internal}
