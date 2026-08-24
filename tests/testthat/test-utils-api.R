@@ -105,8 +105,12 @@ test_that("sen_get aborts when both formats fail", {
 # --- Integration tests (skip if offline) ------------------------------------
 
 test_that("sen_get retrieves data from the real API", {
-  skip_if_offline()
   skip_on_cran()
+  # Skip (never fail) when the portal is unreachable from this network:
+  # legis.senado.leg.br times out for cloud-runner IPs, and a live-API
+  # test must not fail R CMD check for an upstream outage — it did on
+  # 2026-08-24 (ubuntu-release). The helper already existed unused.
+  skip_if_api_unavailable()
 
   # Use a lightweight endpoint
   result <- sen_get("senador/lista/atual", cache_category = "semi_static")
