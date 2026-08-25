@@ -12,3 +12,10 @@ _scaffold.R
 
 # configuracao local do Claude Code
 .claude/settings.local.json
+
+# documentos de planejamento: privados, nao vao para repo publico
+# (o passado ja publicado nao e apagado por esta regra — ver commit)
+status/04-project-roadmap.md
+
+# configuracao local do RStudio
+*.Rproj
