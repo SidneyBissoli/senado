@@ -6,5 +6,7 @@
 ^_scaffold\.R$
 ^r-project\.Rproj$
 ^\.claude$
+^prompts$
+^pareceres$
 ^.*\.Rproj$
 ^\.Rproj\.user$
