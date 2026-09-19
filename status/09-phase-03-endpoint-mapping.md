@@ -14,7 +14,7 @@ A v1 foi montada a partir da documentação e do Swagger UI, sem requisições. 
 
 Tudo o que está neste documento foi **medido em 18/09/2026**, por requisição real com `Accept: application/json`. Para cada endpoint: status e `Content-Type`; presença e estado (`deprecated` ou não) na spec; caminho até os registros; nomes e tipos dos campos como chegam no JSON; forma da resposta sem resultado; forma da resposta para identificador inexistente; comportamento com parâmetro inválido. Onde algo **não** foi medido, está dito na seção final. Os parâmetros listados vêm da spec; os marcados "medido" foram exercitados.
 
-Os 27 endpoints usados pelas 22 funções constam da spec como **ativos** e responderam 200.
+Os 28 endpoints usados pelas 22 funções constam da spec como **ativos** e responderam 200 (27 no levantamento inicial, mais `/senador/{codigo}/filiacoes`, que entrou com o argumento `party` de `sen_committee_members()`).
 
 ---
 
@@ -321,9 +321,12 @@ As três leem **a mesma resposta**; com o cache, custam 1 requisição.
 | **⚠️ `ativas` é obrigatório** | sem ele → 400 "Required query parameter 'ativas' is not present." (a spec diz "para todas, não informe", o que não corresponde ao comportamento) |
 | **⚠️ Envelope muda** | `ativas=S` → `ComposicaoAtivaComissaoSf`; `ativas=N` → `UltimaComposicaoComissaoSf` |
 | **Registros** | `{envelope}.ComposicaoComissao.Membros.Membro[]` — 52 na CCJ com `ativas=S` |
-| **Campos** | `CodigoMembro` (txt-num) → `senator_code`, `NomeMembro`, `TipoVaga` ("Titular"/"Suplente"), `IndicadorVagaAtiva`, `DataInicioMembroVaga`; identificação em `…IdentificacaoComissao[]` |
+| **Campos** | código do membro → `senator_code`, `NomeMembro`, `TipoVaga` ("Titular"/"Suplente"), `IndicadorVagaAtiva`, `DataInicioMembroVaga`; identificação em `…IdentificacaoComissao[]` |
+| **⚠️ O esquema muda com o envelope** | com `ativas=S` o código vem em **`CodigoMembro`**; com `ativas=N` vem em **`CodigoParlamentar`**, e aparecem `NomeCasaMembro` e, nas vagas encerradas, `DataFechamentoVaga`. A função lê os dois nomes |
+| **Vagas "VAGO"** | a composição inclui vagas não preenchidas: `NomeMembro = "VAGO"`, sem código e sem data (1 em cada uma das duas CPIs medidas). Saem na tabela com `senator_code = NA` |
 | **Comissão extinta** | **funciona**: para os mesmos quatro colegiados encerrados, `ativas=N` devolveu a última composição (10, 17, 6 e 16 membros). Com `ativas=S`, três devolveram os mesmos membros e a CPIMJAE devolveu zero — `ativas=N` é o valor que sempre traz a composição |
-| **Limitação** | **não traz partido nem UF do membro.** `/comissao/{codigo}` traz, em `MembrosBlocoSF.PartidoBloco[].MembrosSF.Membro[]`: `NomeParlamentar`, `CodigoParlamentar`, `SiglaUf`, `Partido`, `TipoVaga`, `ProprietarioVaga`, `NumeroOrdem` — agrupados por bloco. Como `sen_committee()` e esta função podem ler a mesma resposta de `/comissao/{codigo}`, vale decidir na implementação qual das duas fontes usar |
+| **Limitação** | **não traz partido nem UF do membro.** `/comissao/{codigo}` traz, em `MembrosBlocoSF.PartidoBloco[].MembrosSF.Membro[]`: `NomeParlamentar`, `CodigoParlamentar`, `SiglaUf`, `Partido`, `TipoVaga`, `ProprietarioVaga`, `NumeroOrdem` — agrupados por bloco, mas só para colegiados em atividade. **Decidido em 18/09/2026: a fonte é `/composicao/comissao/{codigo}`**, a única que alcança comissões extintas |
+| **Partido na época** | **decidido em 18/09/2026: argumento `party = FALSE`; com `TRUE`, a função acrescenta `party_at_start`.** Recuperável por `GET /senador/{codigo}/filiacoes` (`FiliacaoParlamentar.Parlamentar.Filiacoes.Filiacao[]`: `Partido.{CodigoPartido, SiglaPartido, NomePartido}`, `DataFiliacao`, `DataDesfiliacao`; intervalos contíguos), cruzando com `DataInicioMembroVaga`. Medido nas CPIs 1900 (2015–2016) e 2659 (2024–2025): resolvidos 9 de 10 e 15 de 16 membros — os não resolvidos são as vagas "VAGO". Ressalva: partido **renomeado** aparece com a sigla atual (PR de 2015 sai "PL"; PMDB sai "MDB"; PRB sai "REPUBLICANOS") |
 
 #### `sen_committee_meetings()`
 
