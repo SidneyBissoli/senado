@@ -201,7 +201,7 @@ Convenção dos quadros: **Registros** é o caminho, dentro do JSON, até o arra
 | **Registros** | `MandatoParlamentar.Parlamentar.Mandatos.Mandato[]` |
 | **Campos** | `CodigoMandato`, `UfParlamentar`, `DescricaoParticipacao`, `PrimeiraLegislaturaDoMandato.{NumeroLegislatura, DataInicio, DataFim}`, `SegundaLegislaturaDoMandato.*`; aninhados: `Suplentes.Suplente[]` (`DescricaoParticipacao`, `CodigoParlamentar`, `NomeParlamentar`); `Exercicios.Exercicio[]` (`CodigoExercicio`, `DataInicio`, `DataFim`, `SiglaCausaAfastamento`, `DescricaoCausaAfastamento`, `DataLeitura` — os quatro últimos só quando o exercício terminou); `Partidos.Partido` (`CodigoPartido`, `Sigla`, `Nome`, `DataFiliacao`, `DataDesfiliacao` — esta só quando houve desfiliação). Medido nos senadores 825 (3 mandatos), 5322 (2) e 4981 (2) |
 | **⚠️ `Partidos.Partido`** | objeto quando há um só partido no mandato, array quando há mais (ver 1.4) |
-| **Desenho** | uma linha por mandato; suplentes, exercícios e partidos como colunas-lista, ou argumento que escolhe qual desaninhar |
+| **Desenho (decidido em 18/09/2026)** | uma linha por mandato; suplentes, exercícios e partidos em três colunas-lista — há várias listas por registro, e achatá-las juntas multiplicaria linhas sem significado |
 
 #### `sen_senator_committees()`
 
@@ -337,6 +337,7 @@ As três leem **a mesma resposta**; com o cache, custam 1 requisição.
 | **Registros** | `AgendaReuniao.reunioes.reuniao[]` — 13 em 22/05/2024 (1,2 MB); semana 20–24/05/2024 → 1,96 MB; mês 05/2024 → 6,45 MB, 1,1 s |
 | **Campos (camelCase, todos texto)** | `codigo`, `titulo`, `descricao`, `dataInicio` (`AAAA-MM-DDTHH:MM:SS.mmm`), `situacao`, `codigoSituacao`, `realizada`, `confirmada`, `secreta` ("true"/"false" como **texto**), `local`, `tipoPresenca`, `tipo.{codigo, descricao, sigla}`, `colegiadoCriador.{codigo, sigla, nome, siglaCasa, codigoTipo, descricaoTipo}`, `sessaoLegislativa.*`, `presidente.*`, URLs de pauta, resultado e ata; aninhados: `partes` (⚠️ objeto **ou** array — ver 1.4) com `evento.{finalidade, resultadoTexto, convidados[], participantes[]}`, `colegiados`, `dataReuniao[]` |
 | **Filtro por comissão** | não há no servidor; filtrar no cliente por `colegiadoCriador.sigla`/`codigo` |
+| **Desenho (decidido em 18/09/2026)** | uma linha por reunião; `partes` (com itens e convidados) e `colegiados` em colunas-lista — há várias listas por registro |
 | **Sem resultado** | `reuniao: null` |
 | **Observação** | inclui colegiados do Congresso e frentes parlamentares (`siglaCasa = "CN"`) |
 
@@ -351,7 +352,7 @@ As três leem **a mesma resposta**; com o cache, custam 1 requisição.
 | **Campos** | `CodigoSessao` (txt-num) → `session_id`, `Data`, `Hora`, `DiaSemana`, `NumeroSessao`, `TipoSessao`, `LocalSessao`, `Casa`, `Legislatura`, `SessaoLegislativa`, `SituacaoSessao`, `CodigoSituacaoSessao`, `Realizada.Status`, `PautaConfirmada`, `DescricaoTipoPresenca`; aninhados: `Materias.Materia[]` (`CodigoMateria` → `bill_code`, `DescricaoIdentificacaoMateria`, `SiglaMateria`, `NumeroMateria`, `AnoMateria`, `Ementa`, `Parecer`, `Apreciacao`, `NomeAutor`, `DescricaoTipoPauta`, `SequenciaOrdem`), `Oradores.TipoOrador[].OradorSessao.Orador[]` |
 | **Observação** | cobre os plenários do Senado **e** do Congresso (campo `Casa`). Textos com espaços e quebras de linha sobrando (`"64ª SESSÃO "`, `Identificacao` com `\n`) — aparar na conversão |
 | **Sem resultado** | envelope sem `Sessoes` |
-| **Desenho** | uma linha por sessão, com `Materias` como coluna-lista, **ou** uma linha por item de pauta; decidir na especificação de colunas |
+| **Desenho (decidido em 18/09/2026)** | **uma linha por matéria da pauta**, com os dados da sessão repetidos; sessão sem pauta entra com uma linha e matéria `NA` (14 das 27 sessões de maio/2024). Há uma lista só por registro, e ela é o conteúdo que o usuário veio buscar. Oradores ficam de fora na v0.1 |
 
 #### `sen_sessions()`
 
@@ -361,6 +362,7 @@ As três leem **a mesma resposta**; com o cache, custam 1 requisição.
 | **Registros** | `ResultadoPlenario.Sessoes.Sessao[]`; mês 05/2024 → 27 sessões, 0,22 MB. O endpoint mensal tem **exatamente os mesmos campos** do diário; 14 das 27 sessões vêm **sem** o nó `Itens` e as demais trazem de 2 a 35 itens |
 | **Campos (camelCase)** | `codigoSessao` (txt-num) → `session_id`, `numeroSessao`, `dataSessao` (**`DD/MM/AAAA`**), `horaSessao`, `tipoSessao` (sigla), `descricaoTipoSessao`, `siglaCasa`; aninhado `Itens.Item[]`: `codigoItem`, `codigoMateria` → `bill_code`, `idIdentificacao`, `siglaMateria`, `numeroMateria`, `anoMateria`, `DescricaoIdentificacaoMateria`, `textoResultado`, `descricaoDeliberacao`, `descricaoTipoApreciacao`, `autorMateria`, `sequencialItem`, `descricaoTipoPauta` |
 | **Ligação com votos** | `codigoSessao` é o mesmo `codigoSessao` de `/votacao` (`session_id`) |
+| **Desenho (decidido em 18/09/2026)** | **uma linha por item apreciado**, com os dados da sessão repetidos; sessão sem itens entra com uma linha e item `NA` (14 das 27 sessões de maio/2024) |
 | **Sem resultado** | envelope sem `Sessoes` |
 
 ### Fase 05 — `sen_vote_matrix()`
