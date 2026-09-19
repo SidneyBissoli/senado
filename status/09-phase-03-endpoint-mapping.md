@@ -71,11 +71,13 @@ Quando um nó repetível tem **um** elemento, alguns serviços legados devolvem 
 
 | Nó | Medido |
 |---|---|
-| `/comissao/agenda/{data}` → `reuniao[].partes` | **objeto** em 10 reuniões, **array** (2 ou 3) em 3 — a armadilha existe |
-| `/comissao/agenda/{data}` → `reuniao[].colegiados` | objeto nas 13 reuniões da amostra (nenhuma conjunta); tratar como o anterior |
-| `/comissao/agenda/{data}` → `reuniao[].dataReuniao` | array em todas |
+| `/comissao/agenda/…` → `reuniao[].partes` | no mês 05/2024 (110 reuniões): **objeto** em 92, **array** de 2 em 15 e de 3 em 3 — a armadilha existe |
+| `/comissao/agenda/…` → `reuniao[].colegiados` | no mesmo mês: **objeto** em 107, **array** de 2 em 2 e de 3 em 1 (reuniões conjuntas, ex.: CDD + CMA) — a armadilha existe. `colegiadoCriador` é sempre um só |
+| `/comissao/agenda/…` → `reuniao[].dataReuniao` | array em todas as 110 (2, 3 ou 5 elementos) |
 | `/senador/lista/legislatura/57` → `Mandatos.Mandato` | array em todos (244 com 1 elemento, 1 com 2) — sem armadilha |
-| `/senador/{codigo}/mandatos` → `Mandato`, `Suplente` | array, inclusive com 1 elemento |
+| `/senador/{codigo}/mandatos` → `Mandato`, `Suplente`, `Exercicio` | array, inclusive com 1 elemento |
+| `/senador/{codigo}/mandatos` → `Partidos.Partido` | **objeto** quando o mandato teve um só partido (senadores 825 e 4981, todos os mandatos), **array** quando teve mais de um (senador 5322: 2 e 3) — a armadilha existe |
+| `/plenario/agenda/mes/…` → `Materias.Materia`; `/plenario/resultado/mes/…` → `Itens.Item` | array quando presentes (de 2 a 35 elementos); **ausentes** em 14 das 27 sessões do mês (sessão sem pauta) |
 | `/plenario/agenda/dia/{data}` → `Sessao` | array com 1 elemento |
 | `/plenario/legislatura/{data}` → `Legislatura` | array com 1 elemento |
 
@@ -197,7 +199,8 @@ Convenção dos quadros: **Registros** é o caminho, dentro do JSON, até o arra
 |---|---|
 | **Endpoint** | `GET /senador/{codigo}/mandatos` |
 | **Registros** | `MandatoParlamentar.Parlamentar.Mandatos.Mandato[]` |
-| **Campos** | `CodigoMandato`, `UfParlamentar`, `DescricaoParticipacao`, `PrimeiraLegislaturaDoMandato.{NumeroLegislatura, DataInicio, DataFim}`, `SegundaLegislaturaDoMandato.*`; aninhados: `Suplentes.Suplente[]`, `Exercicios.Exercicio[]` (`CodigoExercicio`, `DataInicio`, e fim/causa quando houver), `Partidos.Partido[]` (`CodigoPartido`, `Sigla`, `Nome`, `DataFiliacao`, e desfiliação quando houver) |
+| **Campos** | `CodigoMandato`, `UfParlamentar`, `DescricaoParticipacao`, `PrimeiraLegislaturaDoMandato.{NumeroLegislatura, DataInicio, DataFim}`, `SegundaLegislaturaDoMandato.*`; aninhados: `Suplentes.Suplente[]` (`DescricaoParticipacao`, `CodigoParlamentar`, `NomeParlamentar`); `Exercicios.Exercicio[]` (`CodigoExercicio`, `DataInicio`, `DataFim`, `SiglaCausaAfastamento`, `DescricaoCausaAfastamento`, `DataLeitura` — os quatro últimos só quando o exercício terminou); `Partidos.Partido` (`CodigoPartido`, `Sigla`, `Nome`, `DataFiliacao`, `DataDesfiliacao` — esta só quando houve desfiliação). Medido nos senadores 825 (3 mandatos), 5322 (2) e 4981 (2) |
+| **⚠️ `Partidos.Partido`** | objeto quando há um só partido no mandato, array quando há mais (ver 1.4) |
 | **Desenho** | uma linha por mandato; suplentes, exercícios e partidos como colunas-lista, ou argumento que escolhe qual desaninhar |
 
 #### `sen_senator_committees()`
@@ -341,7 +344,7 @@ As três leem **a mesma resposta**; com o cache, custam 1 requisição.
 | | |
 |---|---|
 | **Endpoints** | `GET /plenario/agenda/dia/{data}` · `GET /plenario/agenda/mes/{data}` — `AAAAMMDD` |
-| **Registros** | `AgendaPlenario.Sessoes.Sessao[]` — 1 em 22/05/2024; mês 05/2024 → 0,23 MB |
+| **Registros** | `AgendaPlenario.Sessoes.Sessao[]` — 1 em 22/05/2024; mês 05/2024 → 27 sessões (23 do SF, 4 do CN), 0,23 MB. O endpoint mensal tem **os mesmos campos** do diário, mais `Evento`; 14 das 27 sessões vêm **sem** o nó `Materias` (sessão sem pauta) e as demais trazem de 2 a 35 matérias |
 | **Campos** | `CodigoSessao` (txt-num) → `session_id`, `Data`, `Hora`, `DiaSemana`, `NumeroSessao`, `TipoSessao`, `LocalSessao`, `Casa`, `Legislatura`, `SessaoLegislativa`, `SituacaoSessao`, `CodigoSituacaoSessao`, `Realizada.Status`, `PautaConfirmada`, `DescricaoTipoPresenca`; aninhados: `Materias.Materia[]` (`CodigoMateria` → `bill_code`, `DescricaoIdentificacaoMateria`, `SiglaMateria`, `NumeroMateria`, `AnoMateria`, `Ementa`, `Parecer`, `Apreciacao`, `NomeAutor`, `DescricaoTipoPauta`, `SequenciaOrdem`), `Oradores.TipoOrador[].OradorSessao.Orador[]` |
 | **Observação** | cobre os plenários do Senado **e** do Congresso (campo `Casa`). Textos com espaços e quebras de linha sobrando (`"64ª SESSÃO "`, `Identificacao` com `\n`) — aparar na conversão |
 | **Sem resultado** | envelope sem `Sessoes` |
@@ -352,7 +355,7 @@ As três leem **a mesma resposta**; com o cache, custam 1 requisição.
 | | |
 |---|---|
 | **Endpoints** | `GET /plenario/resultado/{data}` · `GET /plenario/resultado/mes/{data}` — `AAAAMMDD` |
-| **Registros** | `ResultadoPlenario.Sessoes.Sessao[]`; mês 05/2024 → 0,22 MB |
+| **Registros** | `ResultadoPlenario.Sessoes.Sessao[]`; mês 05/2024 → 27 sessões, 0,22 MB. O endpoint mensal tem **exatamente os mesmos campos** do diário; 14 das 27 sessões vêm **sem** o nó `Itens` e as demais trazem de 2 a 35 itens |
 | **Campos (camelCase)** | `codigoSessao` (txt-num) → `session_id`, `numeroSessao`, `dataSessao` (**`DD/MM/AAAA`**), `horaSessao`, `tipoSessao` (sigla), `descricaoTipoSessao`, `siglaCasa`; aninhado `Itens.Item[]`: `codigoItem`, `codigoMateria` → `bill_code`, `idIdentificacao`, `siglaMateria`, `numeroMateria`, `anoMateria`, `DescricaoIdentificacaoMateria`, `textoResultado`, `descricaoDeliberacao`, `descricaoTipoApreciacao`, `autorMateria`, `sequencialItem`, `descricaoTipoPauta` |
 | **Ligação com votos** | `codigoSessao` é o mesmo `codigoSessao` de `/votacao` (`session_id`) |
 | **Sem resultado** | envelope sem `Sessoes` |
@@ -408,9 +411,6 @@ Não tem endpoint: recebe a saída de `sen_vote_records()`. Dados de apoio: `GET
 
 ## Parte 5 — O que não foi medido
 
-- `reuniao[].colegiados` com mais de um colegiado (reunião conjunta): a amostra de 22/05/2024 não tinha nenhuma; presume-se o mesmo comportamento objeto-ou-array de `partes`.
-- Campos de fim de período em `Exercicios.Exercicio[]` e `Partidos.Partido[]` de `/senador/{codigo}/mandatos`: a amostra só tinha registros em aberto.
-- `/plenario/agenda/mes` e `/plenario/resultado/mes` foram medidos quanto a status e tamanho, não campo a campo; presume-se a mesma forma dos endpoints diários.
 - Limite de janela em `/processo/documento` com `dataInicio`/`dataFim` sem `idProcesso`.
 - Variação de tempo de resposta ao longo do dia: cada tempo citado é uma medição única.
 - A data de desligamento dos 42 endpoints `deprecated`: a spec não informa.
