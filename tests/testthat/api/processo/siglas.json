@@ -1,0 +1,50 @@
+[
+  {
+    "sigla": "ACE",
+    "descricao": "Aviso da Comissão de Educação",
+    "dataInicio": "2017-01-01T00:00:00",
+    "dataFim": "2024-09-18T00:00:00"
+  },
+  {
+    "sigla": "ACL",
+    "descricao": "Ato Conjunto Legislativo",
+    "dataInicio": "2023-01-01T00:00:00",
+    "dataFim": null
+  },
+  {
+    "sigla": "ADF",
+    "descricao": "Anteprojeto de Lei do DF",
+    "dataInicio": "1940-01-01T00:00:00",
+    "dataFim": "2005-05-24T00:00:00"
+  },
+  {
+    "sigla": "ADL",
+    "descricao": "Anteprojeto de Decreto Legislativo",
+    "dataInicio": "1970-01-01T00:00:00",
+    "dataFim": "1990-07-27T00:00:00"
+  },
+  {
+    "sigla": "ADV",
+    "descricao": "Advertencia",
+    "dataInicio": "1946-01-01T00:00:00",
+    "dataFim": null
+  },
+  {
+    "sigla": "AFC",
+    "descricao": "Aviso da Comissão de Transparência, Governança, Fiscalização e Controle e Defesa do Consumidor",
+    "dataInicio": "2017-01-01T00:00:00",
+    "dataFim": "2024-09-18T00:00:00"
+  },
+  {
+    "sigla": "AFS",
+    "descricao": "Afastamento do Exercício do Mandato",
+    "dataInicio": "2008-01-01T00:00:00",
+    "dataFim": null
+  },
+  {
+    "sigla": "AJECN",
+    "descricao": "Ajuste de emenda orçamentária",
+    "dataInicio": "2015-01-01T00:00:00",
+    "dataFim": null
+  }
+]

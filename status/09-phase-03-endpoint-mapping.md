@@ -2,7 +2,7 @@
 
 **Projeto:** Pacote R `senado`
 **Documento:** `09-phase-03-endpoint-mapping.md`
-**Versão:** 2.0 — 18 de setembro de 2026. Substitui integralmente a v1 (20 de março de 2026).
+**Versão:** 2.1 — 19 de setembro de 2026 (quatro correções medidas durante a implementação dos Módulos 3.1 e 3.2, marcadas "19/09/2026" no texto). A 2.0, de 18 de setembro de 2026, substituiu integralmente a v1 (20 de março de 2026).
 **Base URL:** `https://legis.senado.leg.br/dadosabertos`
 **Spec de referência:** `GET /dadosabertos/v3/api-docs` — "Dados Abertos Legislativos do Senado Federal e Congresso Nacional", versão 4.1.3.97, 157 paths, 42 marcados `deprecated`.
 
@@ -47,7 +47,17 @@ Consequência para o pacote: cada função declara o caminho até os registros e
 | `/processo/1` | **404** | `{"instance": "/dadosabertos/processo/1", "status": 404, "title": "Not Found"}` |
 | `/processo/abc` | **404** | `{"detail": "No static resource …", "status": 404, …}` |
 
-Na família legada, "não existe" e "existe mas está vazio" são indistinguíveis pela resposta. Para as funções de detalhe por id, a ausência do nó de registro é tratada como não encontrado (condição `senado_error_not_found`).
+Para as funções de detalhe por id, a ausência do nó de registro é tratada como não encontrado (condição `senado_error_not_found`).
+
+**Correção de 19/09/2026 — nos serviços por senador, "não existe" e "existe mas está vazio" são distinguíveis.** A v2.0 dizia que eram indistinguíveis. Medido com o senador 6373 (2º suplente, sem comissões nem discursos) contra o código 99999999:
+
+| Requisição | Senador existente, sem registros | Código inexistente |
+|---|---|---|
+| `/senador/{codigo}/comissoes` | `Parlamentar: {Codigo, Nome}` — sem `MembroComissoes` | sem o nó `Parlamentar` |
+| `/senador/{codigo}/mandatos` | (todo senador tem mandato) | sem o nó `Parlamentar` |
+| `/senador/{codigo}/discursos` | `Parlamentar: {IdentificacaoParlamentar, Pronunciamentos: null, …}` | `Parlamentar: {Pronunciamentos: null, UrlGlossario}` — **o nó existe, mas sem `IdentificacaoParlamentar`** |
+
+O pacote usa isso: senador existente sem registros → tibble de 0 linhas; código inexistente → `senado_error_not_found`. Nas listas por legislatura e nas comissões a indistinção continua valendo.
 
 ### 1.3 Sem resultado
 
@@ -77,6 +87,7 @@ Quando um nó repetível tem **um** elemento, alguns serviços legados devolvem 
 | `/senador/lista/legislatura/57` → `Mandatos.Mandato` | array em todos (244 com 1 elemento, 1 com 2) — sem armadilha |
 | `/senador/{codigo}/mandatos` → `Mandato`, `Suplente`, `Exercicio` | array, inclusive com 1 elemento |
 | `/senador/{codigo}/mandatos` → `Partidos.Partido` | **objeto** quando o mandato teve um só partido (senadores 825 e 4981, todos os mandatos), **array** quando teve mais de um (senador 5322: 2 e 3) — a armadilha existe |
+| `/senador/{codigo}/discursos` → `Aparteantes.Aparteante` | **objeto** quando houve um só aparteante (pronunciamento 506264, de 27/05/2024) — a armadilha existe (medido em 19/09/2026). `Publicacoes.Publicacao` veio como array nos casos vistos |
 | `/plenario/agenda/mes/…` → `Materias.Materia`; `/plenario/resultado/mes/…` → `Itens.Item` | array quando presentes (de 2 a 35 elementos); **ausentes** em 14 das 27 sessões do mês (sessão sem pauta) |
 | `/plenario/agenda/dia/{data}` → `Sessao` | array com 1 elemento |
 | `/plenario/legislatura/{data}` → `Legislatura` | array com 1 elemento |
@@ -176,11 +187,11 @@ Convenção dos quadros: **Registros** é o caminho, dentro do JSON, até o arra
 | | |
 |---|---|
 | **Endpoints** | `GET /senador/lista/atual` · `GET /senador/lista/legislatura/{legislatura}` · `GET /senador/lista/legislatura/{legislaturaInicio}/{legislaturaFim}` |
-| **Parâmetros (API → argumento)** | `uf` → `state` (**filtro no servidor**; medido: `uf=SP` → 3) · `participacao` = `T`/`S` → titular/suplente (medido: `S` → 9) · `exercicio` = `S`/`N` (só nas listas por legislatura) |
+| **Parâmetros (API → argumento)** | `uf` → `state` (**filtro no servidor**; medido: `uf=SP` → 3) · `participacao` = `T`/`S` → `status` (medido: `S` → 9) · `exercicio` = `S`/`N` → `in_office` (só nas listas por legislatura; medido em 19/09/2026: 57ª com `exercicio=S` → 124 dos 245 — a lista por legislatura inclui os suplentes que nunca assumiram) |
 | **Registros** | `ListaParlamentarEmExercicio.Parlamentares.Parlamentar[]` (81) · `ListaParlamentarLegislatura.Parlamentares.Parlamentar[]` (245 na 57ª; 963 para 49–57 em 1 requisição, 0,7 s, 1 MB) |
 | **Campos — lista atual** | `IdentificacaoParlamentar.{CodigoParlamentar (txt-num), CodigoPublicoNaLegAtual, NomeParlamentar, NomeCompletoParlamentar, SexoParlamentar, FormaTratamento, UrlFotoParlamentar, UrlPaginaParlamentar, EmailParlamentar, SiglaPartidoParlamentar, UfParlamentar, MembroMesa, MembroLideranca}`, `…Bloco.{CodigoBloco, NomeBloco, NomeApelido, DataCriacao}`, `…Telefones.Telefone[]`; `Mandato.{CodigoMandato, UfParlamentar, DescricaoParticipacao, PrimeiraLegislaturaDoMandato.*, SegundaLegislaturaDoMandato.*, Suplentes.Suplente[], Exercicios.Exercicio[]}` |
-| **Campos — lista por legislatura** | `IdentificacaoParlamentar.{CodigoParlamentar, NomeParlamentar, NomeCompletoParlamentar, SexoParlamentar, FormaTratamento}`; `Mandatos.Mandato[].{CodigoMandato, UfParlamentar, DescricaoParticipacao, PrimeiraLegislaturaDoMandato.*, SegundaLegislaturaDoMandato.*, Titular.*, Suplentes.Suplente[]}` |
-| **⚠️ Partido** | **A lista por legislatura não traz partido** — nem na identificação, nem no mandato. Partido só existe na lista atual. Consequência: o filtro `party` só vale para senadores em exercício; nas listas históricas a coluna `party` sai `NA`. O partido por período está em `/senador/{codigo}/mandatos` (`Partidos.Partido[]`) e o partido na data de cada voto, em `/votacao` |
+| **Campos — lista por legislatura** | `IdentificacaoParlamentar.{CodigoParlamentar, NomeParlamentar, NomeCompletoParlamentar, SexoParlamentar, FormaTratamento}` sempre; `{CodigoPublicoNaLegAtual, UrlFotoParlamentar, UrlPaginaParlamentar, UrlPaginaParticular, EmailParlamentar, SiglaPartidoParlamentar, UfParlamentar}` só em parte dos registros (19/09/2026); `Mandatos.Mandato[].{CodigoMandato, UfParlamentar, DescricaoParticipacao, PrimeiraLegislaturaDoMandato.*, SegundaLegislaturaDoMandato.*, Titular.*, Suplentes.Suplente[]}` |
+| **⚠️ Partido** | **Correção de 19/09/2026:** a lista por legislatura traz `SiglaPartidoParlamentar` na identificação de **parte** dos senadores — 153 dos 245 na 57ª, 77 dos 219 na 50ª — e `UfParlamentar` de menos ainda (84 e 5). A v2.0 dizia que não trazia. O que vem é o partido **cadastrado hoje**, não o da época, e falta para os demais; no mandato não há partido. Só a lista atual traz partido confiável. Consequência (mantida a decisão de `HUM`): o filtro `party` só vale para senadores em exercício — com `legislature` a função recusa o argumento; a coluna `party` das listas históricas sai com o que a API entrega (`NA` para quem não tem), com o limite dito na documentação. A UF sai do mandato, que sempre a traz. O partido por período está em `/senador/{codigo}/mandatos` (`Partidos.Partido[]`) e o partido na data de cada voto, em `/votacao` |
 | **Id inexistente** | legislatura 999 → 200, envelope sem `Parlamentares` → tibble de 0 linhas |
 
 #### `sen_senator()`
@@ -201,6 +212,7 @@ Convenção dos quadros: **Registros** é o caminho, dentro do JSON, até o arra
 | **Registros** | `MandatoParlamentar.Parlamentar.Mandatos.Mandato[]` |
 | **Campos** | `CodigoMandato`, `UfParlamentar`, `DescricaoParticipacao`, `PrimeiraLegislaturaDoMandato.{NumeroLegislatura, DataInicio, DataFim}`, `SegundaLegislaturaDoMandato.*`; aninhados: `Suplentes.Suplente[]` (`DescricaoParticipacao`, `CodigoParlamentar`, `NomeParlamentar`); `Exercicios.Exercicio[]` (`CodigoExercicio`, `DataInicio`, `DataFim`, `SiglaCausaAfastamento`, `DescricaoCausaAfastamento`, `DataLeitura` — os quatro últimos só quando o exercício terminou); `Partidos.Partido` (`CodigoPartido`, `Sigla`, `Nome`, `DataFiliacao`, `DataDesfiliacao` — esta só quando houve desfiliação). Medido nos senadores 825 (3 mandatos), 5322 (2) e 4981 (2) |
 | **⚠️ `Partidos.Partido`** | objeto quando há um só partido no mandato, array quando há mais (ver 1.4) |
+| **Mandato de suplente** | traz o nó `Titular.{DescricaoParticipacao, CodigoParlamentar, NomeParlamentar}` (medido em 19/09/2026 no senador 6373) → colunas `holder_code` e `holder_name`, `NA` quando o próprio senador é o titular |
 | **Desenho (decidido em 18/09/2026)** | uma linha por mandato; suplentes, exercícios e partidos em três colunas-lista — há várias listas por registro, e achatá-las juntas multiplicaria linhas sem significado |
 
 #### `sen_senator_committees()`
@@ -223,6 +235,8 @@ Convenção dos quadros: **Registros** é o caminho, dentro do JSON, até o arra
 | **Registros** | `DiscursosParlamentar.Parlamentar.Pronunciamentos.Pronunciamento[]` |
 | **Campos** | `CodigoPronunciamento` (txt-num), `DataPronunciamento`, `TipoUsoPalavra.{Codigo, Sigla, Descricao}`, `SiglaPartidoParlamentarNaData`, `UfParlamentarNaData`, `SiglaCasaPronunciamento`, `TextoResumo`, `Indexacao`, `UrlTexto`, `UrlTextoBinario`, `SessaoPlenaria.{CodigoSessao, SiglaTipoSessao, NumeroSessao, DataSessao, HoraInicioSessao, …}`, `Publicacoes.Publicacao[]` |
 | **Sem resultado** | `Pronunciamentos: null` |
+| **Código inexistente** | 200, nó `Parlamentar` presente mas sem `IdentificacaoParlamentar` (ver 1.2) → `senado_error_not_found` |
+| **Aninhados** | `Aparteantes.Aparteante` (objeto quando há um só — ver 1.4) e `Publicacoes.Publicacao[]` → colunas-lista `interjections` e `publications` (princípio 14b) |
 | **Observação** | o texto do discurso não vem; vem o resumo e as URLs. Texto integral: `/discurso/texto-integral/{codigoPronunciamento}` (fora do escopo) |
 
 ### Módulo 3.3 — Matérias legislativas

@@ -1,0 +1,53 @@
+{
+  "ListaPartidos": {
+    "noNamespaceSchemaLocation": "dados/ListaPartidosv2.xsd",
+    "Metadados": {
+      "Versao": "18/09/2026 14:19:59",
+      "VersaoServico": "2",
+      "DataVersaoServico": "2017-02-01",
+      "DescricaoDataSet": "Lista os Partidos Políticos em atividade e/ou extintos."
+    },
+    "Partidos": {
+      "Partido": [
+        {
+          "Codigo": "587",
+          "Sigla": "AGIR",
+          "Nome": "AGIR",
+          "DataCriacao": "1990-02-22"
+        },
+        {
+          "Codigo": "525",
+          "Sigla": "ANL",
+          "Nome": "Aliança Nacional Libertadora",
+          "DataCriacao": "1935-01-01",
+          "DataExtincao": "1937-12-02"
+        },
+        {
+          "Codigo": "238",
+          "Sigla": "ARENA",
+          "Nome": "Aliança Renovadora Nacional",
+          "DataCriacao": "1965-11-24",
+          "DataExtincao": "1979-11-29"
+        },
+        {
+          "Codigo": "578",
+          "Sigla": "AVANTE",
+          "Nome": "Avante",
+          "DataCriacao": "1989-11-01"
+        },
+        {
+          "Codigo": "41",
+          "Sigla": "CIDADANIA",
+          "Nome": "CIDADANIA",
+          "DataCriacao": "1992-01-01"
+        },
+        {
+          "Codigo": "581",
+          "Sigla": "DC",
+          "Nome": "Democracia Cristã",
+          "DataCriacao": "2018-05-18"
+        }
+      ]
+    }
+  }
+}

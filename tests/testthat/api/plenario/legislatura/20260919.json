@@ -1,0 +1,61 @@
+{
+    "ListaLegislatura": {
+        "noNamespaceSchemaLocation": "dados/ListaLegislaturav3.xsd",
+        "Metadados": {
+            "Versao": "19/09/2026 15:42:29",
+            "VersaoServico": "3",
+            "DataVersaoServico": "2019-08-27",
+            "DescricaoDataSet": "Retorna a Legislatura na data informada no parâmetro e suas Sessões Legislativas."
+        },
+        "Legislaturas": {
+            "Legislatura": [
+                {
+                    "NumeroLegislatura": "57",
+                    "DataInicio": "2023-02-01",
+                    "DataFim": "2027-01-31",
+                    "DataEleicao": "2022-10-02",
+                    "SessoesLegislativas": {
+                        "SessaoLegislativa": [
+                            {
+                                "NumeroSessaoLegislativa": "1",
+                                "TipoSessaoLegislativa": "Preparatória",
+                                "DataInicio": "2023-02-01",
+                                "DataFim": "2023-02-01"
+                            },
+                            {
+                                "NumeroSessaoLegislativa": "1",
+                                "TipoSessaoLegislativa": "Ordinária",
+                                "DataInicio": "2023-02-02",
+                                "DataFim": "2023-12-22"
+                            },
+                            {
+                                "NumeroSessaoLegislativa": "2",
+                                "TipoSessaoLegislativa": "Ordinária",
+                                "DataInicio": "2024-02-02",
+                                "DataFim": "2024-12-23"
+                            },
+                            {
+                                "NumeroSessaoLegislativa": "3",
+                                "TipoSessaoLegislativa": "Preparatória",
+                                "DataInicio": "2025-02-01",
+                                "DataFim": "2025-02-01"
+                            },
+                            {
+                                "NumeroSessaoLegislativa": "3",
+                                "TipoSessaoLegislativa": "Ordinária",
+                                "DataInicio": "2025-02-03",
+                                "DataFim": "2025-12-22"
+                            },
+                            {
+                                "NumeroSessaoLegislativa": "4",
+                                "TipoSessaoLegislativa": "Ordinária",
+                                "DataInicio": "2026-02-02",
+                                "DataFim": "2026-12-22"
+                            }
+                        ]
+                    }
+                }
+            ]
+        }
+    }
+}

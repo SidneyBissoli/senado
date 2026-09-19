@@ -1,0 +1,11 @@
+{
+    "ListaLegislatura": {
+        "noNamespaceSchemaLocation": "dados/ListaLegislaturav3.xsd",
+        "Metadados": {
+            "Versao": "19/09/2026 15:55:28",
+            "VersaoServico": "3",
+            "DataVersaoServico": "2019-08-27",
+            "DescricaoDataSet": "Retorna a Legislatura na data informada no parâmetro e suas Sessões Legislativas."
+        }
+    }
+}
