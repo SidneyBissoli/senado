@@ -1,0 +1,151 @@
+{
+  "DiscursosParlamentar": {
+    "noNamespaceSchemaLocation": "dados/DiscursosParlamentarv5.xsd",
+    "Metadados": {
+      "Versao": "19/09/2026 15:55:30",
+      "VersaoServico": "5",
+      "DataVersaoServico": "2021-06-29",
+      "DescricaoDataSet": "Discursos do Parlamentar. Se não informar o período, serão retornados os discursos dos últimos 30 dias."
+    },
+    "Parlamentar": {
+      "IdentificacaoParlamentar": {
+        "CodigoParlamentar": "825",
+        "CodigoPublicoNaLegAtual": "859",
+        "NomeParlamentar": "Paulo Paim",
+        "NomeCompletoParlamentar": "Paulo Renato Paim",
+        "SexoParlamentar": "Masculino",
+        "FormaTratamento": "Senador ",
+        "UrlFotoParlamentar": "http://www.senado.leg.br/senadores/img/fotos-oficiais/senador825.jpg",
+        "UrlPaginaParlamentar": "http://www25.senado.leg.br/web/senadores/senador/-/perfil/825",
+        "EmailParlamentar": "sen.paulopaim@senado.leg.br",
+        "SiglaPartidoParlamentar": "PT",
+        "UfParlamentar": "RS"
+      },
+      "Pronunciamentos": {
+        "Pronunciamento": [
+          {
+            "CodigoPronunciamento": "504143",
+            "TipoUsoPalavra": {
+              "Codigo": "4819",
+              "Sigla": "DIS",
+              "Descricao": "Discurso",
+              "IndicadorAtivo": "Sim"
+            },
+            "DataPronunciamento": "2024-02-28",
+            "SiglaPartidoParlamentarNaData": "PT",
+            "UfParlamentarNaData": "RS",
+            "SiglaCasaPronunciamento": "SF",
+            "NomeCasaPronunciamento": "Senado Federal",
+            "TextoResumo": "Apoio à mobilização nacional em defesa das competências constitucionais da Justiça do Trabalho.",
+            "Indexacao": "COMENTARIO, REALIZAÇÃO, MOBILIZAÇÃO, AMBITO NACIONAL, DEFESA, COMPETENCIA, JUSTIÇA DO TRABALHO, CONSTITUIÇÃO FEDERAL, GARANTIA, DIREITOS E GARANTIAS TRABALHISTAS.\nCOMENTARIO, ENCAMINHAMENTO, ORADOR, MENSAGEM (MSG), CASA CIVIL, APOIO, INICIATIVA, INSTALAÇÃO, CAMPUS UNIVERSITARIO, MUNICIPIO, ROSARIO DO SUL (RS), REFORÇO, CURSO TECNICO, MELHORIA, EDUCAÇÃO, IMPORTANCIA, PROJETO DE LEI, CRIAÇÃO, FUNDO DE DESENVOLVIMENTO, ENSINO PROFISSIONAL.\nDISCURSO, PROJETO DE LEI COMPLEMENTAR (PLP), CRIAÇÃO, LEI FEDERAL, FUNDO FINANCEIRO, ENSINO PROFISSIONALIZANTE, FORMAÇÃO PROFISSIONAL, TRABALHADOR, OBJETIVO, RENDA, PRODUTIVIDADE, COMPETIÇÃO, MERCADO DE TRABALHO, COMBATE, POBREZA, DESIGUALDADE SOCIAL, DESIGUALDADE REGIONAL, DEFINIÇÃO, RECURSOS FINANCEIROS, GESTÃO, PRESTAÇÃO DE CONTAS, MINISTERIO DA EDUCAÇÃO (MEC).",
+            "UrlTexto": "https://www25.senado.leg.br/web/atividade/pronunciamentos/-/p/texto/504143",
+            "UrlTextoBinario": "https://legis.senado.gov.br/disse/dadosabertos/arquivoTextoPronunciamento/504143",
+            "SessaoPlenaria": {
+              "CodigoSessao": "386462",
+              "SiglaCasaSessao": "SF",
+              "NomeCasaSessao": "Senado Federal",
+              "CodigoSessaoLegislativa": "871",
+              "SiglaTipoSessao": "DOR",
+              "NumeroSessao": "9",
+              "DataSessao": "2024-02-28",
+              "HoraInicioSessao": "14:00:00"
+            },
+            "Publicacoes": {
+              "Publicacao": [
+                {
+                  "DescricaoVeiculoPublicacao": "DSF",
+                  "DataPublicacao": "2024-02-29",
+                  "NumeroPagInicioPublicacao": "11",
+                  "NumeroPagFimPublicacao": "13",
+                  "IndicadorRepublicacao": "Não",
+                  "UrlDiario": "http://legis.senado.leg.br/diarios/BuscaDiario?tipDiario=1&datDiario=29/02/2024&paginaDireta=11"
+                }
+              ]
+            }
+          },
+          {
+            "CodigoPronunciamento": "504036",
+            "TipoUsoPalavra": {
+              "Codigo": "4819",
+              "Sigla": "DIS",
+              "Descricao": "Discurso",
+              "IndicadorAtivo": "Sim"
+            },
+            "DataPronunciamento": "2024-02-27",
+            "SiglaPartidoParlamentarNaData": "PT",
+            "UfParlamentarNaData": "RS",
+            "SiglaCasaPronunciamento": "SF",
+            "NomeCasaPronunciamento": "Senado Federal",
+            "TextoResumo": "Exposição sobre a importância da Justiça do Trabalho. Leitura de carta enviada por diversas entidades em defesa das competências constitucionais da Justiça do Trabalho.",
+            "Indexacao": "REGISTRO, IMPORTANCIA, JUSTIÇA DO TRABALHO, LEITURA, CARTA, ORDEM DOS ADVOGADOS DO BRASIL (OAB), CENTRAL SINDICAL, PONTIFICIA UNIVERSIDADE CATOLICA (PUC), ESTADO DE SÃO PAULO (SP), DEFESA, COMPETENCIA, CONSTITUIÇÃO FEDERAL, CRITICA, ATUAÇÃO, SUPREMO TRIBUNAL FEDERAL (STF), INTERESSE, TRABALHADOR, EXPOSIÇÃO, RECURSO EXTRAORDINARIO, VINCULO EMPREGATICIO, DIREITOS E GARANTIAS TRABALHISTAS, MOTORISTA DE APLICATIVO.",
+            "UrlTexto": "https://www25.senado.leg.br/web/atividade/pronunciamentos/-/p/texto/504036",
+            "UrlTextoBinario": "https://legis.senado.gov.br/disse/dadosabertos/arquivoTextoPronunciamento/504036",
+            "SessaoPlenaria": {
+              "CodigoSessao": "385968",
+              "SiglaCasaSessao": "SF",
+              "NomeCasaSessao": "Senado Federal",
+              "CodigoSessaoLegislativa": "871",
+              "SiglaTipoSessao": "DOR",
+              "NumeroSessao": "8",
+              "DataSessao": "2024-02-27",
+              "HoraInicioSessao": "14:00:00"
+            },
+            "Publicacoes": {
+              "Publicacao": [
+                {
+                  "DescricaoVeiculoPublicacao": "DSF",
+                  "DataPublicacao": "2024-02-28",
+                  "NumeroPagInicioPublicacao": "14",
+                  "NumeroPagFimPublicacao": "16",
+                  "IndicadorRepublicacao": "Não",
+                  "UrlDiario": "http://legis.senado.leg.br/diarios/BuscaDiario?tipDiario=1&datDiario=28/02/2024&paginaDireta=14"
+                }
+              ]
+            }
+          },
+          {
+            "CodigoPronunciamento": "503856",
+            "TipoUsoPalavra": {
+              "Codigo": "4819",
+              "Sigla": "DIS",
+              "Descricao": "Discurso",
+              "IndicadorAtivo": "Sim"
+            },
+            "DataPronunciamento": "2024-02-21",
+            "SiglaPartidoParlamentarNaData": "PT",
+            "UfParlamentarNaData": "RS",
+            "SiglaCasaPronunciamento": "SF",
+            "NomeCasaPronunciamento": "Senado Federal",
+            "TextoResumo": "Exposição sobre o histórico da política de valorização do salário mínimo do Governo Lula. Defesa da aprovação, na Câmara dos Deputados, do Projeto de Lei nº 4434, de 2008, de autoria de S.Exa., que dispõe sobre a recomposição progressiva de salários e benefícios para aposentados e pensionistas.",
+            "Indexacao": "COMENTARIO, HISTORIA, POLITICA, VALORIZAÇÃO, SALARIO MINIMO, PERIODO, GOVERNO FEDERAL, GESTÃO, PRESIDENTE DA REPUBLICA, LUIZ INACIO LULA DA SILVA, DEFESA, APROVAÇÃO, CAMARA DOS DEPUTADOS, PROJETO DE LEI, AUTORIA, ORADOR, ASSUNTO, ATUALIZAÇÃO, PROGRESSIVIDADE, SALARIO, BENEFICIO, APOSENTADO, PENSIONISTA.",
+            "UrlTexto": "https://www25.senado.leg.br/web/atividade/pronunciamentos/-/p/texto/503856",
+            "UrlTextoBinario": "https://legis.senado.gov.br/disse/dadosabertos/arquivoTextoPronunciamento/503856",
+            "SessaoPlenaria": {
+              "CodigoSessao": "385211",
+              "SiglaCasaSessao": "SF",
+              "NomeCasaSessao": "Senado Federal",
+              "CodigoSessaoLegislativa": "871",
+              "SiglaTipoSessao": "DOR",
+              "NumeroSessao": "6",
+              "DataSessao": "2024-02-21",
+              "HoraInicioSessao": "14:00:00"
+            },
+            "Publicacoes": {
+              "Publicacao": [
+                {
+                  "DescricaoVeiculoPublicacao": "DSF",
+                  "DataPublicacao": "2024-02-22",
+                  "NumeroPagInicioPublicacao": "13",
+                  "NumeroPagFimPublicacao": "15",
+                  "IndicadorRepublicacao": "Não",
+                  "UrlDiario": "http://legis.senado.leg.br/diarios/BuscaDiario?tipDiario=1&datDiario=22/02/2024&paginaDireta=13"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "UrlGlossario": "http://legis.senado.leg.br/dadosabertos/senador/"
+    }
+  }
+}

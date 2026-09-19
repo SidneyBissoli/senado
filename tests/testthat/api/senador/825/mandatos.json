@@ -1,0 +1,160 @@
+{
+    "MandatoParlamentar": {
+        "noNamespaceSchemaLocation": "dados/MandatoParlamentarv5.xsd",
+        "Metadados": {
+            "Versao": "19/09/2026 15:42:39",
+            "VersaoServico": "5",
+            "DataVersaoServico": "2021-09-09",
+            "DescricaoDataSet": "Retorna a relação dos Mandatos do Senador informado no parâmetro."
+        },
+        "Parlamentar": {
+            "Codigo": "825",
+            "Nome": "Paulo Paim",
+            "Mandatos": {
+                "Mandato": [
+                    {
+                        "CodigoMandato": "523",
+                        "UfParlamentar": "RS",
+                        "PrimeiraLegislaturaDoMandato": {
+                            "NumeroLegislatura": "56",
+                            "DataInicio": "2019-02-01",
+                            "DataFim": "2023-01-31"
+                        },
+                        "SegundaLegislaturaDoMandato": {
+                            "NumeroLegislatura": "57",
+                            "DataInicio": "2023-02-01",
+                            "DataFim": "2027-01-31"
+                        },
+                        "DescricaoParticipacao": "Titular",
+                        "Suplentes": {
+                            "Suplente": [
+                                {
+                                    "DescricaoParticipacao": "1º Suplente",
+                                    "CodigoParlamentar": "6017",
+                                    "NomeParlamentar": "Cleonice Back"
+                                },
+                                {
+                                    "DescricaoParticipacao": "2º Suplente",
+                                    "CodigoParlamentar": "6018",
+                                    "NomeParlamentar": "Reginete Bispo"
+                                }
+                            ]
+                        },
+                        "Exercicios": {
+                            "Exercicio": [
+                                {
+                                    "CodigoExercicio": "2929",
+                                    "DataInicio": "2019-02-01"
+                                }
+                            ]
+                        },
+                        "Partidos": {
+                            "Partido": {
+                                "CodigoPartido": "71",
+                                "Sigla": "PT",
+                                "Nome": "Partido dos Trabalhadores",
+                                "DataFiliacao": "1999-02-01"
+                            }
+                        }
+                    },
+                    {
+                        "CodigoMandato": "449",
+                        "UfParlamentar": "RS",
+                        "PrimeiraLegislaturaDoMandato": {
+                            "NumeroLegislatura": "54",
+                            "DataInicio": "2011-02-01",
+                            "DataFim": "2015-01-31"
+                        },
+                        "SegundaLegislaturaDoMandato": {
+                            "NumeroLegislatura": "55",
+                            "DataInicio": "2015-02-01",
+                            "DataFim": "2019-01-31"
+                        },
+                        "DescricaoParticipacao": "Titular",
+                        "Suplentes": {
+                            "Suplente": [
+                                {
+                                    "DescricaoParticipacao": "1º Suplente",
+                                    "CodigoParlamentar": "5084",
+                                    "NomeParlamentar": "Veridiana Maria Tonini"
+                                },
+                                {
+                                    "DescricaoParticipacao": "2º Suplente",
+                                    "CodigoParlamentar": "5088",
+                                    "NomeParlamentar": "Gilberto Corazza"
+                                }
+                            ]
+                        },
+                        "Exercicios": {
+                            "Exercicio": [
+                                {
+                                    "CodigoExercicio": "2616",
+                                    "DataInicio": "2011-02-01",
+                                    "DataFim": "2019-01-31",
+                                    "SiglaCausaAfastamento": "TER",
+                                    "DescricaoCausaAfastamento": "Término do mandato"
+                                }
+                            ]
+                        },
+                        "Partidos": {
+                            "Partido": {
+                                "CodigoPartido": "71",
+                                "Sigla": "PT",
+                                "Nome": "Partido dos Trabalhadores",
+                                "DataFiliacao": "1999-02-01"
+                            }
+                        }
+                    },
+                    {
+                        "CodigoMandato": "314",
+                        "UfParlamentar": "RS",
+                        "PrimeiraLegislaturaDoMandato": {
+                            "NumeroLegislatura": "52",
+                            "DataInicio": "2003-02-01",
+                            "DataFim": "2007-01-31"
+                        },
+                        "SegundaLegislaturaDoMandato": {
+                            "NumeroLegislatura": "53",
+                            "DataInicio": "2007-02-01",
+                            "DataFim": "2011-01-31"
+                        },
+                        "DescricaoParticipacao": "Titular",
+                        "Suplentes": {
+                            "Suplente": [
+                                {
+                                    "DescricaoParticipacao": "1º Suplente",
+                                    "CodigoParlamentar": "4939",
+                                    "NomeParlamentar": "Humberto Sorio Júnior"
+                                },
+                                {
+                                    "DescricaoParticipacao": "2º Suplente",
+                                    "CodigoParlamentar": "3603",
+                                    "NomeParlamentar": "José Pinto"
+                                }
+                            ]
+                        },
+                        "Exercicios": {
+                            "Exercicio": [
+                                {
+                                    "CodigoExercicio": "1747",
+                                    "DataInicio": "2003-02-01",
+                                    "DataFim": "2011-01-31",
+                                    "SiglaCausaAfastamento": "TER",
+                                    "DescricaoCausaAfastamento": "Término do mandato"
+                                }
+                            ]
+                        },
+                        "Partidos": {
+                            "Partido": {
+                                "CodigoPartido": "71",
+                                "Sigla": "PT",
+                                "Nome": "Partido dos Trabalhadores",
+                                "DataFiliacao": "1999-02-01"
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    }
+}

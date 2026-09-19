@@ -1,0 +1,48 @@
+{
+    "MandatoParlamentar": {
+        "noNamespaceSchemaLocation": "dados/MandatoParlamentarv5.xsd",
+        "Metadados": {
+            "Versao": "19/09/2026 15:50:09",
+            "VersaoServico": "5",
+            "DataVersaoServico": "2021-09-09",
+            "DescricaoDataSet": "Retorna a relação dos Mandatos do Senador informado no parâmetro."
+        },
+        "Parlamentar": {
+            "Codigo": "6373",
+            "Nome": "Andrea Fontes",
+            "Mandatos": {
+                "Mandato": [
+                    {
+                        "CodigoMandato": "620",
+                        "UfParlamentar": "RJ",
+                        "PrimeiraLegislaturaDoMandato": {
+                            "NumeroLegislatura": "57",
+                            "DataInicio": "2023-02-01",
+                            "DataFim": "2027-01-31"
+                        },
+                        "SegundaLegislaturaDoMandato": {
+                            "NumeroLegislatura": "58",
+                            "DataInicio": "2027-02-01",
+                            "DataFim": "2031-01-31"
+                        },
+                        "DescricaoParticipacao": "2º Suplente",
+                        "Titular": {
+                            "DescricaoParticipacao": "Titular",
+                            "CodigoParlamentar": "5322",
+                            "NomeParlamentar": "Romário"
+                        },
+                        "Suplentes": {
+                            "Suplente": [
+                                {
+                                    "DescricaoParticipacao": "1º Suplente",
+                                    "CodigoParlamentar": "6372",
+                                    "NomeParlamentar": "Bruno Bonetti"
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        }
+    }
+}

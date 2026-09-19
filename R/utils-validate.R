@@ -69,7 +69,8 @@ validate_bill_code <- function(code, arg = "code", call = rlang::caller_env()) {
 
 #' Validate a party abbreviation
 #'
-#' Must be a single character string in uppercase.
+#' Must be a single character string. Real abbreviations include accented
+#' letters and a slash (`"UNIÃO"`, `"S/Partido"`), so both are accepted.
 #'
 #' @param party A single character string (e.g., `"PL"`, `"PT"`).
 #' @param arg Character. Argument name for error messages.
@@ -86,7 +87,10 @@ validate_party <- function(party, arg = "party", call = rlang::caller_env()) {
 
   party <- toupper(trimws(party))
 
-  if (!grepl("^[A-Z]+$", party)) {
+  # Refuse digits, spaces and punctuation rather than demand [A-Z]: what
+  # counts as a letter depends on the locale, and "UNIÃO" must pass in all.
+  if (!nzchar(party) ||
+        grepl("[[:digit:][:space:][:punct:]]", gsub("/", "", party, fixed = TRUE))) {
     cli::cli_abort(
       "{.arg {arg}} must contain only letters, not {.val {party}}.",
       call = call
@@ -133,6 +137,40 @@ validate_uf <- function(uf, arg = "state", call = rlang::caller_env()) {
   }
 
   invisible(uf)
+}
+
+# --- Date -------------------------------------------------------------------
+
+#' Validate a date
+#'
+#' Accepts a `Date` or a string in `"YYYY-MM-DD"` format.
+#'
+#' @param date A single `Date` or character value.
+#' @param arg Character. Argument name for error messages.
+#' @param call The calling environment for error context.
+#' @return The value as a `Date`, invisibly.
+#' @noRd
+validate_date <- function(date, arg = "date", call = rlang::caller_env()) {
+  if (length(date) != 1L || is.na(date)) {
+    cli::cli_abort(
+      "{.arg {arg}} must be a single non-NA date, not {.obj_type_friendly {date}}.",
+      call = call
+    )
+  }
+
+  if (inherits(date, "Date")) {
+    return(invisible(date))
+  }
+
+  parsed <- if (is.character(date)) as.Date(date, format = "%Y-%m-%d") else NA
+  if (is.na(parsed)) {
+    cli::cli_abort(
+      "{.arg {arg}} must be a {.cls Date} or a string in {.val YYYY-MM-DD} format, not {.val {date}}.",
+      call = call
+    )
+  }
+
+  invisible(parsed)
 }
 
 # --- Generic helpers --------------------------------------------------------

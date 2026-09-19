@@ -1,0 +1,151 @@
+{
+  "DiscursosParlamentar": {
+    "noNamespaceSchemaLocation": "dados/DiscursosParlamentarv5.xsd",
+    "Metadados": {
+      "Versao": "19/09/2026 15:55:30",
+      "VersaoServico": "5",
+      "DataVersaoServico": "2021-06-29",
+      "DescricaoDataSet": "Discursos do Parlamentar. Se não informar o período, serão retornados os discursos dos últimos 30 dias."
+    },
+    "Parlamentar": {
+      "IdentificacaoParlamentar": {
+        "CodigoParlamentar": "825",
+        "CodigoPublicoNaLegAtual": "859",
+        "NomeParlamentar": "Paulo Paim",
+        "NomeCompletoParlamentar": "Paulo Renato Paim",
+        "SexoParlamentar": "Masculino",
+        "FormaTratamento": "Senador ",
+        "UrlFotoParlamentar": "http://www.senado.leg.br/senadores/img/fotos-oficiais/senador825.jpg",
+        "UrlPaginaParlamentar": "http://www25.senado.leg.br/web/senadores/senador/-/perfil/825",
+        "EmailParlamentar": "sen.paulopaim@senado.leg.br",
+        "SiglaPartidoParlamentar": "PT",
+        "UfParlamentar": "RS"
+      },
+      "Pronunciamentos": {
+        "Pronunciamento": [
+          {
+            "CodigoPronunciamento": "503349",
+            "TipoUsoPalavra": {
+              "Codigo": "4819",
+              "Sigla": "DIS",
+              "Descricao": "Discurso",
+              "IndicadorAtivo": "Sim"
+            },
+            "DataPronunciamento": "2023-12-19",
+            "SiglaPartidoParlamentarNaData": "PT",
+            "UfParlamentarNaData": "RS",
+            "SiglaCasaPronunciamento": "SF",
+            "NomeCasaPronunciamento": "Senado Federal",
+            "TextoResumo": "Satisfação com a aprovação pelo Senado Federal do Projeto de Resolução no. 122/2023, que autoriza o Estado do Rio Grande do Sul a contratar operação de crédito externo junto ao Banco Interamericano de Desenvolvimento (BID), em um momento de dificuldade fiscal e de calamidade pública por que passa o Estado.",
+            "Indexacao": "SAUDAÇÃO, APROVAÇÃO, Comissão de Assuntos Econômicos (CAE), PROJETO DE RESOLUÇÃO DO SENADO (PRS), AUTORIZAÇÃO, ESTADO DO RIO GRANDE DO SUL (RS), CONTRATAÇÃO, OPERAÇÃO FINANCEIRA, INSTITUIÇÃO FINANCEIRA, BANCO INTERAMERICANO DE DESENVOLVIMENTO (BID), GARANTIA, UNIÃO FEDERAL, CREDITO EXTERNO, DESTINAÇÃO, FINANCIAMENTO, PROGRAMA, GESTÃO FISCAL.",
+            "UrlTexto": "https://www25.senado.leg.br/web/atividade/pronunciamentos/-/p/texto/503349",
+            "UrlTextoBinario": "https://legis.senado.gov.br/disse/dadosabertos/arquivoTextoPronunciamento/503349",
+            "SessaoPlenaria": {
+              "CodigoSessao": "380014",
+              "SiglaCasaSessao": "SF",
+              "NomeCasaSessao": "Senado Federal",
+              "CodigoSessaoLegislativa": "868",
+              "SiglaTipoSessao": "DEX",
+              "NumeroSessao": "195",
+              "DataSessao": "2023-12-19",
+              "HoraInicioSessao": "16:00:00"
+            },
+            "Publicacoes": {
+              "Publicacao": [
+                {
+                  "DescricaoVeiculoPublicacao": "DSF",
+                  "DataPublicacao": "2023-12-20",
+                  "NumeroPagInicioPublicacao": "29",
+                  "NumeroPagFimPublicacao": "29",
+                  "IndicadorRepublicacao": "Não",
+                  "UrlDiario": "http://legis.senado.leg.br/diarios/BuscaDiario?tipDiario=1&datDiario=20/12/2023&paginaDireta=29"
+                }
+              ]
+            }
+          },
+          {
+            "CodigoPronunciamento": "503023",
+            "TipoUsoPalavra": {
+              "Codigo": "4819",
+              "Sigla": "DIS",
+              "Descricao": "Discurso",
+              "IndicadorAtivo": "Sim"
+            },
+            "DataPronunciamento": "2023-12-18",
+            "SiglaPartidoParlamentarNaData": "PT",
+            "UfParlamentarNaData": "RS",
+            "SiglaCasaPronunciamento": "SF",
+            "NomeCasaPronunciamento": "Senado Federal",
+            "TextoResumo": "Registro da 15ª Festa Nacional da Vindima (Fenavindima), que ocorrerá entre 22 de fevereiro e 10 de março de 2024, no município de Flores da Cunha (RS).",
+            "Indexacao": "REGISTRO, FESTA NACIONAL, COLHEITA, UVA, FLORES DA CUNHA (RS).\nDISCURSO, PROJETO DE LEI, CRIAÇÃO, LEI FEDERAL, POLITICA NACIONAL, DISTRIBUIÇÃO GRATUITA, SISTEMA UNICO DE SAUDE (SUS), MEDICAMENTOS, DROGA, ENTORPECENTE, UTILIZAÇÃO, TRATAMENTO, PACIENTE, DOENÇA CRONICA, BENEFICIO, SAUDE, VALOR TERAPEUTICO.",
+            "UrlTexto": "https://www25.senado.leg.br/web/atividade/pronunciamentos/-/p/texto/503023",
+            "UrlTextoBinario": "https://legis.senado.gov.br/disse/dadosabertos/arquivoTextoPronunciamento/503023",
+            "SessaoPlenaria": {
+              "CodigoSessao": "379942",
+              "SiglaCasaSessao": "SF",
+              "NomeCasaSessao": "Senado Federal",
+              "CodigoSessaoLegislativa": "868",
+              "SiglaTipoSessao": "NDL",
+              "NumeroSessao": "194",
+              "DataSessao": "2023-12-18",
+              "HoraInicioSessao": "14:00:00"
+            },
+            "Publicacoes": {
+              "Publicacao": [
+                {
+                  "DescricaoVeiculoPublicacao": "DSF",
+                  "DataPublicacao": "2023-12-19",
+                  "NumeroPagInicioPublicacao": "7",
+                  "NumeroPagFimPublicacao": "8",
+                  "IndicadorRepublicacao": "Não",
+                  "UrlDiario": "http://legis.senado.leg.br/diarios/BuscaDiario?tipDiario=1&datDiario=19/12/2023&paginaDireta=7"
+                }
+              ]
+            }
+          },
+          {
+            "CodigoPronunciamento": "503187",
+            "TipoUsoPalavra": {
+              "Codigo": "4819",
+              "Sigla": "DIS",
+              "Descricao": "Discurso",
+              "IndicadorAtivo": "Sim"
+            },
+            "DataPronunciamento": "2023-12-13",
+            "SiglaPartidoParlamentarNaData": "PT",
+            "UfParlamentarNaData": "RS",
+            "SiglaCasaPronunciamento": "SF",
+            "NomeCasaPronunciamento": "Senado Federal",
+            "TextoResumo": "Voto de pesar pelo falecimento do Sr.  Luiz Alberto Silva dos Santos, ex-Deputado Federal do Estado da Bahia e líder do movimento negro brasileiro. Registro de correspondência encaminhada ao Presidente Lula em que solicita a retirada da Empresa de Trens Urbanos de Porto Alegre S.A. (Trensurb) do Programa Nacional de Desestatização. Defesa da aprovação do Projeto de Lei do Senado no. 561/2015-Complementar, que estabelece novo índice de cálculo para atualização monetária das dívidas dos Estados e Municípios. Balanço sobre os trabalhos da CDH em 2023.",
+            "Indexacao": "VOTO DE PESAR, MORTE, HOMENAGEM POSTUMA, EX-DEPUTADO, CAMARA DOS DEPUTADOS.\nLEITURA, CARTA, AUTORIA, ORADOR, ENCAMINHAMENTO, LUIZ INACIO LULA DA SILVA, PRESIDENTE DA REPUBLICA, SOLICITAÇÃO, RETIRADA, EMPRESA DE TRANSPORTE FERROVIARIO, CAPITAL DE ESTADO, PORTO ALEGRE (RS), PROGRAMA NACIONAL DE DESESTATIZAÇÃO.\nDEFESA, APROVAÇÃO, PROJETO DE LEI, CO AUTORIA, ORADOR, REGIME DE RECUPERAÇÃO FISCAL.\nCOMENTARIO, BALANÇO, ATIVIDADE, ORADOR, COMISSÃO DE DIREITOS HUMANOS (CDH).",
+            "UrlTexto": "https://www25.senado.leg.br/web/atividade/pronunciamentos/-/p/texto/503187",
+            "UrlTextoBinario": "https://legis.senado.gov.br/disse/dadosabertos/arquivoTextoPronunciamento/503187",
+            "SessaoPlenaria": {
+              "CodigoSessao": "377153",
+              "SiglaCasaSessao": "SF",
+              "NomeCasaSessao": "Senado Federal",
+              "CodigoSessaoLegislativa": "868",
+              "SiglaTipoSessao": "DOR",
+              "NumeroSessao": "192",
+              "DataSessao": "2023-12-13",
+              "HoraInicioSessao": "14:00:00"
+            },
+            "Publicacoes": {
+              "Publicacao": [
+                {
+                  "DescricaoVeiculoPublicacao": "DSF",
+                  "DataPublicacao": "2023-12-14",
+                  "NumeroPagInicioPublicacao": "24",
+                  "NumeroPagFimPublicacao": "26",
+                  "IndicadorRepublicacao": "Não",
+                  "UrlDiario": "http://legis.senado.leg.br/diarios/BuscaDiario?tipDiario=1&datDiario=14/12/2023&paginaDireta=24"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "UrlGlossario": "http://legis.senado.leg.br/dadosabertos/senador/"
+    }
+  }
+}

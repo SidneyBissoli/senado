@@ -1,0 +1,10 @@
+{
+    "ListaParlamentarLegislatura": {
+        "Metadados": {
+            "Versao": "19/09/2026 15:42:36",
+            "VersaoServico": "4",
+            "DataVersaoServico": "2021-09-09",
+            "DescricaoDataSet": "Retorna a lista de Senadores de uma Legislatura."
+        }
+    }
+}

@@ -1,0 +1,241 @@
+{
+  "ListaParlamentarEmExercicio": {
+    "noNamespaceSchemaLocation": "dados/ListaParlamentarEmExerciciov4.xsd",
+    "Metadados": {
+      "Versao": "19/09/2026 15:53:45",
+      "VersaoServico": "4",
+      "DataVersaoServico": "2020-07-15",
+      "DescricaoDataSet": "Lista dos Parlamentares que estão atualmente em Exercício. Informações atuais sobre o Parlamentar."
+    },
+    "Parlamentares": {
+      "Parlamentar": [
+        {
+          "IdentificacaoParlamentar": {
+            "CodigoParlamentar": "5936",
+            "CodigoPublicoNaLegAtual": "949",
+            "NomeParlamentar": "Carlos Portinho",
+            "NomeCompletoParlamentar": "Carlos Francisco Portinho",
+            "SexoParlamentar": "Masculino",
+            "FormaTratamento": "Senador ",
+            "UrlFotoParlamentar": "http://www.senado.leg.br/senadores/img/fotos-oficiais/senador5936.jpg",
+            "UrlPaginaParlamentar": "http://www25.senado.leg.br/web/senadores/senador/-/perfil/5936",
+            "EmailParlamentar": "sen.carlosportinho@senado.leg.br",
+            "Telefones": {
+              "Telefone": [
+                {
+                  "NumeroTelefone": "33036640",
+                  "OrdemPublicacao": "1",
+                  "IndicadorFax": "Não"
+                },
+                {
+                  "NumeroTelefone": "33036613",
+                  "OrdemPublicacao": "2",
+                  "IndicadorFax": "Não"
+                }
+              ]
+            },
+            "SiglaPartidoParlamentar": "PL",
+            "UfParlamentar": "RJ",
+            "Bloco": {
+              "CodigoBloco": "357",
+              "NomeBloco": "Bloco Parlamentar Vanguarda",
+              "NomeApelido": "BLVANG",
+              "DataCriacao": "2025-02-03"
+            },
+            "MembroMesa": "Não",
+            "MembroLideranca": "Sim"
+          },
+          "Mandato": {
+            "CodigoMandato": "545",
+            "UfParlamentar": "RJ",
+            "PrimeiraLegislaturaDoMandato": {
+              "NumeroLegislatura": "56",
+              "DataInicio": "2019-02-01",
+              "DataFim": "2023-01-31"
+            },
+            "SegundaLegislaturaDoMandato": {
+              "NumeroLegislatura": "57",
+              "DataInicio": "2023-02-01",
+              "DataFim": "2027-01-31"
+            },
+            "DescricaoParticipacao": "1º Suplente",
+            "Titular": {
+              "DescricaoParticipacao": "Titular",
+              "CodigoParlamentar": "751",
+              "NomeParlamentar": "Arolde de Oliveira"
+            },
+            "Suplentes": {
+              "Suplente": [
+                {
+                  "DescricaoParticipacao": "2º Suplente",
+                  "CodigoParlamentar": "5934",
+                  "NomeParlamentar": "Renata Guerra"
+                }
+              ]
+            },
+            "Exercicios": {
+              "Exercicio": [
+                {
+                  "CodigoExercicio": "2959",
+                  "DataInicio": "2020-11-03"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "IdentificacaoParlamentar": {
+            "CodigoParlamentar": "5906",
+            "CodigoPublicoNaLegAtual": "907",
+            "NomeParlamentar": "Dra. Eudócia",
+            "NomeCompletoParlamentar": "Eudocia Maria Holanda de Araujo Caldas",
+            "SexoParlamentar": "Feminino",
+            "FormaTratamento": "Senadora ",
+            "UrlFotoParlamentar": "http://www.senado.leg.br/senadores/img/fotos-oficiais/senador5906.jpg",
+            "UrlPaginaParlamentar": "http://www25.senado.leg.br/web/senadores/senador/-/perfil/5906",
+            "EmailParlamentar": "sen.draeudocia@senado.leg.br",
+            "Telefones": {
+              "Telefone": [
+                {
+                  "NumeroTelefone": "33036083",
+                  "OrdemPublicacao": "1",
+                  "IndicadorFax": "Não"
+                }
+              ]
+            },
+            "SiglaPartidoParlamentar": "PSDB",
+            "UfParlamentar": "AL",
+            "Bloco": {
+              "CodigoBloco": "358",
+              "NomeBloco": "Bloco Parlamentar Democracia",
+              "NomeApelido": "BLDEM",
+              "DataCriacao": "2025-02-18"
+            },
+            "MembroMesa": "Não",
+            "MembroLideranca": "Sim"
+          },
+          "Mandato": {
+            "CodigoMandato": "537",
+            "UfParlamentar": "AL",
+            "PrimeiraLegislaturaDoMandato": {
+              "NumeroLegislatura": "56",
+              "DataInicio": "2019-02-01",
+              "DataFim": "2023-01-31"
+            },
+            "SegundaLegislaturaDoMandato": {
+              "NumeroLegislatura": "57",
+              "DataInicio": "2023-02-01",
+              "DataFim": "2027-01-31"
+            },
+            "DescricaoParticipacao": "1º Suplente",
+            "Titular": {
+              "DescricaoParticipacao": "Titular",
+              "CodigoParlamentar": "5905",
+              "NomeParlamentar": "Rodrigo Cunha"
+            },
+            "Suplentes": {
+              "Suplente": [
+                {
+                  "DescricaoParticipacao": "2º Suplente",
+                  "CodigoParlamentar": "5907",
+                  "NomeParlamentar": "Henrique Arruda"
+                }
+              ]
+            },
+            "Exercicios": {
+              "Exercicio": [
+                {
+                  "CodigoExercicio": "3081",
+                  "DataInicio": "2024-12-29"
+                },
+                {
+                  "CodigoExercicio": "2978",
+                  "DataInicio": "2022-05-24",
+                  "DataFim": "2022-09-21",
+                  "SiglaCausaAfastamento": "RET",
+                  "DescricaoCausaAfastamento": "Retorno do titular"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "IdentificacaoParlamentar": {
+            "CodigoParlamentar": "5917",
+            "CodigoPublicoNaLegAtual": "923",
+            "NomeParlamentar": "Fernando Dueire",
+            "NomeCompletoParlamentar": "Fernando Antonio Caminha Dueire",
+            "SexoParlamentar": "Masculino",
+            "FormaTratamento": "Senador ",
+            "UrlFotoParlamentar": "http://www.senado.leg.br/senadores/img/fotos-oficiais/senador5917.jpg",
+            "UrlPaginaParlamentar": "http://www25.senado.leg.br/web/senadores/senador/-/perfil/5917",
+            "EmailParlamentar": "sen.fernandodueire@senado.leg.br",
+            "Telefones": {
+              "Telefone": [
+                {
+                  "NumeroTelefone": "33033522",
+                  "OrdemPublicacao": "1",
+                  "IndicadorFax": "Não"
+                }
+              ]
+            },
+            "SiglaPartidoParlamentar": "PSD",
+            "UfParlamentar": "PE",
+            "Bloco": {
+              "CodigoBloco": "335",
+              "NomeBloco": "Bloco Parlamentar da Resistência Democrática",
+              "NomeApelido": "BLPRD",
+              "DataCriacao": "2023-02-01"
+            },
+            "MembroMesa": "Não",
+            "MembroLideranca": "Não"
+          },
+          "Mandato": {
+            "CodigoMandato": "526",
+            "UfParlamentar": "PE",
+            "PrimeiraLegislaturaDoMandato": {
+              "NumeroLegislatura": "56",
+              "DataInicio": "2019-02-01",
+              "DataFim": "2023-01-31"
+            },
+            "SegundaLegislaturaDoMandato": {
+              "NumeroLegislatura": "57",
+              "DataInicio": "2023-02-01",
+              "DataFim": "2027-01-31"
+            },
+            "DescricaoParticipacao": "1º Suplente",
+            "Titular": {
+              "DescricaoParticipacao": "Titular",
+              "CodigoParlamentar": "4545",
+              "NomeParlamentar": "Jarbas Vasconcelos"
+            },
+            "Suplentes": {
+              "Suplente": [
+                {
+                  "DescricaoParticipacao": "2º Suplente",
+                  "CodigoParlamentar": "5918",
+                  "NomeParlamentar": "Adilson Gomes"
+                }
+              ]
+            },
+            "Exercicios": {
+              "Exercicio": [
+                {
+                  "CodigoExercicio": "3058",
+                  "DataInicio": "2023-09-04"
+                },
+                {
+                  "CodigoExercicio": "3000",
+                  "DataInicio": "2022-12-07",
+                  "DataFim": "2023-09-04",
+                  "SiglaCausaAfastamento": "RET",
+                  "DescricaoCausaAfastamento": "Retorno do titular"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  }
+}

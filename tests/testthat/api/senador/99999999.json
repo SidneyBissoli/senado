@@ -1,0 +1,11 @@
+{
+    "DetalheParlamentar": {
+        "noNamespaceSchemaLocation": "dados/DetalheParlamentarv6.xsd",
+        "Metadados": {
+            "Versao": "19/09/2026 15:53:47",
+            "VersaoServico": "6",
+            "DataVersaoServico": "2021-09-09",
+            "DescricaoDataSet": "Retorna os detalhes de um Senador informado no parâmetro."
+        }
+    }
+}

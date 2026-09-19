@@ -1,0 +1,145 @@
+{
+    "MandatoParlamentar": {
+        "noNamespaceSchemaLocation": "dados/MandatoParlamentarv5.xsd",
+        "Metadados": {
+            "Versao": "19/09/2026 15:42:38",
+            "VersaoServico": "5",
+            "DataVersaoServico": "2021-09-09",
+            "DescricaoDataSet": "Retorna a relação dos Mandatos do Senador informado no parâmetro."
+        },
+        "Parlamentar": {
+            "Codigo": "5322",
+            "Nome": "Romário",
+            "Mandatos": {
+                "Mandato": [
+                    {
+                        "CodigoMandato": "620",
+                        "UfParlamentar": "RJ",
+                        "PrimeiraLegislaturaDoMandato": {
+                            "NumeroLegislatura": "57",
+                            "DataInicio": "2023-02-01",
+                            "DataFim": "2027-01-31"
+                        },
+                        "SegundaLegislaturaDoMandato": {
+                            "NumeroLegislatura": "58",
+                            "DataInicio": "2027-02-01",
+                            "DataFim": "2031-01-31"
+                        },
+                        "DescricaoParticipacao": "Titular",
+                        "Suplentes": {
+                            "Suplente": [
+                                {
+                                    "DescricaoParticipacao": "1º Suplente",
+                                    "CodigoParlamentar": "6372",
+                                    "NomeParlamentar": "Bruno Bonetti"
+                                },
+                                {
+                                    "DescricaoParticipacao": "2º Suplente",
+                                    "CodigoParlamentar": "6373",
+                                    "NomeParlamentar": "Andrea Fontes"
+                                }
+                            ]
+                        },
+                        "Exercicios": {
+                            "Exercicio": [
+                                {
+                                    "CodigoExercicio": "3103",
+                                    "DataInicio": "2026-04-10"
+                                },
+                                {
+                                    "CodigoExercicio": "3029",
+                                    "DataInicio": "2023-02-01",
+                                    "DataFim": "2025-12-09",
+                                    "SiglaCausaAfastamento": "LCS",
+                                    "DescricaoCausaAfastamento": "Licença com convocação de suplente (sup 120 dias)"
+                                }
+                            ]
+                        },
+                        "Partidos": {
+                            "Partido": [
+                                {
+                                    "CodigoPartido": "163",
+                                    "Sigla": "S/Partido",
+                                    "Nome": "Sem Partido",
+                                    "DataFiliacao": "2026-09-10"
+                                },
+                                {
+                                    "CodigoPartido": "523",
+                                    "Sigla": "PL",
+                                    "Nome": "Partido Liberal",
+                                    "DataFiliacao": "2021-04-08",
+                                    "DataDesfiliacao": "2026-09-09"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "CodigoMandato": "509",
+                        "UfParlamentar": "RJ",
+                        "PrimeiraLegislaturaDoMandato": {
+                            "NumeroLegislatura": "55",
+                            "DataInicio": "2015-02-01",
+                            "DataFim": "2019-01-31"
+                        },
+                        "SegundaLegislaturaDoMandato": {
+                            "NumeroLegislatura": "56",
+                            "DataInicio": "2019-02-01",
+                            "DataFim": "2023-01-31"
+                        },
+                        "DescricaoParticipacao": "Titular",
+                        "Suplentes": {
+                            "Suplente": [
+                                {
+                                    "DescricaoParticipacao": "1º Suplente",
+                                    "CodigoParlamentar": "5613",
+                                    "NomeParlamentar": "João Batista Lemos"
+                                },
+                                {
+                                    "DescricaoParticipacao": "2º Suplente",
+                                    "CodigoParlamentar": "791",
+                                    "NomeParlamentar": "Vivaldo Barbosa"
+                                }
+                            ]
+                        },
+                        "Exercicios": {
+                            "Exercicio": [
+                                {
+                                    "CodigoExercicio": "2746",
+                                    "DataInicio": "2015-02-01",
+                                    "DataFim": "2023-01-31",
+                                    "SiglaCausaAfastamento": "TER",
+                                    "DescricaoCausaAfastamento": "Término do mandato"
+                                }
+                            ]
+                        },
+                        "Partidos": {
+                            "Partido": [
+                                {
+                                    "CodigoPartido": "523",
+                                    "Sigla": "PL",
+                                    "Nome": "Partido Liberal",
+                                    "DataFiliacao": "2021-04-08",
+                                    "DataDesfiliacao": "2026-09-09"
+                                },
+                                {
+                                    "CodigoPartido": "577",
+                                    "Sigla": "PODE",
+                                    "Nome": "Podemos",
+                                    "DataFiliacao": "2017-07-04",
+                                    "DataDesfiliacao": "2021-04-07"
+                                },
+                                {
+                                    "CodigoPartido": "63",
+                                    "Sigla": "PSB",
+                                    "Nome": "Partido Socialista Brasileiro",
+                                    "DataFiliacao": "2013-10-02",
+                                    "DataDesfiliacao": "2017-07-03"
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        }
+    }
+}

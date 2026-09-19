@@ -1,0 +1,129 @@
+{
+    "MembroComissaoParlamentar": {
+        "noNamespaceSchemaLocation": "dados/MembroComissaoParlamentarv5.xsd",
+        "Metadados": {
+            "Versao": "19/09/2026 15:42:41",
+            "VersaoServico": "5",
+            "DataVersaoServico": "2021-09-09",
+            "DescricaoDataSet": "Retorna a relação das Comissões das quais um Senador é membro."
+        },
+        "Parlamentar": {
+            "Codigo": "5322",
+            "Nome": "Romário",
+            "MembroComissoes": {
+                "Comissao": [
+                    {
+                        "IdentificacaoComissao": {
+                            "CodigoComissao": "2796",
+                            "SiglaComissao": "FPEMSN",
+                            "NomeComissao": "Frente Parlamentar da Economia do Mar - Setor Náutico",
+                            "SiglaCasaComissao": "CN"
+                        },
+                        "DescricaoParticipacao": "Titular",
+                        "DataInicio": "2025-10-01"
+                    },
+                    {
+                        "IdentificacaoComissao": {
+                            "CodigoComissao": "40",
+                            "SiglaComissao": "CAS",
+                            "NomeComissao": "Comissão de Assuntos Sociais",
+                            "SiglaCasaComissao": "SF"
+                        },
+                        "DescricaoParticipacao": "Titular",
+                        "DataInicio": "2026-05-13"
+                    },
+                    {
+                        "IdentificacaoComissao": {
+                            "CodigoComissao": "47",
+                            "SiglaComissao": "CE",
+                            "NomeComissao": "Comissão de Educação e Cultura",
+                            "SiglaCasaComissao": "SF"
+                        },
+                        "DescricaoParticipacao": "Suplente",
+                        "DataInicio": "2026-04-15"
+                    },
+                    {
+                        "IdentificacaoComissao": {
+                            "CodigoComissao": "834",
+                            "SiglaComissao": "CDH",
+                            "NomeComissao": "Comissão de Direitos Humanos e Legislação Participativa",
+                            "SiglaCasaComissao": "SF"
+                        },
+                        "DescricaoParticipacao": "Suplente",
+                        "DataInicio": "2026-04-15"
+                    },
+                    {
+                        "IdentificacaoComissao": {
+                            "CodigoComissao": "2044",
+                            "SiglaComissao": "GPCHINA",
+                            "NomeComissao": "Grupo Parlamentar Brasil - China",
+                            "SiglaCasaComissao": "CN"
+                        },
+                        "DescricaoParticipacao": "Titular",
+                        "DataInicio": "2023-05-09"
+                    },
+                    {
+                        "IdentificacaoComissao": {
+                            "CodigoComissao": "2270",
+                            "SiglaComissao": "FPJOVEM",
+                            "NomeComissao": "Frente Parlamentar em Defesa das Políticas Públicas de Juventude",
+                            "SiglaCasaComissao": "CN"
+                        },
+                        "DescricaoParticipacao": "Titular",
+                        "DataInicio": "2023-10-25"
+                    },
+                    {
+                        "IdentificacaoComissao": {
+                            "CodigoComissao": "2175",
+                            "SiglaComissao": "GPARABIASAUDITA",
+                            "NomeComissao": "Grupo Parlamentar Brasil - Reino da Arábia Saudita",
+                            "SiglaCasaComissao": "CN"
+                        },
+                        "DescricaoParticipacao": "Titular",
+                        "DataInicio": "2023-07-04"
+                    },
+                    {
+                        "IdentificacaoComissao": {
+                            "CodigoComissao": "2436",
+                            "SiglaComissao": "FPMA",
+                            "NomeComissao": "Frente Parlamentar Mista Antirracismo",
+                            "SiglaCasaComissao": "CN"
+                        },
+                        "DescricaoParticipacao": "Titular",
+                        "DataInicio": "2023-04-05"
+                    },
+                    {
+                        "IdentificacaoComissao": {
+                            "CodigoComissao": "2594",
+                            "SiglaComissao": "FPAMM",
+                            "NomeComissao": "Frente Parlamentar de Apoio ao Microcrédito e às Microfinanças",
+                            "SiglaCasaComissao": "CN"
+                        },
+                        "DescricaoParticipacao": "Titular",
+                        "DataInicio": "2023-05-30"
+                    },
+                    {
+                        "IdentificacaoComissao": {
+                            "CodigoComissao": "2615",
+                            "SiglaComissao": "CEsp",
+                            "NomeComissao": "Comissão de Esporte",
+                            "SiglaCasaComissao": "SF"
+                        },
+                        "DescricaoParticipacao": "Titular",
+                        "DataInicio": "2026-04-15"
+                    },
+                    {
+                        "IdentificacaoComissao": {
+                            "CodigoComissao": "2115",
+                            "SiglaComissao": "GPRCOREIA",
+                            "NomeComissao": "Grupo Parlamentar Brasil - República da Coreia",
+                            "SiglaCasaComissao": "CN"
+                        },
+                        "DescricaoParticipacao": "Titular",
+                        "DataInicio": "2024-01-15"
+                    }
+                ]
+            }
+        }
+    }
+}
