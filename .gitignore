@@ -10,8 +10,8 @@ _scaffold.R
 # artefatos renderizados
 *.html
 
-# configuracao local do Claude Code
-.claude/settings.local.json
+# configuracao e dados locais do Claude Code
+.claude/
 
 # documentos de planejamento: privados, nao vao para repo publico
 # (o passado ja publicado nao e apagado por esta regra — ver commit)
