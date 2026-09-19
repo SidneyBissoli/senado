@@ -1,0 +1,15 @@
+{
+    "DiscursosParlamentar": {
+        "noNamespaceSchemaLocation": "dados/DiscursosParlamentarv5.xsd",
+        "Metadados": {
+            "Versao": "19/09/2026 15:55:30",
+            "VersaoServico": "5",
+            "DataVersaoServico": "2021-06-29",
+            "DescricaoDataSet": "Discursos do Parlamentar. Se não informar o período, serão retornados os discursos dos últimos 30 dias."
+        },
+        "Parlamentar": {
+            "Pronunciamentos": null,
+            "UrlGlossario": "http://legis.senado.leg.br/dadosabertos/senador/"
+        }
+    }
+}

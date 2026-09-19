@@ -1,0 +1,28 @@
+{
+    "DiscursosParlamentar": {
+        "noNamespaceSchemaLocation": "dados/DiscursosParlamentarv5.xsd",
+        "Metadados": {
+            "Versao": "19/09/2026 15:42:43",
+            "VersaoServico": "5",
+            "DataVersaoServico": "2021-06-29",
+            "DescricaoDataSet": "Discursos do Parlamentar. Se não informar o período, serão retornados os discursos dos últimos 30 dias."
+        },
+        "Parlamentar": {
+            "IdentificacaoParlamentar": {
+                "CodigoParlamentar": "5322",
+                "CodigoPublicoNaLegAtual": "840",
+                "NomeParlamentar": "Romário",
+                "NomeCompletoParlamentar": "Romario de Souza Faria",
+                "SexoParlamentar": "Masculino",
+                "FormaTratamento": "Senador ",
+                "UrlFotoParlamentar": "http://www.senado.leg.br/senadores/img/fotos-oficiais/senador5322.jpg",
+                "UrlPaginaParlamentar": "http://www25.senado.leg.br/web/senadores/senador/-/perfil/5322",
+                "EmailParlamentar": "sen.romario@senado.leg.br",
+                "SiglaPartidoParlamentar": "S/Partido",
+                "UfParlamentar": "RJ"
+            },
+            "Pronunciamentos": null,
+            "UrlGlossario": "http://legis.senado.leg.br/dadosabertos/senador/"
+        }
+    }
+}

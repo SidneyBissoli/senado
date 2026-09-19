@@ -1,0 +1,218 @@
+{
+  "ListaParlamentarEmExercicio": {
+    "noNamespaceSchemaLocation": "dados/ListaParlamentarEmExerciciov4.xsd",
+    "Metadados": {
+      "Versao": "19/09/2026 15:42:33",
+      "VersaoServico": "4",
+      "DataVersaoServico": "2020-07-15",
+      "DescricaoDataSet": "Lista dos Parlamentares que estão atualmente em Exercício. Informações atuais sobre o Parlamentar."
+    },
+    "Parlamentares": {
+      "Parlamentar": [
+        {
+          "IdentificacaoParlamentar": {
+            "CodigoParlamentar": "6009",
+            "CodigoPublicoNaLegAtual": "902",
+            "NomeParlamentar": "Astronauta Marcos Pontes",
+            "NomeCompletoParlamentar": "Marcos Cesar Pontes",
+            "SexoParlamentar": "Masculino",
+            "FormaTratamento": "Senador ",
+            "UrlFotoParlamentar": "http://www.senado.leg.br/senadores/img/fotos-oficiais/senador6009.jpg",
+            "UrlPaginaParlamentar": "http://www25.senado.leg.br/web/senadores/senador/-/perfil/6009",
+            "EmailParlamentar": "sen.astronautamarcospontes@senado.leg.br",
+            "Telefones": {
+              "Telefone": [
+                {
+                  "NumeroTelefone": "33031177",
+                  "OrdemPublicacao": "1",
+                  "IndicadorFax": "Não"
+                },
+                {
+                  "NumeroTelefone": "33031797",
+                  "OrdemPublicacao": "2",
+                  "IndicadorFax": "Não"
+                }
+              ]
+            },
+            "SiglaPartidoParlamentar": "PL",
+            "UfParlamentar": "SP",
+            "Bloco": {
+              "CodigoBloco": "357",
+              "NomeBloco": "Bloco Parlamentar Vanguarda",
+              "NomeApelido": "BLVANG",
+              "DataCriacao": "2025-02-03"
+            },
+            "MembroMesa": "Não",
+            "MembroLideranca": "Sim"
+          },
+          "Mandato": {
+            "CodigoMandato": "617",
+            "UfParlamentar": "SP",
+            "PrimeiraLegislaturaDoMandato": {
+              "NumeroLegislatura": "57",
+              "DataInicio": "2023-02-01",
+              "DataFim": "2027-01-31"
+            },
+            "SegundaLegislaturaDoMandato": {
+              "NumeroLegislatura": "58",
+              "DataInicio": "2027-02-01",
+              "DataFim": "2031-01-31"
+            },
+            "DescricaoParticipacao": "Titular",
+            "Suplentes": {
+              "Suplente": [
+                {
+                  "DescricaoParticipacao": "1º Suplente",
+                  "CodigoParlamentar": "6385",
+                  "NomeParlamentar": "Professor Alberto"
+                },
+                {
+                  "DescricaoParticipacao": "2º Suplente",
+                  "CodigoParlamentar": "6386",
+                  "NomeParlamentar": "Sirlange Manga"
+                }
+              ]
+            },
+            "Exercicios": {
+              "Exercicio": [
+                {
+                  "CodigoExercicio": "3017",
+                  "DataInicio": "2023-02-01"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "IdentificacaoParlamentar": {
+            "CodigoParlamentar": "6008",
+            "CodigoPublicoNaLegAtual": "935",
+            "NomeParlamentar": "Giordano",
+            "NomeCompletoParlamentar": "Alexandre Luiz Giordano",
+            "SexoParlamentar": "Masculino",
+            "FormaTratamento": "Senador ",
+            "UrlFotoParlamentar": "http://www.senado.leg.br/senadores/img/fotos-oficiais/senador6008.jpg",
+            "UrlPaginaParlamentar": "http://www25.senado.leg.br/web/senadores/senador/-/perfil/6008",
+            "EmailParlamentar": "sen.giordano@senado.leg.br",
+            "Telefones": {
+              "Telefone": [
+                {
+                  "NumeroTelefone": "33034177",
+                  "OrdemPublicacao": "1",
+                  "IndicadorFax": "Não"
+                }
+              ]
+            },
+            "SiglaPartidoParlamentar": "PODE",
+            "UfParlamentar": "SP",
+            "Bloco": {
+              "CodigoBloco": "358",
+              "NomeBloco": "Bloco Parlamentar Democracia",
+              "NomeApelido": "BLDEM",
+              "DataCriacao": "2025-02-18"
+            },
+            "MembroMesa": "Não",
+            "MembroLideranca": "Sim"
+          },
+          "Mandato": {
+            "CodigoMandato": "570",
+            "UfParlamentar": "SP",
+            "PrimeiraLegislaturaDoMandato": {
+              "NumeroLegislatura": "56",
+              "DataInicio": "2019-02-01",
+              "DataFim": "2023-01-31"
+            },
+            "SegundaLegislaturaDoMandato": {
+              "NumeroLegislatura": "57",
+              "DataInicio": "2023-02-01",
+              "DataFim": "2027-01-31"
+            },
+            "DescricaoParticipacao": "1º Suplente",
+            "Titular": {
+              "DescricaoParticipacao": "Titular",
+              "CodigoParlamentar": "5666",
+              "NomeParlamentar": "Major Olimpio"
+            },
+            "Exercicios": {
+              "Exercicio": [
+                {
+                  "CodigoExercicio": "2966",
+                  "DataInicio": "2021-03-31"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "IdentificacaoParlamentar": {
+            "CodigoParlamentar": "5376",
+            "CodigoPublicoNaLegAtual": "847",
+            "NomeParlamentar": "Mara Gabrilli",
+            "NomeCompletoParlamentar": "Mara Cristina Gabrilli",
+            "SexoParlamentar": "Feminino",
+            "FormaTratamento": "Senadora ",
+            "UrlFotoParlamentar": "http://www.senado.leg.br/senadores/img/fotos-oficiais/senador5376.jpg",
+            "UrlPaginaParlamentar": "http://www25.senado.leg.br/web/senadores/senador/-/perfil/5376",
+            "EmailParlamentar": "sen.maragabrilli@senado.leg.br",
+            "Telefones": {
+              "Telefone": [
+                {
+                  "NumeroTelefone": "33032191",
+                  "OrdemPublicacao": "1",
+                  "IndicadorFax": "Não"
+                }
+              ]
+            },
+            "SiglaPartidoParlamentar": "PSD",
+            "UfParlamentar": "SP",
+            "Bloco": {
+              "CodigoBloco": "335",
+              "NomeBloco": "Bloco Parlamentar da Resistência Democrática",
+              "NomeApelido": "BLPRD",
+              "DataCriacao": "2023-02-01"
+            },
+            "MembroMesa": "Não",
+            "MembroLideranca": "Não"
+          },
+          "Mandato": {
+            "CodigoMandato": "569",
+            "UfParlamentar": "SP",
+            "PrimeiraLegislaturaDoMandato": {
+              "NumeroLegislatura": "56",
+              "DataInicio": "2019-02-01",
+              "DataFim": "2023-01-31"
+            },
+            "SegundaLegislaturaDoMandato": {
+              "NumeroLegislatura": "57",
+              "DataInicio": "2023-02-01",
+              "DataFim": "2027-01-31"
+            },
+            "DescricaoParticipacao": "Titular",
+            "Suplentes": {
+              "Suplente": [
+                {
+                  "DescricaoParticipacao": "1º Suplente",
+                  "CodigoParlamentar": "3651",
+                  "NomeParlamentar": "Alfredo Cotait Neto"
+                },
+                {
+                  "DescricaoParticipacao": "2º Suplente",
+                  "CodigoParlamentar": "6007",
+                  "NomeParlamentar": "Ivani Boscolo"
+                }
+              ]
+            },
+            "Exercicios": {
+              "Exercicio": [
+                {
+                  "CodigoExercicio": "2922",
+                  "DataInicio": "2019-02-01"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  }
+}

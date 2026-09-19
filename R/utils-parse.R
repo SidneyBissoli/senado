@@ -1,204 +1,243 @@
 # Parse utility functions
-# XML/JSON parsers, column normalization, type conversion
+# Column specifications, record extraction and type conversion
+
+# --- Column specification ---------------------------------------------------
+
+#' Declare one output column
+#'
+#' Every exported function declares its output as a list of `sen_col()`: where
+#' the value lives in each API record, what the column is called and which
+#' type it has. The type of a column never depends on the content of the
+#' response.
+#'
+#' @param name Character. Final column name (`snake_case`).
+#' @param path Character vector. Path to the value inside one record.
+#' @param type Character. One of `"character"`, `"integer"`, `"double"`,
+#'   `"logical"`, `"date"`, `"datetime"` or `"list"`.
+#' @param format Character. `strptime()` format for `"date"` and `"datetime"`.
+#'   Defaults to `"%Y-%m-%d"` and `"%Y-%m-%dT%H:%M:%OS"`.
+#' @param spec For `"list"` columns: the column specification of the nested
+#'   records. Each cell becomes a tibble. With `NULL` the cell keeps the raw
+#'   parsed node.
+#' @param trim Logical. Collapse runs of whitespace and line breaks in
+#'   `"character"` columns.
+#'
+#' @return A list describing the column.
+#' @noRd
+sen_col <- function(name, path,
+                    type = c(
+                      "character", "integer", "double", "logical",
+                      "date", "datetime", "list"
+                    ),
+                    format = NULL, spec = NULL, trim = FALSE) {
+  type <- match.arg(type)
+
+  if (is.null(format)) {
+    format <- switch(type,
+      date = "%Y-%m-%d",
+      datetime = "%Y-%m-%dT%H:%M:%OS",
+      NULL
+    )
+  }
+
+  list(
+    name = name, path = path, type = type,
+    format = format, spec = spec, trim = trim
+  )
+}
 
 # --- Main entry point -------------------------------------------------------
 
-#' Convert a parsed API response (list) into a tidy tibble
+#' Convert API records into a tibble, following a column specification
 #'
-#' Flattens nested structures, normalises column names to `snake_case`,
-#' converts types (dates, numerics, logicals) and ensures UTF-8 encoding.
+#' Selects, renames and converts: one column per entry of `spec`, in that
+#' order. Fields missing from a record become `NA` of the declared type, and
+#' an empty `records` yields a 0-row tibble with all columns and types.
 #'
-#' @param data A list (or data.frame) returned by [sen_get()].
-#' @param .unnest Character vector of column names to unnest one level, or
-#'   `NULL` (default) to skip.
+#' @param records A list of records, as returned by `sen_records()`.
+#' @param spec A list of `sen_col()`.
+#' @param .unnest Character vector or `NULL`. Path, inside each record, to a
+#'   nested list that should yield one row per element (parent fields are
+#'   repeated). Paths in `spec` that go through the nested list then address
+#'   one element of it. A parent without elements keeps one row, with the
+#'   nested fields as `NA`.
 #'
 #' @return A [tibble::tibble].
 #' @noRd
-sen_as_tibble <- function(data, .unnest = NULL) {
-  if (is.data.frame(data)) {
-    tbl <- tibble::as_tibble(data)
-  } else if (is.list(data)) {
-    tbl <- tibble::as_tibble(flatten_list(data))
-  } else {
-    cli::cli_abort("Cannot coerce object of class {.cls {class(data)}} to tibble.")
+sen_as_tibble <- function(records, spec, .unnest = NULL) {
+  if (!is.null(.unnest)) {
+    records <- sen_unnest_records(records, .unnest)
   }
 
-  names(tbl) <- to_snake_case(names(tbl))
-  tbl <- convert_types(tbl)
-  tbl <- ensure_utf8(tbl)
-  tbl
+  cols <- lapply(spec, function(col) sen_extract_col(records, col))
+  names(cols) <- vapply(spec, function(col) col$name, character(1))
+
+  ensure_utf8(tibble::new_tibble(cols, nrow = length(records)))
 }
 
-# --- Flatten ----------------------------------------------------------------
+# --- Records ----------------------------------------------------------------
 
-#' Flatten a nested list into a single-depth named list
-#'
-#' Recursively concatenates names with `"_"` as separator.
-#' Vectors of length > 1 are kept as-is (they become list-columns later).
+#' Safely walk a path inside a parsed response
 #'
 #' @param x A list.
-#' @param prefix Character prefix for recursive calls.
-#' @return A flat named list.
+#' @param path Character vector of names.
+#' @return The node, or `NULL` if any step is missing.
 #' @noRd
-flatten_list <- function(x, prefix = "") {
+sen_pluck <- function(x, path) {
+  for (step in path) {
+    if (!is.list(x) || is.null(names(x))) {
+      return(NULL)
+    }
+    x <- x[[step]]
+    if (is.null(x)) {
+      return(NULL)
+    }
+  }
+  x
+}
 
+#' Normalise a repeatable node into a list of records
+#'
+#' The legacy services return the lone object, instead of a one-element array,
+#' when a repeatable node has a single element. A missing or `null` node means
+#' no records.
+#'
+#' @param node A parsed node.
+#' @return An unnamed list of records (possibly empty).
+#' @noRd
+sen_as_records <- function(node) {
+  if (is.null(node) || length(node) == 0L) {
+    return(list())
+  }
+  if (!is.list(node)) {
+    return(list(node))
+  }
+  if (!is.null(names(node))) {
+    return(list(node))
+  }
+  node
+}
+
+#' Records found at a path of a parsed response
+#'
+#' @param x A parsed response.
+#' @param path Character vector. Path to the records; `NULL` or empty when the
+#'   records are the top-level array (v4 services).
+#' @return An unnamed list of records (possibly empty).
+#' @noRd
+sen_records <- function(x, path = NULL) {
+  if (length(path) == 0L) {
+    return(sen_as_records(x))
+  }
+  sen_as_records(sen_pluck(x, path))
+}
+
+#' One record per element of a nested list
+#' @noRd
+sen_unnest_records <- function(records, path) {
   out <- list()
 
-  for (nm in names(x)) {
-    key <- if (nzchar(prefix)) paste0(prefix, "_", nm) else nm
-    val <- x[[nm]]
+  for (record in records) {
+    children <- sen_records(record, path)
 
-    if (is.list(val) && !is.data.frame(val) && length(val) > 0 &&
-        !is.null(names(val))) {
-      out <- c(out, flatten_list(val, prefix = key))
-    } else {
-      out[[key]] <- val
+    if (length(children) == 0L) {
+      if (!is.null(sen_pluck(record, path))) {
+        record[[path]] <- NULL
+      }
+      out[[length(out) + 1L]] <- record
+      next
+    }
+
+    for (child in children) {
+      row <- record
+      row[[path]] <- child
+      out[[length(out) + 1L]] <- row
     }
   }
 
   out
 }
 
-# --- snake_case conversion --------------------------------------------------
+# --- Column extraction ------------------------------------------------------
 
-#' Convert a character vector to snake_case
-#'
-#' Handles PascalCase, camelCase and mixed separators (`.`, `-`, ` `) commonly
-#' found in the Senado API responses.
-#'
-#' @param x Character vector.
-#' @return Character vector in `snake_case`.
+#' Extract and convert one column from a list of records
 #' @noRd
-to_snake_case <- function(x) {
-  # Insert underscore before uppercase letters preceded by a lowercase letter
-  # or digit (camelCase / PascalCase boundaries)
-  out <- gsub("([a-z0-9])([A-Z])", "\\1_\\2", x)
-  # Insert underscore between consecutive uppercase + lowercase (e.g., "XMLParser" → "XML_Parser")
-  out <- gsub("([A-Z]+)([A-Z][a-z])", "\\1_\\2", out)
-  # Replace common separators with underscore
-  out <- gsub("[. -]+", "_", out)
-  # Collapse multiple underscores
-  out <- gsub("_+", "_", out)
-  # Strip leading/trailing underscores
-  out <- gsub("^_|_$", "", out)
-  tolower(out)
-}
+sen_extract_col <- function(records, col) {
+  nodes <- lapply(records, sen_pluck, path = col$path)
 
-# --- Type conversion --------------------------------------------------------
-
-#' Auto-convert column types in a tibble
-#'
-#' * Character columns that look numeric → `numeric`
-#' * Character columns with "Sim"/"Não" → `logical`
-#' * Character columns matching common date patterns → `Date` or `POSIXct`
-#'
-#' @param tbl A tibble.
-#' @return The tibble with converted columns.
-#' @noRd
-convert_types <- function(tbl) {
-  for (col in names(tbl)) {
-    vals <- tbl[[col]]
-    if (!is.character(vals)) next
-
-    # Skip columns that are entirely NA
-    non_na <- vals[!is.na(vals)]
-    if (length(non_na) == 0L) next
-
-    # Try logical (Sim/Não)
-    if (is_logical_field(non_na)) {
-      tbl[[col]] <- parse_logical(vals)
-      next
+  if (col$type == "list") {
+    if (is.null(col$spec)) {
+      return(nodes)
     }
-
-    # Try date / datetime
-    parsed_date <- try_parse_date(non_na)
-    if (!is.null(parsed_date)) {
-      tbl[[col]] <- try_parse_date(vals)
-      next
-    }
-
-    # Try numeric
-    if (is_numeric_field(non_na)) {
-      tbl[[col]] <- parse_numeric(vals)
-      next
-    }
+    return(lapply(nodes, function(node) {
+      sen_as_tibble(sen_as_records(node), col$spec)
+    }))
   }
 
-  tbl
-}
+  # Scalars go through character so that the source type is irrelevant.
+  # The literal string "NA" is a value (it is a vote code), never missing.
+  values <- vapply(nodes, function(node) {
+    if (is.null(node) || length(node) == 0L || is.list(node)) {
+      return(NA_character_)
+    }
+    as.character(node[[1L]])
+  }, character(1))
 
-# --- Logical helpers --------------------------------------------------------
-
-#' Check if a character vector represents a logical field
-#' @noRd
-is_logical_field <- function(x) {
-  all(tolower(x) %in% c("sim", "n\u00e3o", "s", "n", "true", "false"))
-}
-
-#' Parse a character vector of Sim/Não into logical
-#' @noRd
-parse_logical <- function(x) {
-  ifelse(is.na(x), NA,
-    tolower(x) %in% c("sim", "s", "true")
+  switch(col$type,
+    character = if (col$trim) squish(values) else values,
+    integer = parse_integer(values, col$name),
+    double = parse_double(values, col$name),
+    logical = parse_logical(values),
+    date = as.Date(values, format = col$format),
+    datetime = as.POSIXct(values, format = col$format, tz = "America/Sao_Paulo")
   )
 }
 
-# --- Numeric helpers --------------------------------------------------------
+# --- Type parsers (called by the specification, column by column) -----------
 
-#' Check if a character vector looks like numbers
+#' Parse text into integer, warning when a value is not a whole number
 #' @noRd
-is_numeric_field <- function(x) {
-  # Allow digits, optional decimal point/comma, optional leading minus
-  all(grepl("^-?[0-9]+([.,][0-9]+)?$", x))
+parse_integer <- function(x, name = "x") {
+  out <- suppressWarnings(as.integer(x))
+  warn_if_lost(x, out, name, "integer")
+  out
 }
 
-#' Parse a character vector to numeric (handles comma as decimal separator)
+#' Parse text into double (accepts comma as decimal separator)
 #' @noRd
-parse_numeric <- function(x) {
-  as.numeric(gsub(",", ".", x))
+parse_double <- function(x, name = "x") {
+  out <- suppressWarnings(as.numeric(gsub(",", ".", x, fixed = TRUE)))
+  warn_if_lost(x, out, name, "double")
+  out
 }
 
-# --- Date helpers -----------------------------------------------------------
-
-#' Common date/datetime formats found in the Senado API
 #' @noRd
-sen_date_formats <- c(
-  # datetime formats
-  "%Y-%m-%dT%H:%M:%S",
-  "%Y-%m-%d %H:%M:%S",
-  "%d/%m/%Y %H:%M:%S",
-  # date-only formats
-  "%Y-%m-%d",
-  "%d/%m/%Y"
-)
-
-#' Try to parse a character vector as Date or POSIXct
-#'
-#' Tests each format in [sen_date_formats] against the non-NA values.
-#' Returns a `POSIXct` if the matching format includes a time component,
-#' otherwise a `Date`. Returns `NULL` if no format matches.
-#'
-#' @param x Character vector.
-#' @return `Date`, `POSIXct`, or `NULL`.
-#' @noRd
-try_parse_date <- function(x) {
-  non_na <- x[!is.na(x)]
-  if (length(non_na) == 0L) return(NULL)
-
-  for (fmt in sen_date_formats) {
-    parsed <- as.POSIXct(non_na, format = fmt, tz = "America/Sao_Paulo")
-    if (!any(is.na(parsed))) {
-      # Apply to full vector (preserving NAs)
-      full_parsed <- as.POSIXct(x, format = fmt, tz = "America/Sao_Paulo")
-      # If format has no time component, return Date
-      if (!grepl("%H", fmt, fixed = TRUE)) {
-        return(as.Date(full_parsed))
-      }
-      return(full_parsed)
-    }
+warn_if_lost <- function(x, out, name, type) {
+  lost <- !is.na(x) & is.na(out)
+  if (any(lost)) {
+    cli::cli_warn(c(
+      "Column {.field {name}}: {sum(lost)} value{?s} could not be read as {type} and became {.val {NA}}.",
+      "i" = "First one: {.val {x[lost][1]}}. The API may have changed; please report it."
+    ))
   }
+}
 
-  NULL
+#' Parse the three boolean encodings of the API into logical
+#'
+#' The API uses "Sim"/"Não", "S"/"N" and "true"/"false". Anything else is `NA`.
+#' @noRd
+parse_logical <- function(x) {
+  x <- tolower(x)
+  out <- rep(NA, length(x))
+  out[x %in% c("sim", "s", "true")] <- TRUE
+  out[x %in% c("n\u00e3o", "nao", "n", "false")] <- FALSE
+  out
+}
+
+#' Collapse whitespace and line breaks
+#' @noRd
+squish <- function(x) {
+  trimws(gsub("[[:space:]]+", " ", x))
 }
 
 # --- Encoding ---------------------------------------------------------------

@@ -63,6 +63,11 @@ test_that("validate_party accepts valid abbreviations", {
   expect_equal(validate_party(" mdb "), "MDB")
 })
 
+test_that("validate_party accepts accented letters and a slash", {
+  expect_equal(validate_party("UNI\u00c3O"), "UNI\u00c3O")
+  expect_equal(validate_party("S/Partido"), "S/PARTIDO")
+})
+
 test_that("validate_party rejects non-string input", {
   expect_error(validate_party(123), "character")
   expect_error(validate_party(c("PT", "PL")), "single")
@@ -93,4 +98,18 @@ test_that("validate_uf lists valid values in error", {
 test_that("validate_uf rejects non-string input", {
   expect_error(validate_uf(11), "character")
   expect_error(validate_uf(c("SP", "RJ")), "single")
+})
+
+# --- validate_date ----------------------------------------------------------
+
+test_that("validate_date accepts Date and ISO strings", {
+  expect_equal(validate_date(as.Date("2024-05-01")), as.Date("2024-05-01"))
+  expect_equal(validate_date("2024-05-01"), as.Date("2024-05-01"))
+})
+
+test_that("validate_date rejects other inputs", {
+  expect_error(validate_date("01/05/2024"), "YYYY-MM-DD")
+  expect_error(validate_date(20240501), "YYYY-MM-DD")
+  expect_error(validate_date(NA), "single non-NA")
+  expect_error(validate_date(c("2024-05-01", "2024-05-02")), "single non-NA")
 })

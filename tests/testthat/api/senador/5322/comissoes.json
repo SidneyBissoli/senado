@@ -1,0 +1,83 @@
+{
+  "MembroComissaoParlamentar": {
+    "noNamespaceSchemaLocation": "dados/MembroComissaoParlamentarv5.xsd",
+    "Metadados": {
+      "Versao": "19/09/2026 15:42:40",
+      "VersaoServico": "5",
+      "DataVersaoServico": "2021-09-09",
+      "DescricaoDataSet": "Retorna a relação das Comissões das quais um Senador é membro."
+    },
+    "Parlamentar": {
+      "Codigo": "5322",
+      "Nome": "Romário",
+      "MembroComissoes": {
+        "Comissao": [
+          {
+            "IdentificacaoComissao": {
+              "CodigoComissao": "2175",
+              "SiglaComissao": "GPARABIASAUDITA",
+              "NomeComissao": "Grupo Parlamentar Brasil - Reino da Arábia Saudita",
+              "SiglaCasaComissao": "CN"
+            },
+            "DescricaoParticipacao": "Titular",
+            "DataInicio": "2019-11-07",
+            "DataFim": "2023-01-31"
+          },
+          {
+            "IdentificacaoComissao": {
+              "CodigoComissao": "2175",
+              "SiglaComissao": "GPARABIASAUDITA",
+              "NomeComissao": "Grupo Parlamentar Brasil - Reino da Arábia Saudita",
+              "SiglaCasaComissao": "CN"
+            },
+            "DescricaoParticipacao": "Titular",
+            "DataInicio": "2023-07-04"
+          },
+          {
+            "IdentificacaoComissao": {
+              "CodigoComissao": "2052",
+              "SiglaComissao": "GPSÉRVIA",
+              "NomeComissao": "Grupo Parlamentar Brasil - Sérvia",
+              "SiglaCasaComissao": "CN"
+            },
+            "DescricaoParticipacao": "Titular",
+            "DataInicio": "2015-03-04",
+            "DataFim": "2018-12-28"
+          },
+          {
+            "IdentificacaoComissao": {
+              "CodigoComissao": "2044",
+              "SiglaComissao": "GPCHINA",
+              "NomeComissao": "Grupo Parlamentar Brasil - China",
+              "SiglaCasaComissao": "CN"
+            },
+            "DescricaoParticipacao": "Titular",
+            "DataInicio": "2015-03-31",
+            "DataFim": "2018-12-28"
+          },
+          {
+            "IdentificacaoComissao": {
+              "CodigoComissao": "2044",
+              "SiglaComissao": "GPCHINA",
+              "NomeComissao": "Grupo Parlamentar Brasil - China",
+              "SiglaCasaComissao": "CN"
+            },
+            "DescricaoParticipacao": "Titular",
+            "DataInicio": "2019-03-27",
+            "DataFim": "2023-01-31"
+          },
+          {
+            "IdentificacaoComissao": {
+              "CodigoComissao": "2044",
+              "SiglaComissao": "GPCHINA",
+              "NomeComissao": "Grupo Parlamentar Brasil - China",
+              "SiglaCasaComissao": "CN"
+            },
+            "DescricaoParticipacao": "Titular",
+            "DataInicio": "2023-05-09"
+          }
+        ]
+      }
+    }
+  }
+}

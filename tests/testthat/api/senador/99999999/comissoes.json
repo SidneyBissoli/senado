@@ -1,0 +1,10 @@
+{
+    "MembroComissaoParlamentar": {
+        "Metadados": {
+            "Versao": "19/09/2026 15:53:48",
+            "VersaoServico": "5",
+            "DataVersaoServico": "2021-09-09",
+            "DescricaoDataSet": "Retorna a relação das Comissões das quais um Senador é membro."
+        }
+    }
+}

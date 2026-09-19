@@ -1,0 +1,58 @@
+[
+  {
+    "id": 86,
+    "sigla": "AGDDO",
+    "descricao": "AGENDADA PARA ORDEM DO DIA",
+    "dataInicio": "1900-01-01T00:00:00",
+    "dataFim": null
+  },
+  {
+    "id": 126,
+    "sigla": "AGDO (RQ)",
+    "descricao": "AGENDADO REQUERIMENTO PARA A ORDEM DO DIA",
+    "dataInicio": "1900-01-01T00:00:00",
+    "dataFim": null
+  },
+  {
+    "id": 7352323,
+    "sigla": "AGAUDPUB",
+    "descricao": "AGUARDANDO AUDIÊNCIA PÚBLICA",
+    "dataInicio": "1990-01-01T00:00:00",
+    "dataFim": null
+  },
+  {
+    "id": 142,
+    "sigla": "AGCD",
+    "descricao": "AGUARDANDO DECISÃO DA CÂMARA DOS DEPUTADOS",
+    "dataInicio": "2007-01-01T00:00:00",
+    "dataFim": "2024-07-01T00:00:00"
+  },
+  {
+    "id": 16,
+    "sigla": "AGMESA",
+    "descricao": "AGUARDANDO DECISÃO DA MESA",
+    "dataInicio": "1900-01-01T00:00:00",
+    "dataFim": null
+  },
+  {
+    "id": 87,
+    "sigla": "AGDREL",
+    "descricao": "AGUARDANDO DESIGNAÇÃO DO RELATOR",
+    "dataInicio": "1900-01-01T00:00:00",
+    "dataFim": null
+  },
+  {
+    "id": 10,
+    "sigla": "AGIND",
+    "descricao": "AGUARDANDO DESIGNAÇÃO MEMBROS COMISSÃO",
+    "dataInicio": "1900-01-01T00:00:00",
+    "dataFim": null
+  },
+  {
+    "id": 175,
+    "sigla": "AGDESP",
+    "descricao": "AGUARDANDO DESPACHO",
+    "dataInicio": "2016-01-01T00:00:00",
+    "dataFim": null
+  }
+]

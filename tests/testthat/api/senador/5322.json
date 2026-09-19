@@ -1,0 +1,119 @@
+{
+    "DetalheParlamentar": {
+        "noNamespaceSchemaLocation": "dados/DetalheParlamentarv6.xsd",
+        "Metadados": {
+            "Versao": "19/09/2026 15:53:46",
+            "VersaoServico": "6",
+            "DataVersaoServico": "2021-09-09",
+            "DescricaoDataSet": "Retorna os detalhes de um Senador informado no parâmetro."
+        },
+        "Parlamentar": {
+            "IdentificacaoParlamentar": {
+                "CodigoParlamentar": "5322",
+                "CodigoPublicoNaLegAtual": "840",
+                "NomeParlamentar": "Romário",
+                "NomeCompletoParlamentar": "Romario de Souza Faria",
+                "SexoParlamentar": "Masculino",
+                "UrlFotoParlamentar": "http://www.senado.leg.br/senadores/img/fotos-oficiais/senador5322.jpg",
+                "UrlPaginaParlamentar": "http://www25.senado.leg.br/web/senadores/senador/-/perfil/5322",
+                "UrlPaginaParticular": "http://romario.org/",
+                "EmailParlamentar": "sen.romario@senado.leg.br",
+                "SiglaPartidoParlamentar": "S/Partido",
+                "UfParlamentar": "RJ"
+            },
+            "DadosBasicosParlamentar": {
+                "DataNascimento": "1966-01-29",
+                "Naturalidade": "Rio de Janeiro",
+                "UfNaturalidade": "RJ",
+                "EnderecoParlamentar": "Senado Federal Anexo 2   Ala Nilo Coelho Pavimento Térreo Gabinete 11"
+            },
+            "Telefones": {
+                "Telefone": [
+                    {
+                        "NumeroTelefone": "33036519",
+                        "OrdemPublicacao": "1",
+                        "IndicadorFax": "Não"
+                    },
+                    {
+                        "NumeroTelefone": "33036517",
+                        "OrdemPublicacao": "2",
+                        "IndicadorFax": "Não"
+                    },
+                    {
+                        "NumeroTelefone": "33036520",
+                        "OrdemPublicacao": "3",
+                        "IndicadorFax": "Não"
+                    }
+                ]
+            },
+            "OutrasInformacoes": {
+                "Servico": [
+                    {
+                        "NomeServico": "ApartesParlamentar",
+                        "DescricaoServico": "Apartes do parlamentar",
+                        "UrlServico": "senador/5322/apartes?v=5"
+                    },
+                    {
+                        "NomeServico": "CargoParlamentar",
+                        "DescricaoServico": "Cargos do parlamentar ao longo do(s) mandato(s).",
+                        "UrlServico": "senador/5322/cargos?v=5"
+                    },
+                    {
+                        "NomeServico": "DiscursosParlamentar",
+                        "DescricaoServico": "Discursos do parlamentar. Se não informar o período, serão retornados os discursos dos últimos 30 dias.",
+                        "UrlServico": "senador/5322/discursos?v=5"
+                    },
+                    {
+                        "NomeServico": "FiliacaoParlamentar",
+                        "UrlServico": "senador/5322/filiacoes?v=5"
+                    },
+                    {
+                        "NomeServico": "HistoricoAcademicoParlamentar",
+                        "DescricaoServico": "Retorna o histporico acadêmico do parlamentar.",
+                        "UrlServico": "senador/historicoAcademico/5322/historicoAcademico?v=1"
+                    },
+                    {
+                        "NomeServico": "LicencaParlamentar",
+                        "DescricaoServico": "Licenças do parlamentar.",
+                        "UrlServico": "senador/5322/licencas?v=6"
+                    },
+                    {
+                        "NomeServico": "LiderancaParlamentar",
+                        "DescricaoServico": "Cargos de liderança do parlamentar ao longo do(s) mandato(s)",
+                        "UrlServico": "senador/5322/liderancas?v=5"
+                    },
+                    {
+                        "NomeServico": "MandatoParlamentar",
+                        "DescricaoServico": "Mandatos do parlamentar (atual e anteriores, se houver)",
+                        "UrlServico": "senador/5322/mandatos?v=5"
+                    },
+                    {
+                        "NomeServico": "MateriasAutoriaParlamentar",
+                        "DescricaoServico": "Matérias de autoria ou coautoria do parlamentar",
+                        "UrlServico": "senador/5322/autorias?v=7"
+                    },
+                    {
+                        "NomeServico": "MateriasRelatoriaParlamentar",
+                        "DescricaoServico": "Matérias de relatoria do parlamentar",
+                        "UrlServico": "senador/5322/relatorias?v=6"
+                    },
+                    {
+                        "NomeServico": "MembroComissaoParlamentar",
+                        "DescricaoServico": "Comissões em que o parlamentar é (ou foi) membro",
+                        "UrlServico": "senador/5322/comissoes?v=5"
+                    },
+                    {
+                        "NomeServico": "ProfissaoParlamentar",
+                        "DescricaoServico": "Retorna a(s) profissão(ões) do parlamentar.",
+                        "UrlServico": "senador/profissao/5322/profissoes?v=1"
+                    },
+                    {
+                        "NomeServico": "VotacaoParlamentar",
+                        "DescricaoServico": "Votos do parlamentar ao longo do(s) mandato(s)",
+                        "UrlServico": "senador/5322/votacoes?v=7"
+                    }
+                ]
+            }
+        }
+    }
+}

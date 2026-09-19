@@ -1,0 +1,15 @@
+{
+    "MembroComissaoParlamentar": {
+        "noNamespaceSchemaLocation": "dados/MembroComissaoParlamentarv5.xsd",
+        "Metadados": {
+            "Versao": "19/09/2026 15:50:09",
+            "VersaoServico": "5",
+            "DataVersaoServico": "2021-09-09",
+            "DescricaoDataSet": "Retorna a relação das Comissões das quais um Senador é membro."
+        },
+        "Parlamentar": {
+            "Codigo": "6373",
+            "Nome": "Andrea Fontes"
+        }
+    }
+}

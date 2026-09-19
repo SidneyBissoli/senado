@@ -1,0 +1,391 @@
+{
+  "ListaParlamentarEmExercicio": {
+    "noNamespaceSchemaLocation": "dados/ListaParlamentarEmExerciciov4.xsd",
+    "Metadados": {
+      "Versao": "19/09/2026 15:55:29",
+      "VersaoServico": "4",
+      "DataVersaoServico": "2020-07-15",
+      "DescricaoDataSet": "Lista dos Parlamentares que estão atualmente em Exercício. Informações atuais sobre o Parlamentar."
+    },
+    "Parlamentares": {
+      "Parlamentar": [
+        {
+          "IdentificacaoParlamentar": {
+            "CodigoParlamentar": "5672",
+            "CodigoPublicoNaLegAtual": "800",
+            "NomeParlamentar": "Alan Rick",
+            "NomeCompletoParlamentar": "Alan Rick Miranda",
+            "SexoParlamentar": "Masculino",
+            "FormaTratamento": "Senador ",
+            "UrlFotoParlamentar": "http://www.senado.leg.br/senadores/img/fotos-oficiais/senador5672.jpg",
+            "UrlPaginaParlamentar": "http://www25.senado.leg.br/web/senadores/senador/-/perfil/5672",
+            "EmailParlamentar": "sen.alanrick@senado.leg.br",
+            "Telefones": {
+              "Telefone": [
+                {
+                  "NumeroTelefone": "33036333",
+                  "OrdemPublicacao": "1",
+                  "IndicadorFax": "Não"
+                }
+              ]
+            },
+            "SiglaPartidoParlamentar": "REPUBLICANOS",
+            "UfParlamentar": "AC",
+            "Bloco": {
+              "CodigoBloco": "346",
+              "NomeBloco": "Bloco Parlamentar Aliança",
+              "NomeApelido": "BLALIANÇA",
+              "DataCriacao": "2023-03-20"
+            },
+            "MembroMesa": "Não",
+            "MembroLideranca": "Sim"
+          },
+          "Mandato": {
+            "CodigoMandato": "596",
+            "UfParlamentar": "AC",
+            "PrimeiraLegislaturaDoMandato": {
+              "NumeroLegislatura": "57",
+              "DataInicio": "2023-02-01",
+              "DataFim": "2027-01-31"
+            },
+            "SegundaLegislaturaDoMandato": {
+              "NumeroLegislatura": "58",
+              "DataInicio": "2027-02-01",
+              "DataFim": "2031-01-31"
+            },
+            "DescricaoParticipacao": "Titular",
+            "Suplentes": {
+              "Suplente": [
+                {
+                  "DescricaoParticipacao": "1º Suplente",
+                  "CodigoParlamentar": "6343",
+                  "NomeParlamentar": "Gemil Junior"
+                },
+                {
+                  "DescricaoParticipacao": "2º Suplente",
+                  "CodigoParlamentar": "6344",
+                  "NomeParlamentar": "Coronel Casagrande"
+                }
+              ]
+            },
+            "Exercicios": {
+              "Exercicio": [
+                {
+                  "CodigoExercicio": "3028",
+                  "DataInicio": "2023-02-01"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "IdentificacaoParlamentar": {
+            "CodigoParlamentar": "5982",
+            "CodigoPublicoNaLegAtual": "829",
+            "NomeParlamentar": "Alessandro Vieira",
+            "NomeCompletoParlamentar": "Alessandro Vieira",
+            "SexoParlamentar": "Masculino",
+            "FormaTratamento": "Senador ",
+            "UrlFotoParlamentar": "http://www.senado.leg.br/senadores/img/fotos-oficiais/senador5982.jpg",
+            "UrlPaginaParlamentar": "http://www25.senado.leg.br/web/senadores/senador/-/perfil/5982",
+            "EmailParlamentar": "sen.alessandrovieira@senado.leg.br",
+            "Telefones": {
+              "Telefone": [
+                {
+                  "NumeroTelefone": "33039011",
+                  "OrdemPublicacao": "1",
+                  "IndicadorFax": "Não"
+                },
+                {
+                  "NumeroTelefone": "33039014",
+                  "OrdemPublicacao": "2",
+                  "IndicadorFax": "Não"
+                }
+              ]
+            },
+            "SiglaPartidoParlamentar": "MDB",
+            "UfParlamentar": "SE",
+            "Bloco": {
+              "CodigoBloco": "358",
+              "NomeBloco": "Bloco Parlamentar Democracia",
+              "NomeApelido": "BLDEM",
+              "DataCriacao": "2025-02-18"
+            },
+            "MembroMesa": "Não",
+            "MembroLideranca": "Não"
+          },
+          "Mandato": {
+            "CodigoMandato": "559",
+            "UfParlamentar": "SE",
+            "PrimeiraLegislaturaDoMandato": {
+              "NumeroLegislatura": "56",
+              "DataInicio": "2019-02-01",
+              "DataFim": "2023-01-31"
+            },
+            "SegundaLegislaturaDoMandato": {
+              "NumeroLegislatura": "57",
+              "DataInicio": "2023-02-01",
+              "DataFim": "2027-01-31"
+            },
+            "DescricaoParticipacao": "Titular",
+            "Suplentes": {
+              "Suplente": [
+                {
+                  "DescricaoParticipacao": "1º Suplente",
+                  "CodigoParlamentar": "5980",
+                  "NomeParlamentar": "Fernando Carvalho"
+                },
+                {
+                  "DescricaoParticipacao": "2º Suplente",
+                  "CodigoParlamentar": "5981",
+                  "NomeParlamentar": "Major Ildomario"
+                }
+              ]
+            },
+            "Exercicios": {
+              "Exercicio": [
+                {
+                  "CodigoExercicio": "2888",
+                  "DataInicio": "2019-02-01"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "IdentificacaoParlamentar": {
+            "CodigoParlamentar": "5967",
+            "CodigoPublicoNaLegAtual": "832",
+            "NomeParlamentar": "Angelo Coronel",
+            "NomeCompletoParlamentar": "Angelo Mario Coronel de Azevedo Martins",
+            "SexoParlamentar": "Masculino",
+            "FormaTratamento": "Senador ",
+            "UrlFotoParlamentar": "http://www.senado.leg.br/senadores/img/fotos-oficiais/senador5967.jpg",
+            "UrlPaginaParlamentar": "http://www25.senado.leg.br/web/senadores/senador/-/perfil/5967",
+            "EmailParlamentar": "sen.angelocoronel@senado.leg.br",
+            "Telefones": {
+              "Telefone": [
+                {
+                  "NumeroTelefone": "33036103",
+                  "OrdemPublicacao": "1",
+                  "IndicadorFax": "Não"
+                },
+                {
+                  "NumeroTelefone": "33036105",
+                  "OrdemPublicacao": "3",
+                  "IndicadorFax": "Não"
+                }
+              ]
+            },
+            "SiglaPartidoParlamentar": "REPUBLICANOS",
+            "UfParlamentar": "BA",
+            "Bloco": {
+              "CodigoBloco": "346",
+              "NomeBloco": "Bloco Parlamentar Aliança",
+              "NomeApelido": "BLALIANÇA",
+              "DataCriacao": "2023-03-20"
+            },
+            "MembroMesa": "Não",
+            "MembroLideranca": "Não"
+          },
+          "Mandato": {
+            "CodigoMandato": "554",
+            "UfParlamentar": "BA",
+            "PrimeiraLegislaturaDoMandato": {
+              "NumeroLegislatura": "56",
+              "DataInicio": "2019-02-01",
+              "DataFim": "2023-01-31"
+            },
+            "SegundaLegislaturaDoMandato": {
+              "NumeroLegislatura": "57",
+              "DataInicio": "2023-02-01",
+              "DataFim": "2027-01-31"
+            },
+            "DescricaoParticipacao": "Titular",
+            "Suplentes": {
+              "Suplente": [
+                {
+                  "DescricaoParticipacao": "1º Suplente",
+                  "CodigoParlamentar": "5837",
+                  "NomeParlamentar": "Davidson Magalhães"
+                },
+                {
+                  "DescricaoParticipacao": "2º Suplente",
+                  "CodigoParlamentar": "5056",
+                  "NomeParlamentar": "Silvia Nascimento Cardoso dos Santos Cerqueira"
+                }
+              ]
+            },
+            "Exercicios": {
+              "Exercicio": [
+                {
+                  "CodigoExercicio": "2889",
+                  "DataInicio": "2019-02-01"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "IdentificacaoParlamentar": {
+            "CodigoParlamentar": "4639",
+            "CodigoPublicoNaLegAtual": "877",
+            "NomeParlamentar": "Beto Faro",
+            "NomeCompletoParlamentar": "José Roberto Oliveira Faro",
+            "SexoParlamentar": "Masculino",
+            "FormaTratamento": "Senador ",
+            "UrlFotoParlamentar": "http://www.senado.leg.br/senadores/img/fotos-oficiais/senador4639.jpg",
+            "UrlPaginaParlamentar": "http://www25.senado.leg.br/web/senadores/senador/-/perfil/4639",
+            "EmailParlamentar": "sen.betofaro@senado.leg.br",
+            "Telefones": {
+              "Telefone": [
+                {
+                  "NumeroTelefone": "33035220",
+                  "OrdemPublicacao": "1",
+                  "IndicadorFax": "Não"
+                }
+              ]
+            },
+            "SiglaPartidoParlamentar": "PT",
+            "UfParlamentar": "PA",
+            "Bloco": {
+              "CodigoBloco": "359",
+              "NomeBloco": "Bloco Parlamentar Pelo Brasil",
+              "NomeApelido": "BLPBR",
+              "DataCriacao": "2025-02-18"
+            },
+            "MembroMesa": "Não",
+            "MembroLideranca": "Sim"
+          },
+          "Mandato": {
+            "CodigoMandato": "604",
+            "UfParlamentar": "PA",
+            "PrimeiraLegislaturaDoMandato": {
+              "NumeroLegislatura": "57",
+              "DataInicio": "2023-02-01",
+              "DataFim": "2027-01-31"
+            },
+            "SegundaLegislaturaDoMandato": {
+              "NumeroLegislatura": "58",
+              "DataInicio": "2027-02-01",
+              "DataFim": "2031-01-31"
+            },
+            "DescricaoParticipacao": "Titular",
+            "Suplentes": {
+              "Suplente": [
+                {
+                  "DescricaoParticipacao": "1º Suplente",
+                  "CodigoParlamentar": "6364",
+                  "NomeParlamentar": "Josenir"
+                },
+                {
+                  "DescricaoParticipacao": "2º Suplente",
+                  "CodigoParlamentar": "6365",
+                  "NomeParlamentar": "Leny Campêlo"
+                }
+              ]
+            },
+            "Exercicios": {
+              "Exercicio": [
+                {
+                  "CodigoExercicio": "3020",
+                  "DataInicio": "2023-02-01"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "IdentificacaoParlamentar": {
+            "CodigoParlamentar": "6336",
+            "CodigoPublicoNaLegAtual": "805",
+            "NomeParlamentar": "Camilo Santana",
+            "NomeCompletoParlamentar": "Camilo Sobreira de Santana",
+            "SexoParlamentar": "Masculino",
+            "FormaTratamento": "Senador ",
+            "UrlFotoParlamentar": "http://www.senado.leg.br/senadores/img/fotos-oficiais/senador6336.jpg",
+            "UrlPaginaParlamentar": "http://www25.senado.leg.br/web/senadores/senador/-/perfil/6336",
+            "EmailParlamentar": "sen.camilosantana@senado.leg.br",
+            "Telefones": {
+              "Telefone": [
+                {
+                  "NumeroTelefone": "33035940",
+                  "OrdemPublicacao": "1",
+                  "IndicadorFax": "Não"
+                }
+              ]
+            },
+            "SiglaPartidoParlamentar": "PT",
+            "UfParlamentar": "CE",
+            "Bloco": {
+              "CodigoBloco": "359",
+              "NomeBloco": "Bloco Parlamentar Pelo Brasil",
+              "NomeApelido": "BLPBR",
+              "DataCriacao": "2025-02-18"
+            },
+            "MembroMesa": "Não",
+            "MembroLideranca": "Sim"
+          },
+          "Mandato": {
+            "CodigoMandato": "598",
+            "UfParlamentar": "CE",
+            "PrimeiraLegislaturaDoMandato": {
+              "NumeroLegislatura": "57",
+              "DataInicio": "2023-02-01",
+              "DataFim": "2027-01-31"
+            },
+            "SegundaLegislaturaDoMandato": {
+              "NumeroLegislatura": "58",
+              "DataInicio": "2027-02-01",
+              "DataFim": "2031-01-31"
+            },
+            "DescricaoParticipacao": "Titular",
+            "Suplentes": {
+              "Suplente": [
+                {
+                  "DescricaoParticipacao": "1º Suplente",
+                  "CodigoParlamentar": "6350",
+                  "NomeParlamentar": "Augusta Brito"
+                },
+                {
+                  "DescricaoParticipacao": "2º Suplente",
+                  "CodigoParlamentar": "6351",
+                  "NomeParlamentar": "Janaína Farias"
+                }
+              ]
+            },
+            "Exercicios": {
+              "Exercicio": [
+                {
+                  "CodigoExercicio": "3102",
+                  "DataInicio": "2026-04-02"
+                },
+                {
+                  "CodigoExercicio": "3083",
+                  "DataInicio": "2025-02-01",
+                  "DataFim": "2025-02-03",
+                  "SiglaCausaAfastamento": "AFO",
+                  "DescricaoCausaAfastamento": "Afastamento do exercício"
+                },
+                {
+                  "CodigoExercicio": "3050",
+                  "DataInicio": "2023-12-12",
+                  "DataFim": "2023-12-13",
+                  "SiglaCausaAfastamento": "AFO",
+                  "DescricaoCausaAfastamento": "Afastamento do exercício"
+                },
+                {
+                  "CodigoExercicio": "3035",
+                  "DataInicio": "2023-02-01",
+                  "DataFim": "2023-02-02",
+                  "SiglaCausaAfastamento": "AFO",
+                  "DescricaoCausaAfastamento": "Afastamento do exercício"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  }
+}

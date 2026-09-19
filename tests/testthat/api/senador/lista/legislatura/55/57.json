@@ -1,0 +1,167 @@
+{
+  "ListaParlamentarLegislatura": {
+    "noNamespaceSchemaLocation": "dados/ListaParlamentarLegislaturav4.xsd",
+    "Metadados": {
+      "Versao": "19/09/2026 15:53:45",
+      "VersaoServico": "4",
+      "DataVersaoServico": "2021-09-09",
+      "DescricaoDataSet": "Retorna a lista de Senadores em um intervalo de Legislaturas."
+    },
+    "Parlamentares": {
+      "Parlamentar": [
+        {
+          "IdentificacaoParlamentar": {
+            "CodigoParlamentar": "5573",
+            "NomeParlamentar": "Abel Rebouças",
+            "NomeCompletoParlamentar": "Abel Rebouças São José",
+            "SexoParlamentar": "Masculino",
+            "FormaTratamento": "Senador ",
+            "SiglaPartidoParlamentar": "PDT"
+          },
+          "Mandatos": {
+            "Mandato": [
+              {
+                "CodigoMandato": "492",
+                "UfParlamentar": "BA",
+                "PrimeiraLegislaturaDoMandato": {
+                  "NumeroLegislatura": "55",
+                  "DataInicio": "2015-02-01",
+                  "DataFim": "2019-01-31"
+                },
+                "SegundaLegislaturaDoMandato": {
+                  "NumeroLegislatura": "56",
+                  "DataInicio": "2019-02-01",
+                  "DataFim": "2023-01-31"
+                },
+                "DescricaoParticipacao": "1º Suplente",
+                "Titular": {
+                  "DescricaoParticipacao": "Titular",
+                  "CodigoParlamentar": "5523",
+                  "NomeParlamentar": "Otto Alencar"
+                },
+                "Suplentes": {
+                  "Suplente": [
+                    {
+                      "DescricaoParticipacao": "2º Suplente",
+                      "CodigoParlamentar": "5575",
+                      "NomeParlamentar": "Marizete"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "IdentificacaoParlamentar": {
+            "CodigoParlamentar": "5154",
+            "NomeParlamentar": "Abiancy Cadoso Rosa",
+            "NomeCompletoParlamentar": "Abiancy Cadoso Rosa",
+            "SexoParlamentar": "Masculino",
+            "FormaTratamento": "Senador ",
+            "SiglaPartidoParlamentar": "CIDADANIA"
+          },
+          "Mandatos": {
+            "Mandato": [
+              {
+                "CodigoMandato": "487",
+                "UfParlamentar": "PA",
+                "PrimeiraLegislaturaDoMandato": {
+                  "NumeroLegislatura": "54",
+                  "DataInicio": "2011-02-01",
+                  "DataFim": "2015-01-31"
+                },
+                "SegundaLegislaturaDoMandato": {
+                  "NumeroLegislatura": "55",
+                  "DataInicio": "2015-02-01",
+                  "DataFim": "2019-01-31"
+                },
+                "DescricaoParticipacao": "2º Suplente",
+                "Titular": {
+                  "DescricaoParticipacao": "Titular",
+                  "CodigoParlamentar": "3634",
+                  "NomeParlamentar": "Flexa Ribeiro"
+                },
+                "Suplentes": {
+                  "Suplente": [
+                    {
+                      "DescricaoParticipacao": "1º Suplente",
+                      "CodigoParlamentar": "380",
+                      "NomeParlamentar": "Nicias Ribeiro"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "IdentificacaoParlamentar": {
+            "CodigoParlamentar": "4981",
+            "CodigoPublicoNaLegAtual": "916",
+            "NomeParlamentar": "Acir Gurgacz",
+            "NomeCompletoParlamentar": "Acir Marcos Gurgacz",
+            "SexoParlamentar": "Masculino",
+            "FormaTratamento": "Senador ",
+            "UrlFotoParlamentar": "http://www.senado.leg.br/senadores/img/fotos-oficiais/senador4981.jpg",
+            "UrlPaginaParlamentar": "http://www25.senado.leg.br/web/senadores/senador/-/perfil/4981",
+            "UrlPaginaParticular": "https://acirgurgacz.com.br/",
+            "EmailParlamentar": "sen.acirgurgacz@senado.leg.br",
+            "SiglaPartidoParlamentar": "PDT"
+          },
+          "Mandatos": {
+            "Mandato": [
+              {
+                "CodigoMandato": "515",
+                "UfParlamentar": "RO",
+                "PrimeiraLegislaturaDoMandato": {
+                  "NumeroLegislatura": "55",
+                  "DataInicio": "2015-02-01",
+                  "DataFim": "2019-01-31"
+                },
+                "SegundaLegislaturaDoMandato": {
+                  "NumeroLegislatura": "56",
+                  "DataInicio": "2019-02-01",
+                  "DataFim": "2023-01-31"
+                },
+                "DescricaoParticipacao": "Titular",
+                "Suplentes": {
+                  "Suplente": [
+                    {
+                      "DescricaoParticipacao": "1º Suplente",
+                      "CodigoParlamentar": "5615",
+                      "NomeParlamentar": "Gilberto Piselo"
+                    },
+                    {
+                      "DescricaoParticipacao": "2º Suplente",
+                      "CodigoParlamentar": "5617",
+                      "NomeParlamentar": "Pastor Valadares"
+                    }
+                  ]
+                },
+                "Exercicios": {
+                  "Exercicio": [
+                    {
+                      "CodigoExercicio": "2810",
+                      "DataInicio": "2017-01-14",
+                      "DataFim": "2023-01-31",
+                      "SiglaCausaAfastamento": "TER",
+                      "DescricaoCausaAfastamento": "Término do mandato"
+                    },
+                    {
+                      "CodigoExercicio": "2754",
+                      "DataInicio": "2015-02-01",
+                      "DataFim": "2016-09-08",
+                      "SiglaCausaAfastamento": "LSP",
+                      "DescricaoCausaAfastamento": "Licença Saúde-Particular"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

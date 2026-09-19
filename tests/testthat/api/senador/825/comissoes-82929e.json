@@ -1,0 +1,52 @@
+{
+  "MembroComissaoParlamentar": {
+    "noNamespaceSchemaLocation": "dados/MembroComissaoParlamentarv5.xsd",
+    "Metadados": {
+      "Versao": "19/09/2026 15:53:46",
+      "VersaoServico": "5",
+      "DataVersaoServico": "2021-09-09",
+      "DescricaoDataSet": "Retorna a relação das Comissões das quais um Senador é membro."
+    },
+    "Parlamentar": {
+      "Codigo": "825",
+      "Nome": "Paulo Paim",
+      "MembroComissoes": {
+        "Comissao": [
+          {
+            "IdentificacaoComissao": {
+              "CodigoComissao": "34",
+              "SiglaComissao": "CCJ",
+              "NomeComissao": "Comissão de Constituição, Justiça e Cidadania",
+              "SiglaCasaComissao": "SF"
+            },
+            "DescricaoParticipacao": "Suplente",
+            "DataInicio": "2013-05-23",
+            "DataFim": "2013-07-01"
+          },
+          {
+            "IdentificacaoComissao": {
+              "CodigoComissao": "34",
+              "SiglaComissao": "CCJ",
+              "NomeComissao": "Comissão de Constituição, Justiça e Cidadania",
+              "SiglaCasaComissao": "SF"
+            },
+            "DescricaoParticipacao": "Suplente",
+            "DataInicio": "2013-12-11",
+            "DataFim": "2015-01-30"
+          },
+          {
+            "IdentificacaoComissao": {
+              "CodigoComissao": "34",
+              "SiglaComissao": "CCJ",
+              "NomeComissao": "Comissão de Constituição, Justiça e Cidadania",
+              "SiglaCasaComissao": "SF"
+            },
+            "DescricaoParticipacao": "Suplente",
+            "DataInicio": "2019-09-11",
+            "DataFim": "2021-02-19"
+          }
+        ]
+      }
+    }
+  }
+}

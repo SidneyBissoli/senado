@@ -1,0 +1,157 @@
+{
+  "DiscursosParlamentar": {
+    "noNamespaceSchemaLocation": "dados/DiscursosParlamentarv5.xsd",
+    "Metadados": {
+      "Versao": "19/09/2026 15:42:42",
+      "VersaoServico": "5",
+      "DataVersaoServico": "2021-06-29",
+      "DescricaoDataSet": "Discursos do Parlamentar. Se não informar o período, serão retornados os discursos dos últimos 30 dias."
+    },
+    "Parlamentar": {
+      "IdentificacaoParlamentar": {
+        "CodigoParlamentar": "825",
+        "CodigoPublicoNaLegAtual": "859",
+        "NomeParlamentar": "Paulo Paim",
+        "NomeCompletoParlamentar": "Paulo Renato Paim",
+        "SexoParlamentar": "Masculino",
+        "FormaTratamento": "Senador ",
+        "UrlFotoParlamentar": "http://www.senado.leg.br/senadores/img/fotos-oficiais/senador825.jpg",
+        "UrlPaginaParlamentar": "http://www25.senado.leg.br/web/senadores/senador/-/perfil/825",
+        "EmailParlamentar": "sen.paulopaim@senado.leg.br",
+        "SiglaPartidoParlamentar": "PT",
+        "UfParlamentar": "RS"
+      },
+      "Pronunciamentos": {
+        "Pronunciamento": [
+          {
+            "CodigoPronunciamento": "506264",
+            "TipoUsoPalavra": {
+              "Codigo": "4819",
+              "Sigla": "DIS",
+              "Descricao": "Discurso",
+              "IndicadorAtivo": "Sim"
+            },
+            "DataPronunciamento": "2024-05-27",
+            "SiglaPartidoParlamentarNaData": "PT",
+            "UfParlamentarNaData": "RS",
+            "SiglaCasaPronunciamento": "SF",
+            "NomeCasaPronunciamento": "Senado Federal",
+            "TextoResumo": "Atualização numérica dos danos causados pelas enchentes no Rio Grande do Sul. Contentamento com a realização de sessão de debates temáticos sobre a catástrofe climática no Estado. Informações sobre a atuação da Comissão Temporária Externa criada pelo Senado Federal para tratar sobre o tema.",
+            "Indexacao": "ATUALIZAÇÃO, DADOS, DANOS, INUNDAÇÃO, ESTADO DO RIO GRANDE DO SUL (RS), ELOGIO, REALIZAÇÃO, SESSÃO DE DEBATES TEMATICOS, REFERENCIA, CALAMIDADE PUBLICA, COMENTARIO, ATUAÇÃO, Comissão Temporária Externa para acompanhar as atividades relativas ao enfrentamento da calamidade que atingiu o Rio Grande do Sul (CTERS).",
+            "UrlTexto": "https://www25.senado.leg.br/web/atividade/pronunciamentos/-/p/texto/506264",
+            "UrlTextoBinario": "https://legis.senado.gov.br/disse/dadosabertos/arquivoTextoPronunciamento/506264",
+            "SessaoPlenaria": {
+              "CodigoSessao": "405008",
+              "SiglaCasaSessao": "SF",
+              "NomeCasaSessao": "Senado Federal",
+              "CodigoSessaoLegislativa": "871",
+              "SiglaTipoSessao": "NDL",
+              "NumeroSessao": "68",
+              "DataSessao": "2024-05-27",
+              "HoraInicioSessao": "14:00:00"
+            },
+            "Aparteantes": {
+              "Aparteante": {
+                "CodigoParlamentar": "5411",
+                "NomeAparteante": "Weverton"
+              }
+            },
+            "Publicacoes": {
+              "Publicacao": [
+                {
+                  "DescricaoVeiculoPublicacao": "DSF",
+                  "DataPublicacao": "2024-05-28",
+                  "NumeroPagInicioPublicacao": "71",
+                  "NumeroPagFimPublicacao": "75",
+                  "IndicadorRepublicacao": "Não",
+                  "UrlDiario": "http://legis.senado.leg.br/diarios/BuscaDiario?tipDiario=1&datDiario=28/05/2024&paginaDireta=71"
+                }
+              ]
+            }
+          },
+          {
+            "CodigoPronunciamento": "506261",
+            "TipoUsoPalavra": {
+              "Codigo": "5002",
+              "Sigla": "DISPRES",
+              "Descricao": "Discurso proferido da Presidência",
+              "IndicadorAtivo": "Sim"
+            },
+            "DataPronunciamento": "2024-05-27",
+            "SiglaPartidoParlamentarNaData": "PT",
+            "UfParlamentarNaData": "RS",
+            "SiglaCasaPronunciamento": "SF",
+            "NomeCasaPronunciamento": "Senado Federal",
+            "TextoResumo": "Encerramento de sessão de debates temáticos destinada a debater “A Tragédia no Estado do Rio Grande do Sul”.",
+            "Indexacao": "ENCERRAMENTO, SESSÃO DE DEBATES TEMATICOS, DEBATE, CALAMIDADE PUBLICA, INUNDAÇÃO, ESTADO DO RIO GRANDE DO SUL (RS).\nAGRADECIMENTO, REPRESENTANTE, GOVERNADOR, ESTADO DO RIO GRANDE DO SUL (RS), EDUARDO LEITE, SOLICITAÇÃO, AUSENCIA, PROPAGAÇÃO, NOTICIA FALSA, HOMENAGEM, VOLUNTARIO, RESGATE, ASSISTENCIA, SALVAMENTO, PESSOAS, ANIMAL, REGISTRO, AUXILIO, AMBITO INTERNACIONAL, DEFESA, COMPROMISSO, MEIO AMBIENTE.",
+            "UrlTexto": "https://www25.senado.leg.br/web/atividade/pronunciamentos/-/p/texto/506261",
+            "UrlTextoBinario": "https://legis.senado.gov.br/disse/dadosabertos/arquivoTextoPronunciamento/506261",
+            "SessaoPlenaria": {
+              "CodigoSessao": "405005",
+              "SiglaCasaSessao": "SF",
+              "NomeCasaSessao": "Senado Federal",
+              "CodigoSessaoLegislativa": "871",
+              "SiglaTipoSessao": "TEM",
+              "NumeroSessao": "67",
+              "DataSessao": "2024-05-27",
+              "HoraInicioSessao": "10:00:00"
+            },
+            "Publicacoes": {
+              "Publicacao": [
+                {
+                  "DescricaoVeiculoPublicacao": "DSF",
+                  "DataPublicacao": "2024-05-28",
+                  "NumeroPagInicioPublicacao": "65",
+                  "NumeroPagFimPublicacao": "66",
+                  "IndicadorRepublicacao": "Não",
+                  "UrlDiario": "http://legis.senado.leg.br/diarios/BuscaDiario?tipDiario=1&datDiario=28/05/2024&paginaDireta=65"
+                }
+              ]
+            }
+          },
+          {
+            "CodigoPronunciamento": "506219",
+            "TipoUsoPalavra": {
+              "Codigo": "4819",
+              "Sigla": "DIS",
+              "Descricao": "Discurso",
+              "IndicadorAtivo": "Sim"
+            },
+            "DataPronunciamento": "2024-05-27",
+            "SiglaPartidoParlamentarNaData": "PT",
+            "UfParlamentarNaData": "RS",
+            "SiglaCasaPronunciamento": "SF",
+            "NomeCasaPronunciamento": "Senado Federal",
+            "TextoResumo": "Sessão de debates temáticos destinada a debater “A Tragédia no Estado do Rio Grande do Sul”.",
+            "Indexacao": "SESSÃO DE DEBATES TEMATICOS, DEBATE, CALAMIDADE PUBLICA, INUNDAÇÃO, ESTADO DO RIO GRANDE DO SUL (RS).\nREGISTRO, SITUAÇÃO, CALAMIDADE PUBLICA, INUNDAÇÃO, ESTADO DO RIO GRANDE DO SUL (RS), AFETAÇÃO, MUNICIPIOS, PERDAS E DANOS, FAMILIA, ECONOMIA, COMENTARIO, VISITA OFICIAL, Comissão Temporária Externa para acompanhar as atividades relativas ao enfrentamento da calamidade que atingiu o Rio Grande do Sul (CTERS), SENADO, AGRADECIMENTO, APOIO, PAIS ESTRANGEIRO, DEFESA, NECESSIDADE, DEBATE, MUDANÇA CLIMATICA, DESASTRE, MEIO AMBIENTE, APROVAÇÃO, MEDIDAS LEGAIS, PREVENÇÃO, RECONSTRUÇÃO, DESENVOLVIMENTO SUSTENTAVEL.",
+            "UrlTexto": "https://www25.senado.leg.br/web/atividade/pronunciamentos/-/p/texto/506219",
+            "UrlTextoBinario": "https://legis.senado.gov.br/disse/dadosabertos/arquivoTextoPronunciamento/506219",
+            "SessaoPlenaria": {
+              "CodigoSessao": "405005",
+              "SiglaCasaSessao": "SF",
+              "NomeCasaSessao": "Senado Federal",
+              "CodigoSessaoLegislativa": "871",
+              "SiglaTipoSessao": "TEM",
+              "NumeroSessao": "67",
+              "DataSessao": "2024-05-27",
+              "HoraInicioSessao": "10:00:00"
+            },
+            "Publicacoes": {
+              "Publicacao": [
+                {
+                  "DescricaoVeiculoPublicacao": "DSF",
+                  "DataPublicacao": "2024-05-28",
+                  "NumeroPagInicioPublicacao": "12",
+                  "NumeroPagFimPublicacao": "15",
+                  "IndicadorRepublicacao": "Não",
+                  "UrlDiario": "http://legis.senado.leg.br/diarios/BuscaDiario?tipDiario=1&datDiario=28/05/2024&paginaDireta=12"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "UrlGlossario": "http://legis.senado.leg.br/dadosabertos/senador/"
+    }
+  }
+}
