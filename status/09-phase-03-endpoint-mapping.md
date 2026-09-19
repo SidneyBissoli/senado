@@ -307,6 +307,7 @@ As três leem **a mesma resposta**; com o cache, custam 1 requisição.
 | **Registros** | `ComissoesCongressoNacional.Colegiados.Colegiado[]` — 1 elemento |
 | **Campos** | `CodigoColegiado`, `SiglaColegiado`, `NomeColegiado`, `DataInicio` (**`DD/MM/AAAA`**), `TipoColegiado.{TipoColegiado, SiglaCasa, CodigoTipo}`, `QuantidadesMembros.Distribuicao.{Senadores, SenadoresTitulares, SenadoresSuplentes}`, `InformacoesSecretaria.{Secretario, TelefoneSecretaria, eMail, NumeroFax, AgendaReuniao}`; aninhados: `Cargos.Cargo[]` (`TipoCargo`, `CodigoCargo`, `NomeParlamentar`, `CodigoParlamentar`, `Bancada`), `MembrosBlocoSF.PartidoBloco[]`, `EventosProrrogacao`, `ObservacoesVaga`, `ObservacoesComissao` |
 | **Id inexistente** | 200, envelope sem `Colegiados` → `senado_error_not_found` |
+| **⚠️ Comissão extinta** | **`/comissao/{codigo}` não devolve colegiado extinto**: responde 200 com o envelope vazio, igual a um código inexistente. Medido em quatro colegiados do Senado já encerrados e fora da lista de ativos (códigos obtidos em `/senador/5322/comissoes?ativo=N`): CPIDPRO (1900, encerrada em 2015), CPIDFDQ (1928, 2016), CDHINT (2170, 2018) e CPIMJAE (2659, 2025). `sen_committee()` só descreve colegiados em atividade, e a mensagem de erro deve dizer isso |
 | **Resolução de sigla** | pela lista de colegiados (cache): 1 ocorrência → resolve; mais de uma → erro com os códigos candidatos; nenhuma → erro explicando que a sigla só resolve colegiados em atividade |
 
 #### `sen_committee_members()`
@@ -318,6 +319,7 @@ As três leem **a mesma resposta**; com o cache, custam 1 requisição.
 | **⚠️ Envelope muda** | `ativas=S` → `ComposicaoAtivaComissaoSf`; `ativas=N` → `UltimaComposicaoComissaoSf` |
 | **Registros** | `{envelope}.ComposicaoComissao.Membros.Membro[]` — 52 na CCJ com `ativas=S` |
 | **Campos** | `CodigoMembro` (txt-num) → `senator_code`, `NomeMembro`, `TipoVaga` ("Titular"/"Suplente"), `IndicadorVagaAtiva`, `DataInicioMembroVaga`; identificação em `…IdentificacaoComissao[]` |
+| **Comissão extinta** | **funciona**: para os mesmos quatro colegiados encerrados, `ativas=N` devolveu a última composição (10, 17, 6 e 16 membros). Com `ativas=S`, três devolveram os mesmos membros e a CPIMJAE devolveu zero — `ativas=N` é o valor que sempre traz a composição |
 | **Limitação** | **não traz partido nem UF do membro.** `/comissao/{codigo}` traz, em `MembrosBlocoSF.PartidoBloco[].MembrosSF.Membro[]`: `NomeParlamentar`, `CodigoParlamentar`, `SiglaUf`, `Partido`, `TipoVaga`, `ProprietarioVaga`, `NumeroOrdem` — agrupados por bloco. Como `sen_committee()` e esta função podem ler a mesma resposta de `/comissao/{codigo}`, vale decidir na implementação qual das duas fontes usar |
 
 #### `sen_committee_meetings()`
@@ -406,7 +408,6 @@ Não tem endpoint: recebe a saída de `sen_vote_records()`. Dados de apoio: `GET
 
 ## Parte 5 — O que não foi medido
 
-- Comportamento de `/comissao/{codigo}` e `/composicao/comissao/{codigo}` para **comissão extinta** (as listas só trazem as ativas, então faltou um código para testar).
 - `reuniao[].colegiados` com mais de um colegiado (reunião conjunta): a amostra de 22/05/2024 não tinha nenhuma; presume-se o mesmo comportamento objeto-ou-array de `partes`.
 - Campos de fim de período em `Exercicios.Exercicio[]` e `Partidos.Partido[]` de `/senador/{codigo}/mandatos`: a amostra só tinha registros em aberto.
 - `/plenario/agenda/mes` e `/plenario/resultado/mes` foram medidos quanto a status e tamanho, não campo a campo; presume-se a mesma forma dos endpoints diários.
