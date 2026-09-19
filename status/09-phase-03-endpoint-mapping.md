@@ -1,5 +1,13 @@
 # Mapeamento de endpoints da API — Fase 03
 
+> **⚠️ DOCUMENTO SUPERADO (18/09/2026) — não implementar a partir dele.**
+>
+> Medido contra a API em 18/09/2026: este mapeamento apoia 11 funções em endpoints que a spec OpenAPI (`/dadosabertos/v3/api-docs`) marca como **deprecated** — todo o `/materia/*`, `/senador/{codigo}/votacoes`, `/senador/{codigo}/autorias`, `/plenario/lista/votacao/*` e `/plenario/votacao/nominal/{ano}` — e contém caminhos que não respondem: `/plenario/lista/votacao/{ano}` (400), `/materia/{codigo}/votacoes` (404), `/plenario/agenda/{data}` (404), `/comissao/{sigla}` (400; o identificador é numérico), `/composicao/comissao/{codigo}` sem `ativas` (400). `/senador/{codigo}/historico` e `/agendareuniao/*` funcionam, mas não constam da spec.
+>
+> A API v4 substitui esses serviços por `/processo` (matérias) e `/votacao` (votos nominais). Também existem, ao contrário do que este documento afirma, `/plenario/lista/legislaturas`, `/plenario/legislatura/{data}`, `/processo/siglas` (JSON) e `/processo/tipos-situacao`. O inventário correto dos endpoints ativos está em `11-complete-table-mapping.md`.
+>
+> O desenho das funções foi revisto na mesma data. Continuam válidos neste documento apenas os endpoints de `/senador/lista/*`, `/senador/{codigo}`, `/senador/{codigo}/comissoes`, `/senador/{codigo}/discursos`, `/senador/partidos`, `/comissao/lista/*`, `/composicao/comissao/{codigo}` (com `ativas`) e `/plenario/resultado/{data}`. Este arquivo fica como registro histórico até ser refeito a partir de requisições reais.
+
 **Projeto:** Pacote R `senado`  
 **Documento:** `09-phase03-endpoint-mapping.md`  
 **Data:** 20 de março de 2026  

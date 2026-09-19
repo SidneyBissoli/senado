@@ -86,6 +86,8 @@
 
 O `rvest` (scraping) foi movido para Suggests — só será necessário quando o módulo e-Cidadania for implementado (Fase 04). Isso permite que o pacote core funcione sem `rvest`.
 
+**Atualização (18/09/2026):** O módulo e-Cidadania por web scraping (Fase 04) foi removido do escopo do pacote. Motivos: o portal não é uma API versionada e seu HTML muda sem aviso; corrigir um pacote no CRAN depois de uma quebra leva dias e depende de cada usuário atualizar; e o volume do acervo (mais de 100 mil ideias legislativas) não cabe numa chamada de função com rate limiting de 1 req/s. Os dados do e-Cidadania estão disponíveis como dataset no Zenodo (DOI `10.5281/zenodo.21183940`). Sem scraping, `rvest` não tem mais uso e saiu do `Suggests` do `DESCRIPTION`. A decisão dos 7 Imports não muda. O pacote passa a cobrir apenas a API oficial do Senado.
+
 ---
 
 ## ADR-008: Cache — `cachem` com TTL por tipo de dado
@@ -172,12 +174,14 @@ O `rvest` (scraping) foi movido para Suggests — só será necessário quando o
 httr2, jsonlite, xml2, tibble, cli, rlang, cachem
 ```
 
-### Suggests (10 pacotes)
+### Suggests (9 pacotes)
 
 ```
 testthat (>= 3.0.0), httptest2, covr, knitr, rmarkdown, withr, 
-spelling, dplyr, ggplot2, rvest
+spelling, dplyr, ggplot2
 ```
+
+`rvest` saiu em 18/09/2026, com a remoção da Fase 04 (ver ADR-007).
 
 ---
 
@@ -186,3 +190,4 @@ spelling, dplyr, ggplot2, rvest
 | Data | ADR | Alteração |
 |---|---|---|
 | 2026-03-20 | Todos | Documento criado com 14 decisões arquiteturais |
+| 2026-09-18 | ADR-007 | `rvest` retirado de Suggests: Fase 04 (e-Cidadania por scraping) removida do escopo |
