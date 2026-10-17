@@ -3,12 +3,23 @@
 # Lists in the fixtures are trimmed: row counts below are those of the fixture.
 
 senator_cols <- c(
-  senator_code = "integer", name = "character", full_name = "character",
-  sex = "character", treatment = "character", party = "character",
-  state = "character", participation = "character", mandate_code = "integer",
-  first_legislature = "integer", second_legislature = "integer",
-  bloc = "character", board_member = "logical", leadership_member = "logical",
-  email = "character", photo_url = "character", page_url = "character",
+  senator_code = "integer",
+  name = "character",
+  full_name = "character",
+  sex = "character",
+  treatment = "character",
+  party = "character",
+  state = "character",
+  participation = "character",
+  mandate_code = "integer",
+  first_legislature = "integer",
+  second_legislature = "integer",
+  bloc = "character",
+  board_member = "logical",
+  leadership_member = "logical",
+  email = "character",
+  photo_url = "character",
+  page_url = "character",
   mandates = "list"
 )
 
@@ -53,7 +64,10 @@ test_that("sen_senators sends state and status to the API", {
 
   httptest2::with_mock_api({
     expect_error(sen_senators(state = "RJ", status = "holder"), "uf=RJ")
-    expect_error(sen_senators(state = "RJ", status = "holder"), "participacao=T")
+    expect_error(
+      sen_senators(state = "RJ", status = "holder"),
+      "participacao=T"
+    )
   })
 })
 
@@ -123,14 +137,26 @@ test_that("sen_senator returns one row with the details", {
     result <- sen_senator(5322)
   })
 
-  expect_cols(result, c(
-    senator_code = "integer", name = "character", full_name = "character",
-    sex = "character", party = "character", state = "character",
-    birth_date = "Date", birthplace = "character",
-    birthplace_state = "character", office_address = "character",
-    email = "character", photo_url = "character", page_url = "character",
-    personal_url = "character", phones = "list"
-  ))
+  expect_cols(
+    result,
+    c(
+      senator_code = "integer",
+      name = "character",
+      full_name = "character",
+      sex = "character",
+      party = "character",
+      state = "character",
+      birth_date = "Date",
+      birthplace = "character",
+      birthplace_state = "character",
+      office_address = "character",
+      email = "character",
+      photo_url = "character",
+      page_url = "character",
+      personal_url = "character",
+      phones = "list"
+    )
+  )
   expect_equal(nrow(result), 1L)
   expect_equal(result$senator_code, 5322L)
   expect_equal(result$birth_date, as.Date("1966-01-29"))
@@ -159,12 +185,20 @@ test_that("sen_senator validates the code", {
 # --- sen_senator_mandates ---------------------------------------------------
 
 mandate_cols <- c(
-  senator_code = "integer", mandate_code = "integer", state = "character",
-  participation = "character", first_legislature = "integer",
-  first_start_date = "Date", first_end_date = "Date",
-  second_legislature = "integer", second_start_date = "Date",
-  second_end_date = "Date", holder_code = "integer",
-  holder_name = "character", substitutes = "list", terms = "list",
+  senator_code = "integer",
+  mandate_code = "integer",
+  state = "character",
+  participation = "character",
+  first_legislature = "integer",
+  first_start_date = "Date",
+  first_end_date = "Date",
+  second_legislature = "integer",
+  second_start_date = "Date",
+  second_end_date = "Date",
+  holder_code = "integer",
+  holder_name = "character",
+  substitutes = "list",
+  terms = "list",
   parties = "list"
 )
 
@@ -179,17 +213,28 @@ test_that("sen_senator_mandates returns one row per mandate", {
   expect_equal(result$first_legislature, c(57L, 55L))
   expect_true(all(is.na(result$holder_code)))
 
-  expect_cols(result$substitutes[[1]], c(
-    participation = "character", senator_code = "integer", name = "character"
-  ))
+  expect_cols(
+    result$substitutes[[1]],
+    c(
+      participation = "character",
+      senator_code = "integer",
+      name = "character"
+    )
+  )
   expect_equal(nrow(result$substitutes[[1]]), 2L)
 
   terms <- result$terms[[1]]
-  expect_cols(terms, c(
-    term_code = "integer", start_date = "Date", end_date = "Date",
-    leave_code = "character", leave_description = "character",
-    reading_date = "Date"
-  ))
+  expect_cols(
+    terms,
+    c(
+      term_code = "integer",
+      start_date = "Date",
+      end_date = "Date",
+      leave_code = "character",
+      leave_description = "character",
+      reading_date = "Date"
+    )
+  )
   # an ongoing term has no end and no cause of leave
   expect_true(is.na(terms$end_date[1]))
   expect_true(is.na(terms$leave_code[1]))
@@ -202,8 +247,11 @@ test_that("parties is a tibble whether the API sends an object or an array", {
     single <- sen_senator_mandates(825) # Partido is a lone object
   })
   party_cols <- c(
-    party_code = "integer", party = "character", party_name = "character",
-    affiliation_date = "Date", disaffiliation_date = "Date"
+    party_code = "integer",
+    party = "character",
+    party_name = "character",
+    affiliation_date = "Date",
+    disaffiliation_date = "Date"
   )
 
   expect_cols(several$parties[[1]], party_cols)
@@ -228,16 +276,24 @@ test_that("sen_senator_mandates names the holder in a substitute's mandate", {
 
 test_that("sen_senator_mandates signals not found for an unknown code", {
   with_api_fixtures({
-    expect_error(sen_senator_mandates(99999999), class = "senado_error_not_found")
+    expect_error(
+      sen_senator_mandates(99999999),
+      class = "senado_error_not_found"
+    )
   })
 })
 
 # --- sen_senator_committees -------------------------------------------------
 
 committee_cols <- c(
-  senator_code = "integer", committee_code = "integer",
-  committee = "character", committee_name = "character", house = "character",
-  participation = "character", start_date = "Date", end_date = "Date"
+  senator_code = "integer",
+  committee_code = "integer",
+  committee = "character",
+  committee_name = "character",
+  house = "character",
+  participation = "character",
+  start_date = "Date",
+  end_date = "Date"
 )
 
 test_that("sen_senator_committees returns one row per membership", {
@@ -277,7 +333,10 @@ test_that("a known senator without committees yields 0 rows, not an error", {
 
 test_that("sen_senator_committees signals not found and validates arguments", {
   with_api_fixtures({
-    expect_error(sen_senator_committees(99999999), class = "senado_error_not_found")
+    expect_error(
+      sen_senator_committees(99999999),
+      class = "senado_error_not_found"
+    )
   })
   httptest2::without_internet({
     expect_error(sen_senator_committees(5322, active = "S"), "TRUE")
@@ -288,12 +347,23 @@ test_that("sen_senator_committees signals not found and validates arguments", {
 # --- sen_senator_speeches ---------------------------------------------------
 
 speech_cols <- c(
-  senator_code = "integer", speech_code = "integer", date = "Date",
-  speech_type = "character", speech_type_description = "character",
-  party = "character", state = "character", house = "character",
-  summary = "character", keywords = "character", text_url = "character",
-  file_url = "character", session_id = "integer", session_type = "character",
-  session_number = "integer", session_date = "Date", interjections = "list",
+  senator_code = "integer",
+  speech_code = "integer",
+  date = "Date",
+  speech_type = "character",
+  speech_type_description = "character",
+  party = "character",
+  state = "character",
+  house = "character",
+  summary = "character",
+  keywords = "character",
+  text_url = "character",
+  file_url = "character",
+  session_id = "integer",
+  session_type = "character",
+  session_number = "integer",
+  session_date = "Date",
+  interjections = "list",
   publications = "list"
 )
 
@@ -314,10 +384,17 @@ test_that("sen_senator_speeches returns one row per speech", {
   expect_cols(interjections, c(senator_code = "integer", name = "character"))
   expect_equal(nrow(interjections), 1L)
 
-  expect_cols(result$publications[[1]], c(
-    source = "character", date = "Date", first_page = "integer",
-    last_page = "integer", republication = "logical", url = "character"
-  ))
+  expect_cols(
+    result$publications[[1]],
+    c(
+      source = "character",
+      date = "Date",
+      first_page = "integer",
+      last_page = "integer",
+      republication = "logical",
+      url = "character"
+    )
+  )
 })
 
 test_that("sen_senator_speeches slices a window that crosses years", {
@@ -335,11 +412,14 @@ test_that("sen_senator_speeches slices a window that crosses years", {
 test_that("sen_year_slices never crosses a year boundary", {
   slices <- sen_year_slices(as.Date("2022-06-15"), as.Date("2024-02-10"))
 
-  expect_equal(slices, list(
-    as.Date(c("2022-06-15", "2022-12-31")),
-    as.Date(c("2023-01-01", "2023-12-31")),
-    as.Date(c("2024-01-01", "2024-02-10"))
-  ))
+  expect_equal(
+    slices,
+    list(
+      as.Date(c("2022-06-15", "2022-12-31")),
+      as.Date(c("2023-01-01", "2023-12-31")),
+      as.Date(c("2024-01-01", "2024-02-10"))
+    )
+  )
   expect_equal(
     sen_year_slices(as.Date("2024-05-01"), as.Date("2024-05-31")),
     list(as.Date(c("2024-05-01", "2024-05-31")))
@@ -374,9 +454,15 @@ test_that("sen_senator_speeches signals not found and validates arguments", {
     )
   })
   httptest2::without_internet({
-    expect_error(sen_senator_speeches(825, end_date = "2024-01-05"), "start_date")
+    expect_error(
+      sen_senator_speeches(825, end_date = "2024-01-05"),
+      "start_date"
+    )
     expect_error(sen_senator_speeches(825, "01/05/2024"), "YYYY-MM-DD")
-    expect_error(sen_senator_speeches(825, "2024-05-31", "2024-05-01"), "must not be after")
+    expect_error(
+      sen_senator_speeches(825, "2024-05-31", "2024-05-01"),
+      "must not be after"
+    )
   })
 })
 

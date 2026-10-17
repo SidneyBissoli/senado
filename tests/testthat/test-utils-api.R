@@ -103,7 +103,10 @@ json_ok <- function(body = "[]") {
 
 test_that("sen_error_body reads detail, then title, from problem+json", {
   expect_equal(
-    sen_error_body(problem_json(400, '{"detail": "Limite o periodo.", "title": "Bad Request"}')),
+    sen_error_body(problem_json(
+      400,
+      '{"detail": "Limite o periodo.", "title": "Bad Request"}'
+    )),
     "Limite o periodo."
   )
   expect_equal(
@@ -136,7 +139,10 @@ test_that("HTTP 404 becomes senado_error_not_found, in a single request", {
   n <- 0
   httr2::local_mocked_responses(function(req) {
     n <<- n + 1
-    problem_json(404, '{"instance": "/dadosabertos/processo/1", "status": 404, "title": "Not Found"}')
+    problem_json(
+      404,
+      '{"instance": "/dadosabertos/processo/1", "status": 404, "title": "Not Found"}'
+    )
   })
 
   expect_error(sen_get("processo/1"), class = "senado_error_not_found")
@@ -147,24 +153,35 @@ test_that("HTTP 404 becomes senado_error_not_found, in a single request", {
 test_that("HTTP 400 becomes senado_error_bad_request with the API detail", {
   withr::local_options(senado.use_cache = FALSE, senado.max_tries = 1L)
   httr2::local_mocked_responses(function(req) {
-    problem_json(400, '{"detail": "Limite o periodo a um ano.", "status": 400, "title": "Bad Request"}')
+    problem_json(
+      400,
+      '{"detail": "Limite o periodo a um ano.", "status": 400, "title": "Bad Request"}'
+    )
   })
 
   err <- expect_error(sen_get("processo"), class = "senado_error_bad_request")
   expect_s3_class(err, "senado_error")
-  expect_match(conditionMessage(err$parent), "Limite o periodo a um ano.", fixed = TRUE)
+  expect_match(
+    conditionMessage(err$parent),
+    "Limite o periodo a um ano.",
+    fixed = TRUE
+  )
 })
 
 test_that("HTTP 5xx becomes senado_error_unavailable", {
   withr::local_options(senado.use_cache = FALSE, senado.max_tries = 1L)
-  httr2::local_mocked_responses(function(req) httr2::response(status_code = 503))
+  httr2::local_mocked_responses(function(req) {
+    httr2::response(status_code = 503)
+  })
 
   expect_error(sen_get("votacao"), class = "senado_error_unavailable")
 })
 
 test_that("other HTTP errors become senado_error_http", {
   withr::local_options(senado.use_cache = FALSE, senado.max_tries = 1L)
-  httr2::local_mocked_responses(function(req) httr2::response(status_code = 403))
+  httr2::local_mocked_responses(function(req) {
+    httr2::response(status_code = 403)
+  })
 
   expect_error(sen_get("votacao"), class = "senado_error_http")
 })

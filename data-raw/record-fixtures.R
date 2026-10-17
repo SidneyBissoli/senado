@@ -55,7 +55,8 @@ capture_requests({
   sen_senator_speeches(825, "2024-05-01", "2024-05-31")
   sen_senator_speeches(825, "2023-11-01", "2024-02-29") # two yearly slices
   sen_senator_speeches(5322, "2024-01-01", "2024-01-05") # none
-  sen_senator_speeches(99999999, "2024-01-01", "2024-01-05") |> try(silent = TRUE)
+  sen_senator_speeches(99999999, "2024-01-01", "2024-01-05") |>
+    try(silent = TRUE)
   invisible()
 })
 
@@ -69,8 +70,18 @@ trim <- function(file, path, keep) {
     return(invisible()) # envelope without records (unknown id): nothing to trim
   }
   records <- records[keep(records)]
-  if (length(path)) x[[path]] <- records else x <- records
-  json <- jsonlite::toJSON(x, auto_unbox = TRUE, null = "null", pretty = TRUE, digits = NA)
+  if (length(path)) {
+    x[[path]] <- records
+  } else {
+    x <- records
+  }
+  json <- jsonlite::toJSON(
+    x,
+    auto_unbox = TRUE,
+    null = "null",
+    pretty = TRUE,
+    digits = NA
+  )
   con <- file(file, open = "wb")
   writeLines(enc2utf8(json), con, useBytes = TRUE)
   close(con)
@@ -91,7 +102,10 @@ for (file in list.files(fixture_dir, recursive = TRUE)) {
   } else if (grepl("^senador/lista/atual\\.json$", file)) {
     # five senators, among them two from PT (Beto Faro and Camilo Santana)
     trim(file, c("ListaParlamentarEmExercicio", senators), function(records) {
-      which(vapply(records, code_of, "") %in% c("5672", "5982", "4639", "6336", "5967"))
+      which(
+        vapply(records, code_of, "") %in%
+          c("5672", "5982", "4639", "6336", "5967")
+      )
     })
   } else if (grepl("^senador/lista/atual-", file)) {
     trim(file, c("ListaParlamentarEmExercicio", senators), first(3))
@@ -103,18 +117,48 @@ for (file in list.files(fixture_dir, recursive = TRUE)) {
   } else if (grepl("^senador/lista/legislatura/", file)) {
     trim(file, c("ListaParlamentarLegislatura", senators), first(3))
   } else if (grepl("^senador/5322/comissoes\\.json$", file)) {
-    trim(file, c("MembroComissaoParlamentar", "Parlamentar", "MembroComissoes", "Comissao"), first(6))
+    trim(
+      file,
+      c(
+        "MembroComissaoParlamentar",
+        "Parlamentar",
+        "MembroComissoes",
+        "Comissao"
+      ),
+      first(6)
+    )
   } else if (grepl("^senador/825/comissoes", file)) {
-    trim(file, c("MembroComissaoParlamentar", "Parlamentar", "MembroComissoes", "Comissao"), first(3))
+    trim(
+      file,
+      c(
+        "MembroComissaoParlamentar",
+        "Parlamentar",
+        "MembroComissoes",
+        "Comissao"
+      ),
+      first(3)
+    )
   } else if (grepl("^senador/825/discursos", file)) {
     # keep the speech whose Aparteante arrives as a lone object (506264)
-    trim(file, c("DiscursosParlamentar", "Parlamentar", "Pronunciamentos", "Pronunciamento"), function(records) {
-      codes <- vapply(records, function(r) r$CodigoPronunciamento, "")
-      union(1:3, which(codes == "506264"))
-    })
+    trim(
+      file,
+      c(
+        "DiscursosParlamentar",
+        "Parlamentar",
+        "Pronunciamentos",
+        "Pronunciamento"
+      ),
+      function(records) {
+        codes <- vapply(records, function(r) r$CodigoPronunciamento, "")
+        union(1:3, which(codes == "506264"))
+      }
+    )
   }
 }
 
 files <- list.files(fixture_dir, recursive = TRUE, full.names = TRUE)
-print(data.frame(file = sub(fixture_dir, "", files, fixed = TRUE), kb = round(file.size(files) / 1024, 1)))
+print(data.frame(
+  file = sub(fixture_dir, "", files, fixed = TRUE),
+  kb = round(file.size(files) / 1024, 1)
+))
 cat("total KB:", round(sum(file.size(files)) / 1024), "\n")

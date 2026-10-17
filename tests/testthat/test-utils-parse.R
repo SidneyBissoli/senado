@@ -10,7 +10,10 @@ test_that("sen_col fills the default format of dates and datetimes", {
   expect_null(sen_col("a", "A")$format)
   expect_equal(sen_col("a", "A", "date")$format, "%Y-%m-%d")
   expect_equal(sen_col("a", "A", "datetime")$format, "%Y-%m-%dT%H:%M:%OS")
-  expect_equal(sen_col("a", "A", "date", format = "%d/%m/%Y")$format, "%d/%m/%Y")
+  expect_equal(
+    sen_col("a", "A", "date", format = "%d/%m/%Y")$format,
+    "%d/%m/%Y"
+  )
 })
 
 test_that("sen_col rejects an unknown type", {
@@ -38,7 +41,9 @@ test_that("sen_as_records turns a lone object into a list of one record", {
 })
 
 test_that("sen_records reads a path, or the top-level array", {
-  legacy <- list(Lista = list(Metadados = list(), Itens = list(Item = list(A = "1"))))
+  legacy <- list(
+    Lista = list(Metadados = list(), Itens = list(Item = list(A = "1")))
+  )
   expect_length(sen_records(legacy, c("Lista", "Itens", "Item")), 1)
   expect_length(sen_records(legacy, c("Lista", "Nada", "Item")), 0)
   expect_length(sen_records(list(list(a = 1), list(a = 2))), 2)
@@ -82,24 +87,36 @@ test_that("sen_as_tibble selects, renames and converts by specification", {
   records <- list(
     list(
       Id = list(Codigo = "5322", Nome = "Rom\u00e1rio", Extra = "x"),
-      MembroMesa = "N\u00e3o", DataNascimento = "1966-01-29",
-      DataInicio = "01/02/2023", Atualizacao = "2026-07-01T10:27:23.914"
+      MembroMesa = "N\u00e3o",
+      DataNascimento = "1966-01-29",
+      DataInicio = "01/02/2023",
+      Atualizacao = "2026-07-01T10:27:23.914"
     ),
     list(Id = list(Codigo = "825", Nome = "Paulo Paim"), MembroMesa = "Sim")
   )
   result <- sen_as_tibble(records, spec_basic)
 
   expect_s3_class(result, "tbl_df")
-  expect_named(result, c(
-    "senator_code", "name", "board_member", "birth_date", "start_date",
-    "updated_at"
-  ))
+  expect_named(
+    result,
+    c(
+      "senator_code",
+      "name",
+      "board_member",
+      "birth_date",
+      "start_date",
+      "updated_at"
+    )
+  )
   expect_equal(result$senator_code, c(5322L, 825L))
   expect_equal(result$board_member, c(FALSE, TRUE))
   expect_equal(result$birth_date, as.Date(c("1966-01-29", NA)))
   expect_equal(result$start_date, as.Date(c("2023-02-01", NA)))
   expect_s3_class(result$updated_at, "POSIXct")
-  expect_equal(format(result$updated_at[1], "%Y-%m-%d %H:%M"), "2026-07-01 10:27")
+  expect_equal(
+    format(result$updated_at[1], "%Y-%m-%d %H:%M"),
+    "2026-07-01 10:27"
+  )
 })
 
 test_that("sen_as_tibble returns 0 rows with typed columns for no records", {
@@ -149,13 +166,21 @@ test_that("list columns become tibbles, whether the node is object or array", {
     sen_col("parties", c("Partidos", "Partido"), "list", spec = party_spec)
   )
   records <- list(
-    list(CodigoMandato = "1", Partidos = list(
-      Partido = list(Sigla = "PT", DataFiliacao = "1985-01-01")
-    )),
-    list(CodigoMandato = "2", Partidos = list(Partido = list(
-      list(Sigla = "PL", DataFiliacao = "2021-04-08"),
-      list(Sigla = "S/Partido", DataFiliacao = "2026-09-10")
-    ))),
+    list(
+      CodigoMandato = "1",
+      Partidos = list(
+        Partido = list(Sigla = "PT", DataFiliacao = "1985-01-01")
+      )
+    ),
+    list(
+      CodigoMandato = "2",
+      Partidos = list(
+        Partido = list(
+          list(Sigla = "PL", DataFiliacao = "2021-04-08"),
+          list(Sigla = "S/Partido", DataFiliacao = "2026-09-10")
+        )
+      )
+    ),
     list(CodigoMandato = "3")
   )
   result <- sen_as_tibble(records, spec)
@@ -201,10 +226,13 @@ vote_spec <- list(
   sen_col("total_yes", "totalVotosSim", "integer")
 )
 
-record_spec <- c(vote_spec[c(1, 6)], list(
-  sen_col("senator_code", c("votos", "codigoParlamentar"), "integer"),
-  sen_col("vote", c("votos", "siglaVotoParlamentar"))
-))
+record_spec <- c(
+  vote_spec[c(1, 6)],
+  list(
+    sen_col("senator_code", c("votos", "codigoParlamentar"), "integer"),
+    sen_col("vote", c("votos", "siglaVotoParlamentar"))
+  )
+)
 
 test_that("v4 fixture: /processo list", {
   spec <- list(
@@ -214,7 +242,10 @@ test_that("v4 fixture: /processo list", {
     sen_col("updated_at", "dataUltimaAtualizacao", "datetime"),
     sen_col("summary", "ementa")
   )
-  result <- sen_as_tibble(sen_records(read_fixture("v4", "processo-lista.json")), spec)
+  result <- sen_as_tibble(
+    sen_records(read_fixture("v4", "processo-lista.json")),
+    spec
+  )
 
   expect_equal(nrow(result), 1L)
   expect_equal(result$process_id, 8617172L)
@@ -229,7 +260,10 @@ test_that("v4 fixture: /processo/{id} is a single object", {
     sen_col("process_id", "id", "integer"),
     sen_col("bill_code", "codigoMateria", "integer")
   )
-  result <- sen_as_tibble(sen_records(read_fixture("v4", "processo-id.json")), spec)
+  result <- sen_as_tibble(
+    sen_records(read_fixture("v4", "processo-id.json")),
+    spec
+  )
 
   expect_equal(nrow(result), 1L)
   expect_equal(result$process_id, 8617172L)

@@ -5,19 +5,23 @@
 # Functions, not objects: R files are collated alphabetically and sen_col()
 # is defined in utils-parse.R.
 
-spec_mandate_summary <- function() list(
-  sen_col("mandate_code", "CodigoMandato", "integer"),
-  sen_col("state", "UfParlamentar"),
-  sen_col("participation", "DescricaoParticipacao"),
-  sen_col(
-    "first_legislature",
-    c("PrimeiraLegislaturaDoMandato", "NumeroLegislatura"), "integer"
-  ),
-  sen_col(
-    "second_legislature",
-    c("SegundaLegislaturaDoMandato", "NumeroLegislatura"), "integer"
+spec_mandate_summary <- function() {
+  list(
+    sen_col("mandate_code", "CodigoMandato", "integer"),
+    sen_col("state", "UfParlamentar"),
+    sen_col("participation", "DescricaoParticipacao"),
+    sen_col(
+      "first_legislature",
+      c("PrimeiraLegislaturaDoMandato", "NumeroLegislatura"),
+      "integer"
+    ),
+    sen_col(
+      "second_legislature",
+      c("SegundaLegislaturaDoMandato", "NumeroLegislatura"),
+      "integer"
+    )
   )
-)
+}
 
 spec_senators <- function() {
   id <- "IdentificacaoParlamentar"
@@ -48,7 +52,9 @@ spec_senators <- function() {
     sen_col("photo_url", c(id, "UrlFotoParlamentar")),
     sen_col("page_url", c(id, "UrlPaginaParlamentar")),
     sen_col(
-      "mandates", c("Mandatos", "Mandato"), "list",
+      "mandates",
+      c("Mandatos", "Mandato"),
+      "list",
       spec = spec_mandate_summary()
     )
   )
@@ -73,7 +79,9 @@ spec_senator <- function() {
     sen_col("page_url", c(id, "UrlPaginaParlamentar")),
     sen_col("personal_url", c(id, "UrlPaginaParticular")),
     sen_col(
-      "phones", c("Telefones", "Telefone"), "list",
+      "phones",
+      c("Telefones", "Telefone"),
+      "list",
       spec = list(
         sen_col("number", "NumeroTelefone"),
         sen_col("fax", "IndicadorFax", "logical")
@@ -98,7 +106,9 @@ spec_senator_mandates <- function() {
     sen_col("holder_code", c("Titular", "CodigoParlamentar"), "integer"),
     sen_col("holder_name", c("Titular", "NomeParlamentar")),
     sen_col(
-      "substitutes", c("Suplentes", "Suplente"), "list",
+      "substitutes",
+      c("Suplentes", "Suplente"),
+      "list",
       spec = list(
         sen_col("participation", "DescricaoParticipacao"),
         sen_col("senator_code", "CodigoParlamentar", "integer"),
@@ -106,7 +116,9 @@ spec_senator_mandates <- function() {
       )
     ),
     sen_col(
-      "terms", c("Exercicios", "Exercicio"), "list",
+      "terms",
+      c("Exercicios", "Exercicio"),
+      "list",
       spec = list(
         sen_col("term_code", "CodigoExercicio", "integer"),
         sen_col("start_date", "DataInicio", "date"),
@@ -117,7 +129,9 @@ spec_senator_mandates <- function() {
       )
     ),
     sen_col(
-      "parties", c("Partidos", "Partido"), "list",
+      "parties",
+      c("Partidos", "Partido"),
+      "list",
       spec = list(
         sen_col("party_code", "CodigoPartido", "integer"),
         sen_col("party", "Sigla"),
@@ -161,14 +175,18 @@ spec_senator_speeches <- function() {
     sen_col("session_number", c(session, "NumeroSessao"), "integer"),
     sen_col("session_date", c(session, "DataSessao"), "date"),
     sen_col(
-      "interjections", c("Aparteantes", "Aparteante"), "list",
+      "interjections",
+      c("Aparteantes", "Aparteante"),
+      "list",
       spec = list(
         sen_col("senator_code", "CodigoParlamentar", "integer"),
         sen_col("name", "NomeAparteante")
       )
     ),
     sen_col(
-      "publications", c("Publicacoes", "Publicacao"), "list",
+      "publications",
+      c("Publicacoes", "Publicacao"),
+      "list",
       spec = list(
         sen_col("source", "DescricaoVeiculoPublicacao"),
         sen_col("date", "DataPublicacao", "date"),
@@ -202,15 +220,26 @@ spec_senator_speeches <- function() {
 #' @param call The calling environment for error context.
 #' @return The parsed `Parlamentar` node.
 #' @noRd
-sen_senator_node <- function(code, service, envelope, query = NULL,
-                             required = NULL, cache_category = "semi_static",
-                             call = rlang::caller_env()) {
+sen_senator_node <- function(
+  code,
+  service,
+  envelope,
+  query = NULL,
+  required = NULL,
+  cache_category = "semi_static",
+  call = rlang::caller_env()
+) {
   path <- paste0("senador/", code)
   if (nzchar(service)) {
     path <- paste0(path, "/", service)
   }
 
-  data <- sen_get(path, query = query, cache_category = cache_category, call = call)
+  data <- sen_get(
+    path,
+    query = query,
+    cache_category = cache_category,
+    call = call
+  )
   node <- sen_pluck(data, c(envelope, "Parlamentar"))
 
   if (is.null(node) || (!is.null(required) && is.null(node[[required]]))) {
@@ -329,9 +358,13 @@ sen_year_slices <- function(start, end) {
 #'
 #' @family senators
 #' @export
-sen_senators <- function(legislature = NULL, state = NULL, party = NULL,
-                         status = c("all", "holder", "substitute"),
-                         in_office = NULL) {
+sen_senators <- function(
+  legislature = NULL,
+  state = NULL,
+  party = NULL,
+  status = c("all", "holder", "substitute"),
+  in_office = NULL
+) {
   status <- rlang::arg_match(status)
   if (!is.null(party)) {
     party <- validate_party(party)
@@ -397,8 +430,10 @@ sen_senators <- function(legislature = NULL, state = NULL, party = NULL,
 
 #' Validate `legislature`: one number, or an increasing pair
 #' @noRd
-validate_legislature_range <- function(legislature,
-                                       call = rlang::caller_env()) {
+validate_legislature_range <- function(
+  legislature,
+  call = rlang::caller_env()
+) {
   if (!length(legislature) %in% c(1L, 2L)) {
     cli::cli_abort(
       "{.arg legislature} must be one number or a pair (first, last), not {length(legislature)} values.",
@@ -586,12 +621,16 @@ sen_senator_committees <- function(code, active = NULL, committee = NULL) {
   }
 
   query <- list(
-    ativo = if (!is.null(active)) if (active) "S" else "N",
+    ativo = if (!is.null(active)) {
+      if (active) "S" else "N"
+    },
     comissao = if (!is.null(committee)) toupper(trimws(committee))
   )
 
   node <- sen_senator_node(
-    code, "comissoes", "MembroComissaoParlamentar",
+    code,
+    "comissoes",
+    "MembroComissaoParlamentar",
     query = query
   )
   records <- sen_records(node, c("MembroComissoes", "Comissao"))
@@ -678,7 +717,10 @@ sen_senator_speeches <- function(code, start_date = NULL, end_date = NULL) {
   }
 
   if (length(slices) > 1L) {
-    cli::cli_progress_bar("Fetching speeches, year by year", total = length(slices))
+    cli::cli_progress_bar(
+      "Fetching speeches, year by year",
+      total = length(slices)
+    )
   }
 
   records <- list()
@@ -690,11 +732,17 @@ sen_senator_speeches <- function(code, start_date = NULL, end_date = NULL) {
       )
     }
     node <- sen_senator_node(
-      code, "discursos", "DiscursosParlamentar",
-      query = query, required = "IdentificacaoParlamentar",
+      code,
+      "discursos",
+      "DiscursosParlamentar",
+      query = query,
+      required = "IdentificacaoParlamentar",
       cache_category = "dynamic"
     )
-    records <- c(records, sen_records(node, c("Pronunciamentos", "Pronunciamento")))
+    records <- c(
+      records,
+      sen_records(node, c("Pronunciamentos", "Pronunciamento"))
+    )
     if (length(slices) > 1L) {
       cli::cli_progress_update()
     }

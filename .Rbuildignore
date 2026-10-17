@@ -10,3 +10,4 @@
 ^pareceres$
 ^.*\.Rproj$
 ^\.Rproj\.user$
+^air\.toml$

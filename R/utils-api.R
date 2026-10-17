@@ -40,8 +40,13 @@ sen_user_agent <- function() {
 #'   simplification: arrays are unnamed lists, objects are named lists.
 #'
 #' @noRd
-sen_get <- function(path, query = NULL, format = c("json", "xml"),
-                    cache_category = "dynamic", call = rlang::caller_env()) {
+sen_get <- function(
+  path,
+  query = NULL,
+  format = c("json", "xml"),
+  cache_category = "dynamic",
+  call = rlang::caller_env()
+) {
   format <- match.arg(format)
   query <- query[!vapply(query, is.null, logical(1))]
 
@@ -74,8 +79,12 @@ sen_get <- function(path, query = NULL, format = c("json", "xml"),
 #' @return A parsed R list. Failures are signalled as `senado_error`
 #'   conditions.
 #' @noRd
-sen_request <- function(path, query = NULL, format = "json",
-                        call = rlang::caller_env()) {
+sen_request <- function(
+  path,
+  query = NULL,
+  format = "json",
+  call = rlang::caller_env()
+) {
   url <- paste0(sen_base_url(), "/", path)
 
   if (format == "json") {
@@ -193,8 +202,11 @@ sen_abort_http <- function(e, url, call = rlang::caller_env()) {
 #' @return A parsed R list. A body that cannot be parsed signals
 #'   `senado_error_format`.
 #' @noRd
-sen_parse_response <- function(resp, format = "json",
-                               call = rlang::caller_env()) {
+sen_parse_response <- function(
+  resp,
+  format = "json",
+  call = rlang::caller_env()
+) {
   content_type <- httr2::resp_content_type(resp)
   body <- httr2::resp_body_string(resp)
 
