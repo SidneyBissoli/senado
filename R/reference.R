@@ -5,46 +5,58 @@
 # Functions, not objects: R files are collated alphabetically and sen_col()
 # is defined in utils-parse.R.
 
-spec_legislative_sessions <- function() list(
-  sen_col("session_number", "NumeroSessaoLegislativa", "integer"),
-  sen_col("session_type", "TipoSessaoLegislativa"),
-  sen_col("start_date", "DataInicio", "date"),
-  sen_col("end_date", "DataFim", "date")
-)
-
-spec_legislatures <- function() list(
-  sen_col("legislature", "NumeroLegislatura", "integer"),
-  sen_col("start_date", "DataInicio", "date"),
-  sen_col("end_date", "DataFim", "date"),
-  sen_col("election_date", "DataEleicao", "date"),
-  sen_col(
-    "sessions", c("SessoesLegislativas", "SessaoLegislativa"), "list",
-    spec = spec_legislative_sessions()
+spec_legislative_sessions <- function() {
+  list(
+    sen_col("session_number", "NumeroSessaoLegislativa", "integer"),
+    sen_col("session_type", "TipoSessaoLegislativa"),
+    sen_col("start_date", "DataInicio", "date"),
+    sen_col("end_date", "DataFim", "date")
   )
-)
+}
 
-spec_parties <- function() list(
-  sen_col("party_code", "Codigo", "integer"),
-  sen_col("party", "Sigla"),
-  sen_col("party_name", "Nome"),
-  sen_col("creation_date", "DataCriacao", "date"),
-  sen_col("extinction_date", "DataExtincao", "date")
-)
+spec_legislatures <- function() {
+  list(
+    sen_col("legislature", "NumeroLegislatura", "integer"),
+    sen_col("start_date", "DataInicio", "date"),
+    sen_col("end_date", "DataFim", "date"),
+    sen_col("election_date", "DataEleicao", "date"),
+    sen_col(
+      "sessions",
+      c("SessoesLegislativas", "SessaoLegislativa"),
+      "list",
+      spec = spec_legislative_sessions()
+    )
+  )
+}
 
-spec_bill_types <- function() list(
-  sen_col("type", "sigla"),
-  sen_col("description", "descricao"),
-  sen_col("start_date", "dataInicio", "date"),
-  sen_col("end_date", "dataFim", "date")
-)
+spec_parties <- function() {
+  list(
+    sen_col("party_code", "Codigo", "integer"),
+    sen_col("party", "Sigla"),
+    sen_col("party_name", "Nome"),
+    sen_col("creation_date", "DataCriacao", "date"),
+    sen_col("extinction_date", "DataExtincao", "date")
+  )
+}
 
-spec_bill_statuses <- function() list(
-  sen_col("status_id", "id", "integer"),
-  sen_col("status", "sigla"),
-  sen_col("description", "descricao"),
-  sen_col("start_date", "dataInicio", "date"),
-  sen_col("end_date", "dataFim", "date")
-)
+spec_bill_types <- function() {
+  list(
+    sen_col("type", "sigla"),
+    sen_col("description", "descricao"),
+    sen_col("start_date", "dataInicio", "date"),
+    sen_col("end_date", "dataFim", "date")
+  )
+}
+
+spec_bill_statuses <- function() {
+  list(
+    sen_col("status_id", "id", "integer"),
+    sen_col("status", "sigla"),
+    sen_col("description", "descricao"),
+    sen_col("start_date", "dataInicio", "date"),
+    sen_col("end_date", "dataFim", "date")
+  )
+}
 
 # --- Legislatures -----------------------------------------------------------
 
@@ -82,7 +94,8 @@ spec_bill_statuses <- function() list(
 sen_legislatures <- function() {
   data <- sen_get("plenario/lista/legislaturas", cache_category = "reference")
   records <- sen_records(
-    data, c("ListaLegislatura", "Legislaturas", "Legislatura")
+    data,
+    c("ListaLegislatura", "Legislaturas", "Legislatura")
   )
   sen_as_tibble(records, spec_legislatures())
 }
@@ -95,12 +108,15 @@ sen_legislatures <- function() {
 #' @param call The calling environment for error context.
 #' @return An integer.
 #' @noRd
-sen_current_legislature <- function(date = Sys.Date(),
-                                    call = rlang::caller_env()) {
+sen_current_legislature <- function(
+  date = Sys.Date(),
+  call = rlang::caller_env()
+) {
   path <- paste0("plenario/legislatura/", format(date, "%Y%m%d"))
   data <- sen_get(path, cache_category = "reference", call = call)
   records <- sen_records(
-    data, c("ListaLegislatura", "Legislaturas", "Legislatura")
+    data,
+    c("ListaLegislatura", "Legislaturas", "Legislatura")
   )
 
   if (length(records) == 0L) {

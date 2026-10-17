@@ -46,7 +46,11 @@ validate_year <- function(year, arg = "year", call = rlang::caller_env()) {
 #' @param call The calling environment for error context.
 #' @return The code as an integer, invisibly.
 #' @noRd
-validate_senator_code <- function(code, arg = "code", call = rlang::caller_env()) {
+validate_senator_code <- function(
+  code,
+  arg = "code",
+  call = rlang::caller_env()
+) {
   validate_positive_integer(code, arg = arg, call = call)
 }
 
@@ -89,8 +93,10 @@ validate_party <- function(party, arg = "party", call = rlang::caller_env()) {
 
   # Refuse digits, spaces and punctuation rather than demand [A-Z]: what
   # counts as a letter depends on the locale, and "UNIÃO" must pass in all.
-  if (!nzchar(party) ||
-        grepl("[[:digit:][:space:][:punct:]]", gsub("/", "", party, fixed = TRUE))) {
+  if (
+    !nzchar(party) ||
+      grepl("[[:digit:][:space:][:punct:]]", gsub("/", "", party, fixed = TRUE))
+  ) {
     cli::cli_abort(
       "{.arg {arg}} must contain only letters, not {.val {party}}.",
       call = call
@@ -105,9 +111,33 @@ validate_party <- function(party, arg = "party", call = rlang::caller_env()) {
 #' Valid Brazilian state codes (UFs)
 #' @noRd
 valid_ufs <- c(
-  "AC", "AL", "AM", "AP", "BA", "CE", "DF", "ES", "GO", "MA",
-  "MG", "MS", "MT", "PA", "PB", "PE", "PI", "PR", "RJ", "RN",
-  "RO", "RR", "RS", "SC", "SE", "SP", "TO"
+  "AC",
+  "AL",
+  "AM",
+  "AP",
+  "BA",
+  "CE",
+  "DF",
+  "ES",
+  "GO",
+  "MA",
+  "MG",
+  "MS",
+  "MT",
+  "PA",
+  "PB",
+  "PE",
+  "PI",
+  "PR",
+  "RJ",
+  "RN",
+  "RO",
+  "RR",
+  "RS",
+  "SC",
+  "SE",
+  "SP",
+  "TO"
 )
 
 #' Validate a Brazilian state abbreviation (UF)
@@ -130,10 +160,13 @@ validate_uf <- function(uf, arg = "state", call = rlang::caller_env()) {
   uf <- toupper(trimws(uf))
 
   if (!uf %in% valid_ufs) {
-    cli::cli_abort(c(
-      "{.val {uf}} is not a valid Brazilian state abbreviation.",
-      "i" = "Valid values: {.val {valid_ufs}}."
-    ), call = call)
+    cli::cli_abort(
+      c(
+        "{.val {uf}} is not a valid Brazilian state abbreviation.",
+        "i" = "Valid values: {.val {valid_ufs}}."
+      ),
+      call = call
+    )
   }
 
   invisible(uf)
@@ -204,7 +237,11 @@ validate_scalar_integer <- function(x, arg = "x", call = rlang::caller_env()) {
 
 #' Validate that a value is a positive integer
 #' @noRd
-validate_positive_integer <- function(x, arg = "x", call = rlang::caller_env()) {
+validate_positive_integer <- function(
+  x,
+  arg = "x",
+  call = rlang::caller_env()
+) {
   validate_scalar_integer(x, arg = arg, call = call)
 
   if (as.integer(x) < 1L) {

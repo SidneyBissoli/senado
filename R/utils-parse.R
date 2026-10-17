@@ -24,16 +24,27 @@
 #'
 #' @return A list describing the column.
 #' @noRd
-sen_col <- function(name, path,
-                    type = c(
-                      "character", "integer", "double", "logical",
-                      "date", "datetime", "list"
-                    ),
-                    format = NULL, spec = NULL, trim = FALSE) {
+sen_col <- function(
+  name,
+  path,
+  type = c(
+    "character",
+    "integer",
+    "double",
+    "logical",
+    "date",
+    "datetime",
+    "list"
+  ),
+  format = NULL,
+  spec = NULL,
+  trim = FALSE
+) {
   type <- match.arg(type)
 
   if (is.null(format)) {
-    format <- switch(type,
+    format <- switch(
+      type,
       date = "%Y-%m-%d",
       datetime = "%Y-%m-%dT%H:%M:%OS",
       NULL
@@ -41,8 +52,12 @@ sen_col <- function(name, path,
   }
 
   list(
-    name = name, path = path, type = type,
-    format = format, spec = spec, trim = trim
+    name = name,
+    path = path,
+    type = type,
+    format = format,
+    spec = spec,
+    trim = trim
   )
 }
 
@@ -176,14 +191,19 @@ sen_extract_col <- function(records, col) {
 
   # Scalars go through character so that the source type is irrelevant.
   # The literal string "NA" is a value (it is a vote code), never missing.
-  values <- vapply(nodes, function(node) {
-    if (is.null(node) || length(node) == 0L || is.list(node)) {
-      return(NA_character_)
-    }
-    as.character(node[[1L]])
-  }, character(1))
+  values <- vapply(
+    nodes,
+    function(node) {
+      if (is.null(node) || length(node) == 0L || is.list(node)) {
+        return(NA_character_)
+      }
+      as.character(node[[1L]])
+    },
+    character(1)
+  )
 
-  switch(col$type,
+  switch(
+    col$type,
     character = if (col$trim) squish(values) else values,
     integer = parse_integer(values, col$name),
     double = parse_double(values, col$name),

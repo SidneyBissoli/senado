@@ -8,10 +8,16 @@ test_that("sen_legislatures returns one row per legislature", {
     result <- sen_legislatures()
   })
 
-  expect_cols(result, c(
-    legislature = "integer", start_date = "Date", end_date = "Date",
-    election_date = "Date", sessions = "list"
-  ))
+  expect_cols(
+    result,
+    c(
+      legislature = "integer",
+      start_date = "Date",
+      end_date = "Date",
+      election_date = "Date",
+      sessions = "list"
+    )
+  )
   expect_equal(result$legislature, 58:55)
   expect_equal(result$start_date[2], as.Date("2023-02-01"))
 })
@@ -22,10 +28,15 @@ test_that("sen_legislatures keeps the legislative sessions in a list-column", {
   })
   sessions <- result$sessions[[which(result$legislature == 57L)]]
 
-  expect_cols(sessions, c(
-    session_number = "integer", session_type = "character",
-    start_date = "Date", end_date = "Date"
-  ))
+  expect_cols(
+    sessions,
+    c(
+      session_number = "integer",
+      session_type = "character",
+      start_date = "Date",
+      end_date = "Date"
+    )
+  )
   expect_equal(nrow(sessions), 6L)
   # the legislature yet to begin has no session, but has the columns
   future <- result$sessions[[which(result$legislature == 58L)]]
@@ -58,10 +69,16 @@ test_that("sen_parties returns active and extinct parties", {
     result <- sen_parties()
   })
 
-  expect_cols(result, c(
-    party_code = "integer", party = "character", party_name = "character",
-    creation_date = "Date", extinction_date = "Date"
-  ))
+  expect_cols(
+    result,
+    c(
+      party_code = "integer",
+      party = "character",
+      party_name = "character",
+      creation_date = "Date",
+      extinction_date = "Date"
+    )
+  )
   expect_equal(nrow(result), 6L)
   expect_equal(result$party[1], "AGIR")
   # DataExtincao exists only in extinct parties
@@ -79,10 +96,15 @@ test_that("sen_bill_types reads the top-level array of a v4 service", {
     result <- sen_bill_types()
   })
 
-  expect_cols(result, c(
-    type = "character", description = "character",
-    start_date = "Date", end_date = "Date"
-  ))
+  expect_cols(
+    result,
+    c(
+      type = "character",
+      description = "character",
+      start_date = "Date",
+      end_date = "Date"
+    )
+  )
   expect_equal(nrow(result), 8L)
   expect_equal(result$type[1], "ACE")
   # "2017-01-01T00:00:00" is read as a date
@@ -97,10 +119,16 @@ test_that("sen_bill_statuses returns typed columns", {
     result <- sen_bill_statuses()
   })
 
-  expect_cols(result, c(
-    status_id = "integer", status = "character", description = "character",
-    start_date = "Date", end_date = "Date"
-  ))
+  expect_cols(
+    result,
+    c(
+      status_id = "integer",
+      status = "character",
+      description = "character",
+      start_date = "Date",
+      end_date = "Date"
+    )
+  )
   expect_equal(nrow(result), 8L)
   expect_equal(result$status[1], "AGDDO")
   expect_equal(result$status_id[1], 86L)

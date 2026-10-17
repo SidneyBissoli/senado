@@ -19,13 +19,13 @@ sen_cache_env <- new.env(parent = emptyenv())
 #' @noRd
 sen_cache_init <- function() {
   sen_cache_env$reference <- cachem::cache_mem(
-    max_age = 60 * 60 * 24   # 24 hours
+    max_age = 60 * 60 * 24 # 24 hours
   )
   sen_cache_env$semi_static <- cachem::cache_mem(
-    max_age = 60 * 60 * 6    # 6 hours
+    max_age = 60 * 60 * 6 # 6 hours
   )
   sen_cache_env$dynamic <- cachem::cache_mem(
-    max_age = 60 * 15        # 15 minutes
+    max_age = 60 * 15 # 15 minutes
   )
 }
 
@@ -37,9 +37,10 @@ sen_cache_init <- function() {
 #'   `"dynamic"`.
 #' @return A `cachem::cache_mem` object.
 #' @noRd
-sen_cache_store <- function(category = c("dynamic", "semi_static", "reference")) {
+sen_cache_store <- function(
+  category = c("dynamic", "semi_static", "reference")
+) {
   category <- match.arg(category)
-
 
   # Lazily initialise if stores do not exist yet
   if (is.null(sen_cache_env$reference)) {
@@ -123,6 +124,8 @@ sen_cache_clear <- function(category = NULL) {
     store$reset()
   }
 
-  cli::cli_alert_success("Cache cleared{if (!is.null(category)) paste0(' (', category, ')') else ''}.")
+  cli::cli_alert_success(
+    "Cache cleared{if (!is.null(category)) paste0(' (', category, ')') else ''}."
+  )
   invisible(NULL)
 }

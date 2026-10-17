@@ -5,8 +5,10 @@
 test_that("validate_year accepts valid years", {
   expect_invisible(validate_year(2024))
   expect_equal(validate_year(1991), 1991L)
-  expect_equal(validate_year(as.integer(format(Sys.Date(), "%Y"))),
-               as.integer(format(Sys.Date(), "%Y")))
+  expect_equal(
+    validate_year(as.integer(format(Sys.Date(), "%Y"))),
+    as.integer(format(Sys.Date(), "%Y"))
+  )
 })
 
 test_that("validate_year rejects years before 1991", {

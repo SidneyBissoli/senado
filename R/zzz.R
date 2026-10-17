@@ -9,7 +9,9 @@
     senado.verbose = TRUE
   )
   toset <- !(names(op_senado) %in% names(op))
-  if (any(toset)) options(op_senado[toset])
+  if (any(toset)) {
+    options(op_senado[toset])
+  }
 
   # Honour SENADO_CACHE_ENABLED env var (overrides option)
   cache_env <- Sys.getenv("SENADO_CACHE_ENABLED", unset = "")
@@ -26,7 +28,9 @@
 .onAttach <- function(libname, pkgname) {
   version <- as.character(utils::packageVersion(pkgname))
   packageStartupMessage(
-    "senado ", version, " - Access data from the Brazilian Federal Senate\n",
+    "senado ",
+    version,
+    " - Access data from the Brazilian Federal Senate\n",
     "Docs: https://github.com/SidneyBissoli/senado"
   )
 }
